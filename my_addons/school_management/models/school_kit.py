@@ -1,5 +1,6 @@
 from odoo import fields, models, api
 from odoo.exceptions import ValidationError
+from dateutil.relativedelta import relativedelta
 
 
 class SchoolKit(models.Model):
@@ -28,6 +29,15 @@ class SchoolInherited(models.Model):
         column2='friend_id',
         string='Friends'
     )
+
+    date_of_birth = fields.Date()
+    age = fields.Integer(compute='_compute_age')
+
+    @api.depends('date_of_birth')
+    def _compute_age(self):
+        self.age = False
+        for rec in self:
+            rec.age = relativedelta(fields.Date.today(), rec.date_of_birth).years
 
     @api.onchange('friend_ids')
     def _set_friends(self):
