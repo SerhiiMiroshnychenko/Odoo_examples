@@ -21,6 +21,8 @@
     'data': [
         'security/ir.model.access.csv',
         'views/school.xml',
+        'report/school_report.xml',
+        'report/student_template.xml',
     ],
 
     # 'assets': {
