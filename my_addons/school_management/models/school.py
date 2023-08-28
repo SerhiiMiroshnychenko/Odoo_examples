@@ -7,4 +7,4 @@ class School(models.Model):
 
     name = fields.Many2one(comodel_name='res.partner', string='Student')
     class_id = fields.Integer(string='Class')
-    division = fields.Char(string='Division')
+    division = fields.Char()

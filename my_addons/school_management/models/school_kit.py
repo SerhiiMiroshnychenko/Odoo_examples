@@ -1,4 +1,4 @@
-from odoo import fields, models, api
+from odoo import fields, models, api, _
 from odoo.exceptions import ValidationError
 from dateutil.relativedelta import relativedelta
 
@@ -32,12 +32,26 @@ class SchoolInherited(models.Model):
 
     date_of_birth = fields.Date()
     age = fields.Integer(compute='_compute_age')
+    admin_date = fields.Date(default=fields.Date.today())
+    officer_id = fields.Many2one(
+        comodel_name='res.users',
+        string='Officer',
+        default=lambda self: self.env.user)
 
     @api.depends('date_of_birth')
     def _compute_age(self):
         self.age = False
         for rec in self:
             rec.age = relativedelta(fields.Date.today(), rec.date_of_birth).years
+
+    @api.constrains('date_of_birth', 'class_id')
+    def validation_constrains(self):
+        today = fields.Date.today()
+        for rec in self:
+            if rec.date_of_birth > today:
+                raise ValidationError(_('Invalid Date of Birth'))
+            if (rec.class_id > 12) or (rec.class_id < 1):
+                raise ValidationError(_('Invalid Class'))
 
     @api.onchange('friend_ids')
     def _set_friends(self):
@@ -56,7 +70,7 @@ class SchoolInherited(models.Model):
     def _check_friend_ids(self):
         for student in self:
             if student in student.friend_ids:
-                raise ValidationError("Cannot add yourself as a friend.")
+                raise ValidationError(_("Cannot add yourself as a friend."))
 
     # def write(self, vals):
     #     print(f'Before super(): {vals=}')

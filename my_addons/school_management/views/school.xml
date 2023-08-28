@@ -16,9 +16,13 @@
                         <group>
                             <field name="date_of_birth"/>
                             <field name="age" readonly="1"/>
-                            <field name="friend_ids" widget="many2many_tags"/>
+                            <field name="admin_date"/>
+                            <field name="officer_id"/>
                         </group>
-                </group>
+                    </group>
+                    <group>
+                        <field name="friend_ids" widget="many2many_tags"/>
+                    </group>
             </sheet>
             </form>
         </field>
@@ -35,6 +39,8 @@
                 <field name="division"/>
                 <field name="date_of_birth"/>
                 <field name="age"/>
+                <field name="admin_date"/>
+                <field name="officer_id"/>
                 <field name="friend_ids" widget="many2many_tags"/>
             </tree>
 
