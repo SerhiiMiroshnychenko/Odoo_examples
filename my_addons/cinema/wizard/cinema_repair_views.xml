@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="cinema_repair_wizard_form" model="ir.ui.view">
+            <field name="name">cinema_repair_wizard_form</field>
+            <field name="model">cinema.repair.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="cinema_id" domain="[('id', '=', active_id)]"/>
+                        <field name="hall_ids" domain="[('cinema_id', '=', active_id), ('repair', '=', False)]"/>
+                    </group>
+                    <group>
+                        <field name="repair_start"/>
+                        <field name="repair_end"/>
+                    </group>
+                    <footer>
+                        <button string="Cancel" class="btn btn-secondary" special="cancel" data-hotkey="z"/>
+                        <button string="Repair" name="cinema_repair" type="object" class="oe_highlight" data-hotkey="q"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_cinema_repair_wizard" model="ir.actions.act_window">
+            <field name="name">Repair</field>
+            <field name="res_model">cinema.repair.wizard</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="cinema_repair_wizard_form"/>
+        </record>
+    </data>
+</odoo>

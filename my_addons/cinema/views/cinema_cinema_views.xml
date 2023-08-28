@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_cinema_cinema_user_smart" model="ir.actions.act_window">
+            <field name="name">Cinema User</field>
+            <field name="res_model">res.users.log</field>
+        </record>
+        <record id="cinema_cinema_form_view" model="ir.ui.view">
+            <field name="name">cinema.cinema.form.view</field>
+            <field name="model">cinema.cinema</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="create_new_cinema" type="object" string="Create new cinema" class="oe_highlight"/>
+                        <button name="create_new_movie" type="object" string="Create new movie" class="oe_highlight"/>
+                        <button name="clear_movie_list" type="object" string="Unpin movie list" class="oe_highlight"/>
+                        <button name="pin_newer_movies" type="object" string="Pin Newest movies" class="oe_highlight"/>
+                        <button name="%(action_cinema_note_wizard)d" type="action" string="Update note"/>
+                        <button name="%(action_cinema_repair_wizard)d" type="action" string="Repair hall"/>
+                        <button name="add_seats" type="object" string="Add Seats" class="oe_highlight"/>
+                        <button name="reserve_all" type="object" string="Reserve All" class="oe_highlight"/>
+                        <button name="create_playbill" type="object" string="Create Playbill" class="oe_highlight"/>
+                        <button name="%(action_cinema_hall_wizard)d" type="action" string="Create new hall" class="oe_highlight"/>
+                        <button name="create_vip_hall" type="object" string="Create vip hall" class="oe_highlight"/>
+                        <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="%(action_cinema_movies)d" type="action"
+                                        class="oe_stat_button" icon="fa-film">
+                                    <div class="o_field_widget o_stat_info">
+                                        <span class="o_stat_text">Today's</span>
+                                        <span class="o_stat_text">Premieres</span>
+                                    </div>
+                                </button>
+                            <button class="oe_stat_button" name="%(action_cinema_cinema_smart_movie)d" type="action" icon="fa-film">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="movies_count"/>
+                                    </span>
+                                    <span class="o_stat_text">
+                                        Movies
+                                    </span>
+                                </div>
+                            </button>
+                            <button class="oe_stat_button" name="%(action_cinema_cinema_user_smart)d" type="action" icon="fa-address-card-o">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="user_id" nolabel="1" readonly="True"/>
+                                    </span>
+                                    <span class="o_stat_text">
+                                        Admin
+                                    </span>
+                                </div>
+                            </button>
+                            <button class="oe_stat_button" name="%(action_cinema_cinema_smart_hall)d" type="action" icon="fa-ticket">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="halls_count"/>
+                                    </span>
+                                    <span class="o_stat_text">
+                                        Halls
+                                    </span>
+                                </div>
+                            </button>
+                        </div>
+                        <widget name="web_ribbon" title="No active halls" attrs="{'invisible': [('active_halls', '>', 0)]}"/>
+                        <widget name="web_ribbon" title="Closed" bg_color="bg-danger"
+                                attrs="{'invisible': [('state', '=', 'open')]}"/>
+                        <div class="oe_title">
+                            <h1 class="d-flex flex-row">
+                                <field name="name" class="o_text_overflow" placeholder="e.g. Cinema city"/>
+                            </h1>
+                            <p>
+                                <field name="cinema_code"/>
+                            </p>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="user_id"/>
+                                <field name="vip_halls"/>
+                                <button name="action_show_vip_halls"
+                                        type="object"
+                                        string=" "
+                                        icon="fa-star fa-2x"
+                                        attrs="{'invisible': [('vip_halls', '=', 0)]}"
+                                />
+                            </group>
+                            <group>
+                                <field name="number_of_stuff"/>
+                                <field name="square_space"/>
+                                <field name="restaurant"/>
+                                <field name="active_halls"/>
+                            </group>
+                            <notebook>
+                                <page string="Description">
+                                    <group>
+                                        <field name="description"/>
+                                        <field name="note" readonly="1"/>
+                                        <button name="%(action_cinema_note_wizard)d" type="action"
+                                                string="Note upgrade" icon="fa-arrow-up"/>
+                                    </group>
+                                </page>
+                                <page string="Halls">
+                                    <button name="add_3d_hall"
+                                            type="object"
+                                            string="Add 3D hall"
+                                            class="oe_highlight"
+                                    />
+                                    <separator string="Halls"/>
+                                    <field name="hall_ids" nolabel="1">
+                                        <tree>
+                                            <field name="name"/>
+                                            <field name="seats"/>
+                                            <field name="reserved"/>
+                                            <field name="movie_ids" domain="[('cinema_ids', 'in', parent.id)]" widget="many2many_tags"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                                <page string="Movies">
+                                    <separator string="Movies"></separator>
+                                    <field name="movie_ids">
+                                        <tree>
+                                            <field name="name"/>
+                                            <field name="premiere_date"/>
+                                            <field name="deadline_date"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="cinema_cinema_tree_view" model="ir.ui.view">
+            <field name="name">cinema.cinema.tree.view</field>
+            <field name="model">cinema.cinema</field>
+            <field name="arch" type="xml">
+                <tree decoration-success="state=='open'"
+                      decoration-bf="movies_count > 0"
+                      decoration-muted="state=='close'"
+                      decoration-it="state=='close'"
+                >
+                    <field name="name"/>
+                    <field name="cinema_code"/>
+                    <field name="user_id"/>
+                    <field name="state" widget="badge"/>
+                    <field name="number_of_stuff"/>
+                    <field name="square_space"/>
+                    <field name="restaurant"/>
+                    <field name="hall_ids" widget="many2many_tags"/>
+                    <field name="total_seats"/>
+                    <field name="movie_ids"
+                           widget="many2many_tags"
+                           options="{'color_field': 'color'}"/>
+                    <field name="movies_count" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        <record id="cinema_cinema_search_view" model="ir.ui.view">
+            <field name="name">cinema.cinema.search.view</field>
+            <field name="model">cinema.cinema</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="number_of_stuff"/>
+                    <field name="square_space"/>
+                </search>
+            </field>
+        </record>
+        <record id="action_cinema_cinema" model="ir.actions.act_window">
+            <field name="name">Cinema</field>
+            <field name="res_model">cinema.cinema</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="cinema_cinema_tree_view"/>
+            <field name="search_view_id" ref="cinema_cinema_search_view"/>
+        </record>
+        <record id="action_cinema_cinema_hall" model="ir.actions.act_window">
+            <field name="name">Halls</field>
+            <field name="res_model">cinema.cinema.hall</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="cinema_cinema_hall_tree_view"/>
+            <field name="search_view_id" ref="cinema_cinema_hall_search_view"/>
+        </record>
+        <record id="action_cinema_cinema_movie" model="ir.actions.act_window">
+            <field name="name">Movie</field>
+            <field name="res_model">cinema.cinema.movie</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="cinema_cinema_movie_tree_view"/>
+            <field name="search_view_id" ref="cinema_cinema_movie_search_view"/>
+        </record>
+        <record id="action_cinema_cinema_repair" model="ir.actions.act_window">
+            <field name="name">Cinema Repair</field>
+            <field name="res_model">cinema.cinema.repair</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="cinema_cinema_repair_tree_view"/>
+        </record>
+        <menuitem name="Cinema"
+                  id="menu_cinema_cinema_main"/>
+        <menuitem name="Cinema"
+                  id="menu_cinema_cinema"
+                  parent="menu_cinema_cinema_main"
+                  action="action_cinema_cinema"/>
+        <menuitem name="Halls"
+                  id="menu_cinema_cinema_hall"
+                  parent="menu_cinema_cinema_main"
+                  action="action_cinema_cinema_hall"/>
+        <menuitem name="Movies"
+                  id="menu_cinema_cinema_movie"
+                  parent="menu_cinema_cinema_main"
+                  action="action_cinema_cinema_movie"/>
+        <menuitem name="Repair"
+                  id="menu_cinema_cinema_repair"
+                  parent="menu_cinema_cinema_main"
+                  action="action_cinema_cinema_repair"/>
+    </data>
+</odoo>

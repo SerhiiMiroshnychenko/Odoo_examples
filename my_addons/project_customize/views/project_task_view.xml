@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- The extension for "view_task_form2_inherit" form to add a code field -->
+        <record id="view_task_form2_inherit" model="ir.ui.view">
+            <field name="name">project.task.form.inherit</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='oe_button_box' and @name='button_box']" position="before">
+                    <h3><field name="code"/></h3>
+                </xpath>
+            </field>
+        </record>
+        <!-- The extension for "view_task_kanban" form to add a code field -->
+        <record id="view_task_kanban_inherit" model="ir.ui.view">
+            <field name="name">project.task.kanban.inherit</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//strong[@class='o_kanban_record_title']" position="before">
+                    <field name="code"/><br/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

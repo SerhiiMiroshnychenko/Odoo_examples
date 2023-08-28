@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_task_form2_inherit" model="ir.ui.view">
+            <field name="name">project.task.form.inherit</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <field name="display_project_id" position="after">
+                    <field name="task_code"/>
+                </field>
+                <xpath expr="//field[@name='stage_id']" position="before">
+                    <button name="add_day" type="object" string="Add day" class="oe_highlight"/>
+                </xpath>
+                <xpath expr="//div[@class='oe_button_box']" position="inside">
+                    <field name="is_approved_state" readonly="1" class="oe_custom_approved_state_field"
+                           style="color: white; text-transform: uppercase; text-align: center; padding: 5px; background-color: #6e64a0;"/>
+                </xpath>
+                <xpath expr="//field[@name='milestone_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <field name="user_ids" position="after">
+                    <field name="qa_id"/>
+                </field>
+                <xpath expr ="//field[@name='qa_id']" position ="after" >
+                    <xpath expr ="//field[@name='partner_id']" position ="move" />
+                </xpath >
+                <xpath expr="//field[@name='date_deadline']" position="before">
+                    <field name="create_date" string="Received"/>
+                </xpath>
+                <xpath expr="//field[@name='date_deadline']" position="after">
+                    <field name="is_approved_state" string="Is Approved State"/>
+                </xpath>
+                <field name="name" position="after">
+                    <div class="text-muted d-flex align-items-center" style="font-size: 13px;">
+                        <span class="fa fa-clock-o me-2" title="Dates"/>
+                        <field name="date_create" options='{"no_open": True}'/>
+                        ...
+                        <field name="date_deadline" readonly="1"/>
+                    </div>
+                </field>
+                <field name="tag_ids" position="replace">
+                    <field name="days_count"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

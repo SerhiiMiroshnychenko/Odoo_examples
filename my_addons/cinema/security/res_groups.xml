@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.module.category" id="module_category_cinema">
+            <field name="name">Cinema</field>
+            <field name="sequence">5</field>
+        </record>
+        <record id="group_cinema_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="cinema.module_category_cinema"/>
+        </record>
+        <record id="group_cinema_admin" model="res.groups">
+            <field name="name">Administrator</field>
+            <field name="category_id" ref="cinema.module_category_cinema"/>
+            <field name="implied_ids" eval="[Command.link(ref('group_cinema_user'))]"/>
+        </record>
+        <record id="cinema_movie_access_rule_view_all" model="ir.rule">
+            <field name="name">Cinema Movie Access Rule View All</field>
+            <field name="model_id" ref="model_cinema_cinema_movie"/>
+            <field name="domain_force">[('company_id', '=', user.company_id.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="groups" eval="[(4, ref('group_cinema_user'))]"/>
+        </record>
+        <record id="cinema_movie_access_rule_edit_own" model="ir.rule">
+            <field name="name">Cinema Movie Access Rule Edit Own</field>
+            <field name="model_id" ref="model_cinema_cinema_movie"/>
+            <field name="domain_force">[('create_uid', '=', user.id)]</field>
+            <field name="perm_write" eval="True"/>
+            <field name="groups" eval="[(4, ref('group_cinema_user'))]"/>
+        </record>
+    </data>
+</odoo>

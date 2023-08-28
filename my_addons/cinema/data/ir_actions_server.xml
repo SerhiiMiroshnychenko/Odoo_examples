@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="action_set_premier_today" model="ir.actions.server">
+            <field name="name">Set premier today</field>
+            <field name="model_id" ref="model_cinema_cinema_movie"/>
+            <field name="binding_model_id" ref="cinema.model_cinema_cinema_movie"/>
+            <field name="binding_view_types">form,tree</field>
+            <field name="state">code</field>
+            <field name="code">
+                records.write({
+                    'premiere_date': datetime.datetime.now()
+                })
+            </field>
+        </record>
+
+        <!-- Server Action: Add Movie to Open Cinemas -->
+        <record id="action_add_movie_to_open_cinemas" model="ir.actions.server">
+            <field name="name">Add Movie to Open Cinemas</field>
+            <field name="model_id" ref="model_cinema_cinema_movie"/>
+            <field name="binding_model_id" ref="cinema.model_cinema_cinema_movie"/>
+            <field name="binding_view_types">form</field>
+            <field name="state">code</field>
+            <field name="code">model.add_movie_to_open_cinemas()</field>
+        </record>
+
+        <!-- Server Action: Update Closed Cinema Staff-->
+        <record id="action_update_closed_cinema_stuff" model="ir.actions.server">
+            <field name="name">Update Closed Cinema Staff</field>
+            <field name="model_id" ref="model_cinema_cinema"/>
+            <field name="binding_model_id" ref="cinema.model_cinema_cinema"/>
+            <field name="binding_view_types">tree</field>
+            <field name="state">code</field>
+            <field name="code">model.update_closed_cinema_stuff()</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="cinema_cinema_repair_tree_view" model="ir.ui.view">
+            <field name="name">cinema.cinema.repair.tree.view</field>
+            <field name="model">cinema.cinema.repair</field>
+            <field name="arch" type="xml">
+                <tree create="False">
+                    <field name="cinema_id"/>
+                    <field name="hall_id"/>
+                    <field name="repair_start"/>
+                    <field name="repair_end"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="cinema_cinema_repair_form_view" model="ir.ui.view">
+            <field name="name">cinema.cinema.repair.form.view</field>
+            <field name="model">cinema.cinema.repair</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="cinema_id" readonly="True"/>
+                            <field name="hall_id" readonly="True"/>
+                        </group>
+                        <group>
+                            <field name="repair_start"/>
+                            <field name="repair_end"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

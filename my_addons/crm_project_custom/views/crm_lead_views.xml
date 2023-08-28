@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Add a new filter for write date -->
+        <record id="view_crm_case_opportunities_filter" model="ir.ui.view">
+            <field name="name">crm.lead.search.opportunity.inherit.crm.project.custom</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='creation_date']" position="after">
+                    <filter string="Write Date" name="write_date" date="write_date"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- Add a new action for tasks count -->
+        <record id="action_tasks_count" model="ir.actions.act_window">
+            <field name="name">Lead Tasks</field>
+            <field name="res_model">project.task</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="domain">[('lead_id', '=', active_id)]</field>
+        </record>
+        <!-- Add a smart button with related task counter and links to them when clicked  -->
+        <record id="crm_lead_view_form" model="ir.ui.view">
+            <field name="name">crm.lead.form.inherit.crm.project.custom</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_schedule_meeting']" position="before">
+                    <button class="oe_stat_button" name="%(action_tasks_count)d" type="action" icon="fa-ticket">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_value">
+                                <field name="tasks_count"/>
+                            </span>
+                            <span class="o_stat_text">
+                                Tasks
+                            </span>
+                        </div>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

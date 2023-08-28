@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record forcecreate="True" id="ir_cron_archive_movies" model="ir.cron">
+            <field name="name">Cinema: archive old movies</field>
+            <field name="model_id" ref="model_cinema_cinema_movie"/>
+            <field name="state">code</field>
+            <field name="code">model.archive_old_movie()</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+        </record>
+
+        <record forcecreate="True" id="ir_cron_close_cinema_for_lunch" model="ir.cron">
+            <field name="name">Close cinema for lunch</field>
+            <field name="model_id" ref="model_cinema_cinema"/>
+            <field name="state">code</field>
+            <field name="code">model.close_for_lunch()</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field name="nextcall" eval="(datetime.now() + timedelta(days=1)).
+                                          replace(hour=9, minute=0, second=0, microsecond=0).
+                                          strftime('%Y-%m-%d %H:%M:%S')"/>
+        </record>
+
+        <record forcecreate="True" id="ir_cron_open_cinema_after_lunch" model="ir.cron">
+            <field name="name">Open cinema after lunch</field>
+            <field name="model_id" ref="model_cinema_cinema"/>
+            <field name="state">code</field>
+            <field name="code">model.open_after_lunch()</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field name="nextcall" eval="(datetime.now() + timedelta(days=1)).
+                                          replace(hour=10, minute=0, second=0, microsecond=0).
+                                          strftime('%Y-%m-%d %H:%M:%S')"/>
+        </record>
+
+        <record forcecreate="True" id="ir_cron_repair_hall" model="ir.cron">
+            <field name="name">Cinema: clear repair hall</field>
+            <field name="model_id" ref="model_cinema_cinema_repair"/>
+            <field name="state">code</field>
+            <field name="code">model.prevent_repair()</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">6</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field eval="True" name="doall"/>
+        </record>
+
+        <record forcecreate="True" id="ir_cron_close_cinema" model="ir.cron">
+            <field name="name">Cinema: close cinemas</field>
+            <field name="model_id" ref="model_cinema_cinema"/>
+            <field name="state">code</field>
+            <field name="code">model.cron_close_cinema()</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field eval="True" name="doall"/>
+        </record>
+
+        <record id="action_pin_newest_movies" model="ir.actions.server">
+            <field name="name">Pin newest movies</field>
+            <field name="model_id" ref="model_cinema_cinema_hall"/>
+            <field name="binding_model_id" ref="cinema.model_cinema_cinema_hall"/>
+            <field name="binding_view_types">list</field>
+            <field name="state">code</field>
+            <field name="code">
+if records:
+    action = records._pin_newest_movies()
+            </field>
+        </record>
+
+        <record id="action_unlink_old_movies" model="ir.actions.server">
+            <field name="name">Delete old movies</field>
+            <field name="model_id" ref="model_cinema_cinema_hall"/>
+            <field name="binding_model_id" ref="cinema.model_cinema_cinema_hall"/>
+            <field name="binding_view_types">list</field>
+            <field name="state">code</field>
+            <field name="code">
+if records:
+    action = records._unlink_old_movies()
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+payroll_custom.access_payroll_payroll_user,access_payroll_payroll_user,model_payroll_payroll,group_payroll_user,1,0,0,0
+payroll_custom.access_payroll_payroll_manager,access_payroll_payroll_manager,model_payroll_payroll,group_payroll_manager,1,1,1,1

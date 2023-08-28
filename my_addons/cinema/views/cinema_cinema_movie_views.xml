@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="cinema_cinema_movie_tree_view" model="ir.ui.view">
+            <field name="name">cinema.cinema.movie.tree.view</field>
+            <field name="model">cinema.cinema.movie</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="company_id" readonly="1"/>
+                    <field name="color"/>
+                    <field name="premiere_date"/>
+                    <field name="deadline_date"/>
+                    <field name="description"/>
+                    <button name="write_description"
+                            type="object"
+                            string="Write description"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('description', '!=', ''), ('description', '!=', False)]}"
+                    />
+                </tree>
+            </field>
+        </record>
+        <record id="cinema_cinema_movie_search_view" model="ir.ui.view">
+            <field name="name">cinema.cinema.movie.search.view</field>
+            <field name="model">cinema.cinema.movie</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+        <record id="action_cinema_cinema_movie" model="ir.actions.act_window">
+            <field name="name">Movie</field>
+            <field name="res_model">cinema.cinema.movie</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="view_id" ref="cinema_cinema_movie_tree_view"/>
+            <field name="search_view_id" ref="cinema_cinema_movie_search_view"/>
+            <field name="context">{'create': True}</field>
+        </record>
+        <record id="action_movie_cinema_cinema" model="ir.actions.act_window">
+            <field name="name">Cinema Cinema</field>
+            <field name="res_model">cinema.cinema</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('movie_ids', '=', active_id)]</field>
+        </record>
+        <record id="cinema_cinema_movie_form_view" model="ir.ui.view">
+            <field name="name">cinema.cinema.movie.form.view</field>
+            <field name="model">cinema.cinema.movie</field>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="is_over"/>
+                    <sheet>
+                        <widget name="web_ribbon" title="Over" bg_color="bg-danger"
+                                attrs="{'invisible': [('is_over', '=', False)]}"/>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="%(action_movie_cinema_cinema)d" type="action"
+                                    class="oe_stat_button" icon="fa-film">
+                                <div class="o_field_widget o_stat_info">
+                                    <field name="cinema_count"/>
+                                    <span class="o_stat_text">cinemas</span>
+                                </div>
+                            </button>
+                        </div>
+                        <div>
+                            <p>
+                                <h1 class="d-flex flex-row">
+                                    <field name="name" class="o_text_overflow" placeholder="e.g. Movie's title"/>
+                                </h1>
+                            </p>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="is_over"/>
+                                <field name="premiere_date"/>
+                                <field name="deadline_date"/>
+                                <field name="description"/>
+                            </group>
+                            <group>
+                                <field name="color" options="{'color_field': 'color'}"/>
+                                <button name="copy_with_color" type="object" string="Copy with color" class="oe_highlight"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="cinema_cinema_movie_view_kanban" model="ir.ui.view">
+            <field name="name">cinema.cinema.movie.kanban.view</field>
+            <field name="model">cinema.cinema.movie</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="active"
+                        records_draggable="true"
+                        quick_create="false"
+                >
+                    <field name="active"/>
+                    <field name="is_over"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <h3><field name="name"/></h3>
+                                <p t-if="record.is_over.raw_value"
+                                   style="color: red"><i>IS OVER</i>
+                                </p>
+                                <field name="premiere_date"/>
+                                <t t-if="record.deadline_date"><br/><field
+                                        name="deadline_date"/></t>
+                                <field name="description"/>
+                                <field name="cinema_count"/>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <record id="action_cinema_movies" model="ir.actions.act_window">
+            <field name="name">Cinema Movies</field>
+            <field name="res_model">cinema.cinema.movie</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('cinema_ids', 'in', active_id),
+                ('premiere_date', '=', today)]</field>
+        </record>
+        <record id="action_cinema_cinema_smart_movie" model="ir.actions.act_window">
+            <field name="name">Cinema Movies</field>
+            <field name="res_model">cinema.cinema.movie</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('cinema_ids', '=', active_id)]</field>
+        </record>>
+        <menuitem id="menu_cinema_cinema_movie" name="Cinema Movies" parent="base.menu_administration" action="action_cinema_cinema_movie"/>
+    </data>
+</odoo>

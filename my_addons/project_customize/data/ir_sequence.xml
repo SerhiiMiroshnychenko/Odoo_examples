@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- The sequence for task's codes -->
+    <record id="seq_task_code" model="ir.sequence">
+        <field name="name">Code</field>
+        <field name="code">code</field>
+        <field name="prefix">T</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

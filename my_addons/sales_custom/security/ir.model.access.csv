@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+sales_custom.access_sale_custom_wizard,access_sale_custom_wizard,model_custom_sale_note,base.group_user,1,1,1,1
+sales_custom.access_custom_sale_qty,access_custom_sale_qty,sales_custom.model_custom_sale_qty,base.group_user,1,1,1,1

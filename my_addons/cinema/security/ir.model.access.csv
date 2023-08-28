@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cinema_cinema_user,access_cinema_cinema_user,model_cinema_cinema,,1,1,1,1
+access_cinema_cinema_hall_user,access_cinema_cinema_hall_user,model_cinema_cinema_hall,,1,1,1,1
+access_cinema_cinema_movie_user,access_cinema_cinema_user,model_cinema_cinema_movie,group_cinema_user,1,1,1,0
+access_cinema_cinema_movie_admin,access_cinema_cinema_admin,model_cinema_cinema_movie,group_cinema_admin,1,1,1,1
+cinema.access_cinema_note_wizard,access_cinema_note_wizard,cinema.model_cinema_note_wizard,base.group_user,1,1,1,1
+cinema.access_cinema_cinema_repair,access_cinema_cinema_repair,cinema.model_cinema_cinema_repair,base.group_user,1,1,1,1
+cinema.access_cinema_repair_wizard,access_cinema_repair_wizard,cinema.model_cinema_repair_wizard,base.group_user,1,1,1,1
+cinema.access_cinema_note_wizard,access_cinema_note_wizard,model_cinema_note_wizard,base.group_user,1,1,1,1
+cinema.access_cinema_close_wizard,access_cinema_close_wizard,model_cinema_close_wizard,base.group_user,1,1,1,1
+cinema.access_cinema_hall_wizard,access_cinema_hall_wizard,model_cinema_hall_wizard,base.group_user,1,1,1,1
+cinema.access_hall_seat_wizard,access_hall_seat_wizard,model_hall_seat_wizard,base.group_user,1,1,1,1

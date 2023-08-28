@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="cinema_cinema_hall_form_view" model="ir.ui.view">
+            <field name="name">cinema.cinema.hall.form.view</field>
+            <field name="model">cinema.cinema.hall</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <widget name="web_ribbon" title="Reserved" bg_color="bg-danger" attrs="{'invisible': [('reserved', '=', False)]}"/>
+                        <widget name="web_ribbon" title="Repair" bg_color="bg-warning" attrs="{'invisible': [('repair', '=', False)]}"/>
+                        <div class="oe_title">
+                            <h1 class="d-flex flex-row">
+                                <field name="name" class="o_text_overflow" placeholder="e.g. Cinema hall"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="article" readonly="1"/>
+                                <field name="seats" attrs="{'readonly': [('repair', '=', True)]}"/>
+                                <field name="cinema_id" attrs="{'readonly': [('repair', '=', True)]}"/>
+                                <field name="reserved" widget="boolean_toggle" attrs="{'readonly': [('repair', '=', True)]}"/>
+                                <field name="repair" readonly="True"/>
+                                <field name="movie_ids"
+                                       widget="many2many_tags"
+                                       options="{'color_field': 'color'}"
+                                       attrs="{'readonly': [('repair', '=', True)]}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="cinema_cinema_hall_tree_view" model="ir.ui.view">
+            <field name="name">cinema.cinema.hall.tree.view</field>
+            <field name="model">cinema.cinema.hall</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="article" readonly="1"/>
+                    <field name="seats"/>
+                    <button name="increase_seats"
+                            type="object"
+                            string=" "
+                            icon="fa-plus-circle"
+                            attrs="{'invisible':[('repair', '=', True)]}"
+                    />
+                    <button name="decrease_seats"
+                            type="object"
+                            string=" "
+                            icon="fa-minus-circle"
+                            attrs="{'invisible': ['|',('seats', '=', 0),('repair', '=', True)]}"
+                    />
+                    <field name="cinema_id"/>
+                    <field name="reserved"/>
+                    <field name="repair"/>
+                    <field name="movie_ids"
+                           widget="many2many_tags"
+                           options="{'color_field': 'color'}"/>
+                </tree>
+            </field>
+        </record>
+        <record id="cinema_cinema_hall_view_kanban" model="ir.ui.view">
+            <field name="name">cinema.cinema.hall.kanban.view</field>
+            <field name="model">cinema.cinema.hall</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="reserved"
+                        records_draggable="true"
+                        quick_create="false"
+                >
+                    <field name="reserved"/>
+                    <field name="repair"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <h3><field name="name"/></h3>
+                                <p t-if="record.reserved.raw_value"
+                                   style="color: red"><i>This is reserved!</i>
+                                </p>
+                                <t t-if="record.seats.raw_value != 0"><br/>Seats: <field
+                                        name="seats"/></t>
+                                <p t-if="record.repair.raw_value"
+                                   style="color: brown"><i>This is repairing!</i>
+                                </p>
+                                <p t-if="record.movie_ids.raw_value">
+                                    <br/>
+                                    <field name="movie_ids"
+                                       widget="many2many_tags"
+                                       options="{'color_field': 'color'}"/>
+                                </p>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <record id="cinema_cinema_hall_search_view" model="ir.ui.view">
+            <field name="name">cinema.cinema.hall.search.view</field>
+            <field name="model">cinema.cinema.hall</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="seats"/>
+                    <field name="cinema_id"/>
+                </search>
+            </field>
+        </record>
+        <record id="action_cinema_cinema_hall" model="ir.actions.act_window">
+            <field name="name">Hall</field>
+            <field name="res_model">cinema.cinema.hall</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="view_id" ref="cinema_cinema_hall_tree_view"/>
+            <field name="search_view_id" ref="cinema_cinema_hall_search_view"/>
+            <field name="context">{'create': True}</field>
+        </record>
+        <record id="action_cinema_cinema_smart_hall" model="ir.actions.act_window">
+            <field name="name">Cinema Hall</field>
+            <field name="res_model">cinema.cinema.hall</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('cinema_id', '=', active_id)]</field>
+        </record>
+        <menuitem id="menu_cinema_cinema_hall" name="Cinema Hall" parent="base.menu_administration" action="action_cinema_cinema_hall"/>
+
+    </data>
+</odoo>

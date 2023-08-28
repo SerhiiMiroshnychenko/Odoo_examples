@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.cinema</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block"
+                    string="Cinema"
+                    data-string="Cinema"
+                    data-key="cinema">
+                    <h2>Movies</h2>
+                     <div class="row mt16 o_settings_container">
+                         <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="company_use_days_limit"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="days_limit"/>
+                                <span class="fa fa-lg fa-clock-o" title="Values set here are company-specific." aria-label="Values set here are company-specific." role="img"/>
+                                <div class="text-muted">
+                                   Set the maximum number of days per movie showing
+                                </div>
+                                <div class="content-group mt-2" attrs="{'invisible': [('company_use_days_limit', '=', False)]}">
+                                    <div class="row">
+                                        <label for="days_limit" class="col-lg-4 o_light_label"/>
+                                        <field name="days_limit"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="company_use_auto_description"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="auto_description"/>
+                                <span class="fa fa-lg fa-film" title="Values set here are company-specific." aria-label="Values set here are company-specific." role="img"/>
+                                <div class="text-muted">
+                                   Auto-generate descriptions for new movies
+                                </div>
+                                <div class="content-group mt-2" attrs="{'invisible': [('company_use_auto_description', '=', False)]}">
+                                    <div class="row">
+                                        <label for="auto_description" class="col-lg-4 o_light_label"/>
+                                        <field name="auto_description"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_cinema_general_config" model="ir.actions.act_window">
+        <field name="name">Cinema Config</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'cinema'}</field>
+    </record>
+
+</odoo>

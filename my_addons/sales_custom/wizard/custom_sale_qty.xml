@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sale_custom_wizard_quantity_form" model="ir.ui.view">
+            <field name="name">sale.custom.wizard.increase.form</field>
+            <field name="model">custom.sale.qty</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="products" widget="many2many_tags" domain="[('order_id', '=', active_id)]"/>
+                        <separator string="Options"/>
+                        <field name="operation" widget="radio" string="Operation"/>
+                        <field name="value"/>
+                    </group>
+                    <footer>
+                        <button string="Cancel" class="btn btn-secondary" special="cancel" data-hotkey="z"/>
+                        <button string="Test" class="btn btn-primary" name="change_qty" type="object"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_sale_custom_quantity_wizard" model="ir.actions.act_window">
+            <field name="name">Sale quantity</field>
+            <field name="res_model">custom.sale.qty</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="sale_custom_wizard_quantity_form"/>
+        </record>
+    </data>
+</odoo>

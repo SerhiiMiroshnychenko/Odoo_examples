@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+
+    <record id="seq_cinema_movie" model="ir.sequence">
+        <field name="name">Cinema movie</field>
+        <field name="code">cinema.movie</field>
+        <field name="prefix">CM</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+    <record id="seq_cinema_hall" model="ir.sequence">
+        <field name="name">Cinema hall</field>
+        <field name="code">cinema.hall</field>
+        <field name="prefix">CH</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="seq_cinema_code" model="ir.sequence">
+        <field name="name">Cinema code</field>
+        <field name="code">cinema.code</field>
+        <field name="prefix">C№</field>
+        <field name="padding">3</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+</odoo>

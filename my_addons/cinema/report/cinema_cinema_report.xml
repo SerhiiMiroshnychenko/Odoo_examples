@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="cinema_paper_report" model="ir.actions.report">
+            <field name="name">Cinema report</field>
+            <field name="model">cinema.cinema</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">cinema.report_cinema_origin</field>
+            <field name="report_file">cinema.report_cinema_origin</field>
+            <field name="print_report_name">object.name</field>
+            <field name="binding_model_id" ref="cinema.model_cinema_cinema"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

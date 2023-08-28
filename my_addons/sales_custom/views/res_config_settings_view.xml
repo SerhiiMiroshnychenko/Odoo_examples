@@ -1,0 +1,70 @@
+<odoo>
+    <data>
+        <record id="res_config_setting_sale_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.sale_custom</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="10"/>
+            <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='sale_ebay']" position="after">
+                    <h2 class="mt32">Custom Settings</h2>
+                    <div class="row mt16 o_settings_container" id="custom_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box" id="full_order_allow">
+                            <div class="o_setting_left_pane">
+                                <field name="allow_view_notebook"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="allow_view_notebook"/>
+                                <div class="text-muted">
+                                    Allow view full order info
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box" id="default_manager">
+                            <div class="o_setting_left_pane">
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="default_manager"/>
+                                <div class="text-muted">
+                                    Choose default manager for sale orders
+                                    <field name="default_manager"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box" id="allow_custom_buttons">
+                            <div class="o_setting_left_pane">
+                                <field name="group_hide_custom_buttons"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="group_hide_custom_buttons"/>
+                                <div class="text-muted">
+                                    Allow custom buttons
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box" id="test_company_days">
+                            <div class="o_setting_left_pane">
+                                <field name="use_company_days"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="use_company_days"/>
+                                <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." aria-label="Values set here are company-specific." groups="base.group_multi_company" role="img"/>
+                                <div class="text-muted">
+                                    Set default days for your company
+                                </div>
+                                <div class="content-group"  attrs="{'invisible': [('use_company_days','=',False)]}">
+                                    <div class="mt16">
+                                        <span class="col-lg-3">Days Limit: <field name="test_company_days" attrs="{'required': [('use_company_days', '=', True)]}"/></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

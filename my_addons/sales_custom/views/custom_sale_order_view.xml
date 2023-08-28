@@ -1,0 +1,49 @@
+<odoo>
+    <data>
+        <record id="action_custom_sale_smart" model="ir.actions.act_window">
+            <field name="name">Custom products</field>
+            <field name="res_model">sale.order.line</field>
+            <field name="view_mode">kanban,form</field>
+            <field name="domain">[('order_id', '=', active_id)]</field>
+        </record>
+
+        <record id="custom_sale_order_view" model="ir.ui.view">
+            <field name="name">custom.sale.order.view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                    <button name="%(action_sale_custom_quantity_wizard)d" groups="sales_custom.group_hide_custom_buttons" type="action" string="Quantity increase" icon="fa-cog"/>
+                    <button name="%(action_sale_custom_wizard)d" groups="sales_custom.group_hide_custom_buttons" type="action" string="Manager note" icon="fa-commenting"/>
+                    <button class="oe_stat_button" groups="sales_custom.group_hide_custom_buttons" name="%(action_custom_sale_smart)d" type="action" icon="fa-book">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">
+                                    Products
+                                </span>
+                                <span class="o_stat_value">
+                                    <field name="products_type_quantity"/>
+                                </span>
+                            </div>
+                    </button>
+                </xpath>
+
+                <xpath expr="//notebook" position="after">
+                    <separator string="Note"/>
+                    <group>
+                        <field name="manager_note" readonly="1" widget="badge"/>
+                        <field name="full_view" attrs="{'invisible': True}"/>
+                    </group>
+                </xpath>
+
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="manager" widget="many2one_avatar_user"/>
+                </xpath>
+
+                <xpath expr="//notebook" position="attributes">
+                    <attribute name="attrs">{'invisible': [('full_view', '=', False)]}</attribute>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,199 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!-- Tips-and-Tricks -->
+    <record model="ir.ui.view" id="tips_tricks_tree_view">
+      <field name="name">tips.tricks.tree.view</field>
+      <field name="model">tips.tricks</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="number"/>
+          <field name="float_no"/>
+          <field name="document"/>
+          <field name="true"/>
+          <field name="image"/>
+          <field name="date"/>
+          <field name="date_time"/>
+          <field name="yes_no"/>
+          <field name="product_id"/>
+          <field name="product_ids"/>
+          <field name="price"/>
+          <field name="currency_id"/>
+          <field name="tips_tricks_line_ids"/>
+          <field name="tips_tricks_tag_ids" widget="many2many_tags"/>
+        </tree>
+      </field>
+    </record>
+    <!-- Tips-and-Tricks-Line -->
+    <record model="ir.ui.view" id="tips_tricks_line_tree_view">
+      <field name="name">tips.tricks.line.tree.view</field>
+      <field name="model">tips.tricks.line</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="line_name"/>
+          <field name="tips_id"/>
+        </tree>
+      </field>
+    </record>
+    <!-- Tips-and-Tricks-Tag -->
+    <record model="ir.ui.view" id="tips_tricks_tag_tree_view">
+      <field name="name">tips.tricks.tag.tree.view</field>
+      <field name="model">tips.tricks.tag</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="tag_name"/>
+          <field name="tip_ids"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- explicit form view definition -->
+    <!-- Tips-and-Tricks -->
+    <record id="tips_tricks_form_view" model="ir.ui.view">
+        <field name="name">tips.tricks.form.view</field>
+        <field name="model">tips.tricks</field>
+        <field name="arch" type="xml">
+            <form string="Tips Tricks">
+              <sheet>
+                <group>
+                    <group>
+                      <field name="name"/>
+                      <field name="number"/>
+                      <field name="float_no"/>
+                      <field name="document"/>
+                      <field name="true"/>
+                      <field name="image"/>
+                      <field name="date"/>
+                      <field name="date_time"/>
+                    </group>
+                    <sheet>
+                      <group>
+                        <field name="yes_no"/>
+                        <field name="product_id"/>
+                        <field name="product_ids" widget="many2many_tags"/>
+                        <field name="price"/>
+                        <field name="currency_id"/>
+                      </group>
+                    </sheet>
+                    <notebook>
+                        <page string="Tips and Tricks Line">
+                          <group>
+                            <field name="tips_tricks_line_ids" string="">
+                                <tree editable="bottom">
+                                    <field name="line_name"/>
+                                    <field name="tips_id" invisible="1"/>
+                                </tree>
+                            </field>
+                          </group>
+                        </page>
+                        <page string="Tips and Tricks Tag">
+                          <sheet>
+                            <field name="tips_tricks_tag_ids" >
+                                <tree>
+                                    <field name="tag_name"/>
+                                </tree>
+                              </field>
+                          </sheet>
+                          </page>
+                    </notebook>
+                </group>
+              </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Tips-and-Tricks-Tag -->
+    <record id="tips_tricks_tag_form_view" model="ir.ui.view">
+        <field name="name">tips.tricks.tag.form.view</field>
+        <field name="model">tips.tricks.tag</field>
+        <field name="arch" type="xml">
+            <form string="Tips Tricks Tag">
+              <sheet>
+                <group>
+                  <field name="tag_name"/>
+                  <field name="tip_ids" widget="many2many_tags"/>
+                </group>
+              </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- actions opening views on models -->
+    <!-- Tips-and-Tricks -->
+    <record model="ir.actions.act_window" id="action_tips_tricks">
+      <field name="name">Tips-and-Tricks</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">tips.tricks</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="tips_tricks_tree_view"/>
+    </record>
+    <!-- Tips-and-Tricks-Line -->
+    <record model="ir.actions.act_window" id="action_tips_tricks_line">
+      <field name="name">Tips-and-Tricks-Line</field>
+      <field name="res_model">tips.tricks.line</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="tips_tricks_line_tree_view"/>
+    </record>
+    <!-- Tips-and-Tricks-Tag -->
+    <record model="ir.actions.act_window" id="action_tips_tricks_tag">
+      <field name="name">Tips-and-Tricks-Tag</field>
+      <field name="res_model">tips.tricks.tag</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="tips_tricks_tag_tree_view"/>
+    </record>
+
+    <!-- server action to the one above -->
+    <record model="ir.actions.server" id="tips_and_tricks.action_server">
+      <field name="name">tips_and_tricks server</field>
+      <field name="model_id" ref="model_tips_tricks"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+
+    <!-- Top menu item -->
+    <menuitem name="Tips and Tricks"
+              id="tips_and_tricks.menu_root"
+              sequence="10"
+    />
+    <!-- menu categories -->
+    <menuitem name="Customers"
+              id="tips_and_tricks.menu_customer"
+              parent="tips_and_tricks.menu_root"
+              action="base.action_partner_form"
+              sequence="10"
+    />
+    <menuitem name="Tips" id="tips_and_tricks.menu_tips"
+              parent="tips_and_tricks.menu_root"
+              sequence="8"
+    />
+    <menuitem name="Lines-and-Tags"
+              id="tips_and_tricks.menu_lines_tags"
+              parent="tips_and_tricks.menu_root"
+              sequence="9"
+    />
+    <!-- actions -->
+    <menuitem name="Tricks"
+              id="tips_and_tricks.menu_tricks"
+              parent="tips_and_tricks.menu_tips"
+              action="action_tips_tricks"
+              sequence="9"
+    />
+    <menuitem name="Tips-Tricks-Lines"
+              id="tips_and_tricks.menu_2_line"
+              parent="tips_and_tricks.menu_lines_tags"
+              action="action_tips_tricks_line"
+              sequence="10"
+    />
+    <menuitem name="Tips-Tricks-Tags"
+              id="tips_and_tricks.menu_2_tag"
+              parent="tips_and_tricks.menu_lines_tags"
+              action="action_tips_tricks_tag"
+              sequence="1"
+    />
+  </data>
+</odoo>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_cinema_page">
+            <t t-call="web.external_layout">
+                <div class="row mt-4 mb-4" id="main">
+                    <div class="col-auto col-3 mw-100 mb-2">
+                        <h1>
+                            <t t-esc="o.name"/>
+                        </h1>
+                        <h5>
+                            <t t-esc="o.cinema_code"/><br/>Status: <t t-esc="o.state"/>.
+                        </h5>
+                    </div>
+                    <div class="col-auto col-3 mw-100 mb-2">
+                    </div>
+                    <div class="col-auto col-3 mw-100 mb-2">
+                        <img t-att-src="image_data_uri(o.user_id.avatar_1920)" style="max-height:85pt;max-width:90%" alt="Administrator"/>
+                        <p>
+                            Administrator: <t t-esc="o.user_id.name"/>
+                        </p>
+                    </div>
+
+                </div>
+                <div class="row mt-4 mb-4" id="informations">
+                    <div class="col-auto col-5 mw-100 mb-2">
+                        <h5>
+                            <i><t t-esc="o.description"/></i>
+                        </h5>
+
+                    </div>
+                    <div class="col-auto col-1 mw-100 mb-2">
+                    </div>
+                    <div class="col-auto col-3 mw-100 mb-2">
+                        <ul>
+                            <li>Square Space: <t t-esc="o.square_space"/></li>
+                            <li>Number Of Stuff: <t t-esc="o.number_of_stuff"/></li>
+                            <li>Seats: <t t-esc="o.total_seats"/></li>
+                            <li><span t-if="o.restaurant">Restaurant available</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <h5>
+                    <i class="fa fa-ticket"/>  Halls
+                </h5>
+                <table class="table table-sn o_main_table" name="halls_table">
+                    <thead>
+                        <tr>
+                            <th name="th_name"><span>Name</span></th>
+                            <th name="th_seats"><span>Seats</span></th>
+                            <th name="th_reserved"><span>Reserved</span></th>
+                            <th name="th_movie"><span>Movie</span></th>
+                        </tr>
+                    </thead>
+                    <tbody class="invoice_tbody">
+                        <t t-foreach="o.hall_ids" t-as="hall">
+                            <tr>
+                                <td>
+                                    <span t-field="hall.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="hall.seats"/>
+                                </td>
+                                <td class="text-center">
+                                    <span>
+                                        <t t-if="hall.reserved">
+                                            <i class="fa fa-check"/>
+                                        </t>
+                                        <t t-else="">
+                                            <i class="fa fa-close"/>
+                                        </t>
+                                    </span>
+                                </td>
+                                <td>
+                                    <t t-set="movie_names"
+                                       t-value="', &lt;br/&gt; '.join(hall.movie_ids.mapped('name'))"/>
+                                    <span t-raw="movie_names"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+                <h5>
+                    <i class="fa fa-film"/>  Movies
+                </h5>
+                <table class="table table-sn o_main_table" name="movies_table">
+                    <thead>
+                        <tr>
+                            <th name="th_name"><span>Name</span></th>
+                            <th name="th_premiere_date"><span>Premiere date</span></th>
+                            <th name="th_deadline_date"><span>Deadline date</span></th>
+                            <th name="th_description"><span>Description</span></th>
+                            <th name="th_is_over"><span>Available</span></th>
+                        </tr>
+                    </thead>
+                    <tbody class="invoice_tbody">
+                        <t t-foreach="o.movie_ids" t-as="movie">
+                            <tr>
+                                <td>
+                                    <span t-field="movie.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="movie.premiere_date"/>
+                                </td>
+                                <td>
+                                    <span t-field="movie.deadline_date"/>
+                                </td>
+                                <td>
+                                    <span t-field="movie.description"/>
+                                </td>
+                                     <td class="text-center">
+                                        <span>
+                                            <t t-if="movie.is_over">
+                                                <i class="fa fa-close"/>
+                                            </t>
+                                            <t t-else="">
+                                                <i class="fa fa-check"/>
+                                            </t>
+                                        </span>
+                                    </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </t>
+        </template>
+
+        <template id="report_cinema_origin">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="cinema.report_cinema_page"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

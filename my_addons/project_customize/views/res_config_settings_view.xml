@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- The extension for "res_config_settings_view_form" -->
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.project.customize</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="project.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <!-- The adding the deadline delta days for the task  -->
+            <xpath expr="//div[@name='project_time_management']" position="after">
+                <div class="col-xs-12 col-md-6 o_setting_box">
+                    <div class="o_setting_left_pane">
+                        <field name="project_use_deadline_delta_days"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="project_use_deadline_delta_days"/>
+                        <span class="fa fa-lg fa-clock-o"  title="Values set here are company-specific." aria-label="Values set here are company-specific." role="img"/>
+                        <div class="text-muted">
+                            Set the deadline delta days for the task
+                        </div>
+                        <div class="content-group mt-2" attrs="{'invisible': [('project_use_deadline_delta_days', '=', False)]}">
+                            <div class="row">
+                                <label for="deadline_delta_days" class="col-lg-4 o_light_label"/>
+                                <field name="deadline_delta_days"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </xpath>
+            <!-- The adding the tag for overdue tasks -->
+            <xpath expr="//div[@id='project_milestone']" position="after">
+                <div class="col-xs-12 col-md-6 o_setting_box">
+                    <div class="o_setting_left_pane">
+                        <field name="project_use_deadline_over_tag"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="project_use_deadline_over_tag"/>
+                        <span class="fa fa-lg fa-close"  title="Values set here are company-specific." aria-label="Values set here are company-specific." role="img"/>
+                        <div class="text-muted">
+                            Set the tag for overdue tasks
+                        </div>
+                        <div class="content-group mt-2" attrs="{'invisible': [('project_use_deadline_over_tag', '=', False)]}">
+                            <div class="row">
+                                <label for="deadline_over_tag" class="col-lg-4 o_light_label"/>
+                                <field name="deadline_over_tag"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </xpath>
+        </field>
+    </record>
+</odoo>

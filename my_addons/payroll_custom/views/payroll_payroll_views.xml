@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- A tree view-->
+        <record id="payroll_payroll_view_tree" model="ir.ui.view">
+            <field name="name">payroll.payroll.view.tree</field>
+            <field name="model">payroll.payroll</field>
+            <field name="arch" type="xml">
+                <tree decoration-success="state == 'conformed'"
+                      decoration-info="state == 'calculated'"
+                      decoration-danger="state == 'draft'"
+                >
+                    <field name="employee_id"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="currency_id"/>
+                    <field name="amount"/>
+                    <field name="amount2"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <!-- A kanban view-->
+        <record id="payroll_payroll_view_kanban" model="ir.ui.view">
+            <field name="name">payroll.payroll.view.kanban</field>
+            <field name="model">payroll.payroll</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="state"
+                        default_order="amount"
+                        quick_create="true"
+                >
+                    <field name="state"/>
+                    <progressbar field="state" colors='{"draft": "danger", "calculated": "warning", "conformed": "success"}'/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <img t-att-src="kanban_image('hr.employee', 'avatar_128', record.employee_id.raw_value)"
+                                     t-att-title="record.employee_id.value"
+                                     t-att-alt="record.employee_id.value"
+                                     class="o_image_40_cover float-start"/>
+                                <div style="text-align: center; padding: 5px">
+                                    <h3>
+                                        <field name="employee_id"/>
+                                    </h3>
+                                </div>
+                                <hr/>
+                                <div class="text-muted o_row">
+                                    <span class="fa fa-clock-o me-2" title="Dates"/>
+                                    <field name="date_from"/>
+                                    <i class="fa fa-long-arrow-right mx-2 oe_read_only" aria-label="Arrow icon" title="Arrow"/>
+                                    <field name="date_to"/>
+                                </div>
+                                <p t-if="record.amount.raw_value">
+                                    <div style="color: green">
+                                        <span class="fa fa-money me-1" title="Currency"/>
+                                        <field name="currency_id"/>:
+                                        <field name="amount"/>
+                                    </div>
+                                    <field name="amount2"/>
+                                </p>
+                                <br/>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- A form view-->
+        <record id="view_payroll_payroll_form" model="ir.ui.view">
+            <field name="name">payroll.payroll.form</field>
+            <field name="model">payroll.payroll</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button string="Calculate"
+                                type="object"
+                                name="action_calculate_timesheets"
+                                states="draft"
+                                class="oe_highlight"
+                                groups="payroll_custom.group_payroll_manager"/>
+                        <button string="Validate"
+                                type="object"
+                                name="action_validate"
+                                states="calculated"
+                                class="oe_highlight"
+                                groups="payroll_custom.group_payroll_manager"/>
+                    </header>
+                    <sheet>
+                        <h1 class="d-flex flex-row">
+                            <span class="me-2">
+                                <widget name="hr_employee_chat" invisible="not context.get('chat_icon')"/>
+                            </span>
+                            <field name="employee_id" placeholder="Employee's Name" required="True" style="font-size: min(4vw, 2.6rem);"/>
+                        </h1>
+                        <hr/>
+                        <group>
+                            <group>
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                            </group>
+                            <group>
+                                <field name="currency_id"/>
+                                <field name="amount"/>
+                                <field name="amount2"/>
+                            </group>
+                        </group>
+                        <hr/>
+                        <field name="state" widget="statusbar"/>
+                    </sheet>
+                    <footer>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <!-- A search view-->
+        <record id="payroll_payroll_search_view" model="ir.ui.view">
+            <field name="name">payroll.payroll.search.view</field>
+            <field name="model">payroll.payroll</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="employee_id"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="currency_id"/>
+                    <field name="amount"/>
+                    <field name="state"/>
+                </search>
+            </field>
+        </record>
+        <!-- A payroll_payroll model's action -->
+        <record id="action_payroll_payroll" model="ir.actions.act_window">
+            <field name="name">Payroll</field>
+            <field name="res_model">payroll.payroll</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="view_id" ref="payroll_payroll_view_tree"/>
+            <field name="search_view_id" ref="payroll_payroll_search_view"/>
+        </record>
+        <!-- A payroll_custom module's menu -->
+        <menuitem name="Payroll"
+                  id="menu_payroll_custom_main"
+                  action="action_payroll_payroll"
+        />
+    </data>
+</odoo>

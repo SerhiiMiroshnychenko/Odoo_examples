@@ -1,0 +1,34 @@
+<odoo>
+    <data>
+        <record id="estate_property_type_view_form" model="ir.ui.view">
+            <field name="name">estate.property.type.form</field>
+            <field name="model">estate.property.type</field>
+            <field name="arch" type="xml">
+                <form string="Property Types">
+                    <sheet>
+                        <header>
+                            <h1><field name="name"/></h1>
+                        </header>
+                            <div>
+                                    <p><button name="%(estate_property_offer_action)d" type="action"
+                            class="oe_stat_button" icon="fa-money fa-2x" string=" "/><field name="offer_count"/> Offers</p>
+                            </div>
+                        <notebook>
+                            <page string="Properties">
+                                        <group>
+                                            <field name="property_ids" string="">
+                                                <tree default_order="id">
+                                                    <field name="title"/>
+                                                    <field name="expected_price"/>
+                                                    <field name="state"/>
+                                                </tree>
+                                            </field>
+                                        </group>
+                                    </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

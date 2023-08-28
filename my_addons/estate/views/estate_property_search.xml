@@ -1,0 +1,40 @@
+<odoo>
+    <data>
+        <record id="estate_property_search" model="ir.ui.view">
+        <field name="name">estate.property.search</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <search string="Estate Property">
+                <field name="title"/>
+                <field name="postcode"/>
+                <field name="expected_price"/>
+                <field name="bedrooms"/>
+                <field name="living_area" string="Living Area (sqm)"
+                filter_domain="[('living_area', '>=', self)]"
+                />
+                <field name="facades"/>
+                <field name="property_type_id" string="Type"/>
+                <separator/>
+                <filter string="Available"
+                        name="inactive"
+                        domain="[
+                        ('active', '=', True),
+                         '|',
+                          ('state', '=', 'new'),
+                            ('state', '=', 'offer received')
+                            ]"
+                        context="{'search_default_inactive': 1}"
+                />
+                <group expand="1" string="Group By">
+                    <filter string="Postcode"
+                            name="postcode"
+                            context="{'group_by':'postcode', 'residual_visible':True}"/>
+                    <filter string="Type"
+                            name="type"
+                            context="{'group_by':'property_type_id', 'residual_visible':True}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    </data>
+</odoo>

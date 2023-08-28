@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <function model="cinema.cinema.movie"
+                  name="create_demo_movie_after_module_installing"/>
+        <function model="cinema.cinema.movie"
+                  name="create_movie_with_name_after_module_installing">
+                  <value>SecondDemoMovie</value>
+        </function>
+    </data>
+</odoo>

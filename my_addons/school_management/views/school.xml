@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- School Student Form -->
+    <record id="school_class_view_form" model="ir.ui.view">
+        <field name="name">school.student.view.form</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <form string="Student">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="class_id"/>
+                            <field name="division"/>
+                            <field name="friend_ids" widget="many2many_tags"/>
+                        </group>
+                </group>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- School Student Tree -->
+    <record id="school_class_view_tree" model="ir.ui.view">
+        <field name="name">school.student.view.tree</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <tree string="Student">
+                <field name="name"/>
+                <field name="class_id"/>
+                <field name="division"/>
+                <field name="friend_ids" widget="many2many_tags"/>
+            </tree>
+
+            <button name="show_friends" type="object" string="Show friends"/>
+        </field>
+    </record>
+
+    <!-- School Student Kit -->
+    <record id="school_class_kit_view_form" model="ir.ui.view">
+        <field name="name">school.student.kit.view.form</field>
+        <field name="model">school.student.kit</field>
+        <field name="arch" type="xml">
+            <form string="Student Kit">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="class_id"/>
+                            <field name="division"/>
+                            <field name="major"/>
+                        </group>
+                </group>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- School Student action -->
+    <record id="action_student" model="ir.actions.act_window">
+        <field name="name">Student</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">school.student</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crate School details
+            </p>
+        </field>
+    </record>
+
+    <!-- School Student Kit action -->
+    <record id="action_student_kit" model="ir.actions.act_window">
+        <field name="name">Student Kit</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">school.student.kit</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crate School details
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="school_menu" name="School"/>
+    <menuitem id="school_exams_menu"
+              name="Exams"
+              parent="school_menu"
+     />
+    <menuitem id="school_student_menu"
+              name="Student"
+              parent="school_exams_menu"
+              action="action_student"
+     />
+    <menuitem id="school_student_kit_menu"
+              name="Student Kit"
+              parent="school_exams_menu"
+              action="action_student_kit"
+     />
+
+</odoo>

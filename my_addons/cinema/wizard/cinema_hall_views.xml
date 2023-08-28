@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="cinema_hall_wizard_form" model="ir.ui.view">
+            <field name="name">cinema_hall_wizard_form</field>
+            <field name="model">cinema.hall.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <footer>
+                        <button string="Create" name="create_hall" type="object" class="oe_highlight" data-hotkey="q"/>
+                        <button string="Cancel" class="btn btn-secondary" special="cancel" data-hotkey="z"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_cinema_hall_wizard" model="ir.actions.act_window">
+            <field name="name">Create hall</field>
+            <field name="res_model">cinema.hall.wizard</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="cinema_hall_wizard_form"/>
+        </record>
+    </data>
+</odoo>
