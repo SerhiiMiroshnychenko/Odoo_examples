@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_student">
         <t t-call="web.html_container">
@@ -10,7 +11,6 @@
                     </div>
                 </t>
             </t>
-
         </t>
     </template>
 </odoo>
