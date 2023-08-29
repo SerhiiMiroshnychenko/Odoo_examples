@@ -7,8 +7,9 @@
         subtitle on modules listing or apps.openerp.com""",
 
     'description': """
-        Long description of module's purpose
-    """,
+Long description of module's purpose
+===================================================
+""",
 
     'author': "Serhii Miroshnychenko",
     'website': "https://github.com/SerhiiMiroshnychenko",
@@ -25,6 +26,7 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'security/security.xml',
         'views/tips_tricks_views.xml',
         'views/templates.xml',
     ],

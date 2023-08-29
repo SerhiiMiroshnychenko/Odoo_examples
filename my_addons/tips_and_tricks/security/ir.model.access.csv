@@ -1,4 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-tips_and_tricks.access_tips_tricks,access_tips_tricks,tips_and_tricks.model_tips_tricks,base.group_user,1,1,1,1
+tips_and_tricks.access_tips_tricks,access_tips_tricks,tips_and_tricks.model_tips_tricks,tips_tricks_access,1,1,1,1
 tips_and_tricks.access_tips_tricks_line,access_tips_tricks_line,tips_and_tricks.model_tips_tricks_line,base.group_user,1,1,1,1
 tips_and_tricks.access_tips_tricks_tag,access_tips_tricks_tag,tips_and_tricks.model_tips_tricks_tag,base.group_user,1,1,1,1

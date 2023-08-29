@@ -1,0 +1,6 @@
+<odoo>
+    <record model="res.groups" id="tips_tricks_access">
+        <field name="name">Tips and tricks access</field>
+        <field name="category_id" ref="base.module_category_usability"/>
+    </record>
+</odoo>
