@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="menu_demo_widget_root" model="ir.ui.menu">
+        <field name="name">Widget Demo</field>
+        <field name="web_icon">module,static/description/icon.png</field>
+        <field name="sequence" eval="10"/>
+    </record>
+
+    <record id="demo_widget_view_form" model="ir.ui.view">
+        <field name="name">demo.widget.view.form</field>
+        <field name="model">demo.widget</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h3><field name="name" placeholder="Name"/></h3>
+                    </div>
+                    <notebook>
+                        <page string="Calculator" name="calculator">
+                            <group>
+                                <group>
+                                    <field name="calculator_int" widget="calculator" placeholder="=2*(3+1)"/>
+                                    <field name="calculator_float" widget="calculator" placeholder="=2.5*(4+1)"/>
+                                </group>
+                                <group>
+                                    <div class="o_row" colspan="2">
+                                        <span class="text-muted">Put this sample to the field "=2*(3+1)", and you will get the result "8.00".</span>
+                                    </div>
+                                    <div class="o_row" colspan="2">
+                                        <span class="text-muted">Put this sample to the field "=2.5*(4+1)", and you will get the result "12.50".</span>
+                                    </div>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Color" name="color">
+                            <group>
+                                <field name="color_code" widget="color" />
+                            </group>
+                        </page>
+                        <page string="Ace" name="ace">
+                            <separator string="Python Sample Code" colspan="2"/>
+                            <field name="code_python" widget="ace" options="{'mode': 'python'}"/>
+                            <separator string="XML Sample Code" colspan="2"/>
+                            <field name="code_xml" widget="ace" options="{'mode': 'qweb'}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="demo_widget_view_tree" model="ir.ui.view">
+        <field name="name">demo.widget.view.tree</field>
+        <field name="model">demo.widget</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="calculator_int" sum="Total" optional="hide"/>
+                <field name="calculator_float" sum="Total" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_demo_widget_list" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="name">Widget Demo</field>
+        <field name="res_model">demo.widget</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="menu_demo_widget" model="ir.ui.menu">
+        <field name="name">Widget Demo</field>
+        <field name="parent_id" ref="menu_demo_widget_root"/>
+        <field name="action" ref="action_demo_widget_list"/>
+        <field name="sequence" eval="1"/>
+    </record>
+
+</odoo>
