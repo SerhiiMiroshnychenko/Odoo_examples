@@ -28,6 +28,36 @@
         </field>
     </record>
 
+    <!-- School Student-Student -->
+    <record id="school_school_student_view_form" model="ir.ui.view">
+        <field name="name">school.student.student.view.form</field>
+        <field name="model">school.student.student</field>
+        <field name="arch" type="xml">
+            <form string="Student-Student">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="class_id"/>
+                            <field name="division"/>
+                        </group>
+                        <group>
+                            <field name="date_of_birth"/>
+                            <field name="age" readonly="1"/>
+                            <field name="admin_date"/>
+                            <field name="officer_id"/>
+                        </group>
+                        <group>
+                            <field name="major"/>
+                            <field name="teacher_ids" widget="many2many_tags"/>
+                            <field name="friend_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
     <!-- Student Friends Form -->
     <record id="student_friends_view_form" model="ir.ui.view">
         <field name="name">student.friends.view.form</field>
@@ -55,20 +85,39 @@
         <field name="model">school.student</field>
         <field name="arch" type="xml">
             <kanban>
-                    <templates>
-                        <t t-name="kanban-box">
-                            <div class="oe_kanban_global_click">
-                                <div style="text-align: center; padding: 5px">
-                                    <h2>
-                                        <field name="name"/>
-                                    </h2>
-                                </div>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div style="text-align: center; padding: 5px">
+                                <h2>
+                                    <field name="name"/>
+                                </h2>
                             </div>
-                        </t>
-                    </templates>
-                </kanban>
-            </field>
-        </record>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- School Student Kanban -->
+    <record id="student_friends_view_kanban" model="ir.ui.view">
+        <field name="name">student.friends.view.kanban</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <kanban create="0">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div style="text-align: center; padding: 5px">
+                            <h2>
+                                <field name="name"/>
+                            </h2>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
 
     <!-- School Student Tree -->
     <record id="school_class_view_tree" model="ir.ui.view">
@@ -88,6 +137,7 @@
 
             <button name="show_friends" type="object" string="Show friends"/>
             <button name="open_friends" type="object" string="Open friends" class="btn btn-primary"/>
+            <button name="see_friends" type="object" string="See friends" class="oe_highlight"/>
         </field>
     </record>
 
@@ -103,10 +153,19 @@
                             <field name="name"/>
                             <field name="class_id"/>
                             <field name="division"/>
-                            <field name="major"/>
                         </group>
-                </group>
-            </sheet>
+                        <group>
+                            <field name="date_of_birth"/>
+                            <field name="age" readonly="1"/>
+                            <field name="admin_date"/>
+                            <field name="officer_id"/>
+                        </group>
+                        <group>
+                            <field name="major"/>
+                            <field name="friend_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                </sheet>
             </form>
         </field>
     </record>
@@ -137,6 +196,19 @@
         </field>
     </record>
 
+    <!-- School Student-Student action -->
+    <record id="action_student_student" model="ir.actions.act_window">
+        <field name="name">Student-Student</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">school.student.student</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crate School details
+            </p>
+        </field>
+    </record>
+
     <menuitem id="school_menu" name="School"/>
     <menuitem id="school_exams_menu"
               name="Exams"
@@ -151,6 +223,11 @@
               name="Student Kit"
               parent="school_exams_menu"
               action="action_student_kit"
+     />
+    <menuitem id="school_student_student_menu"
+              name="Student-Student"
+              parent="school_exams_menu"
+              action="action_student_student"
      />
 
 </odoo>

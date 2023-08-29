@@ -19,6 +19,14 @@ class SchoolKit(models.Model):
     major = fields.Char()
 
 
+class SchoolStudent(models.Model):
+    _name = 'school.student.student'
+    _description = 'School_student model traditional prototype inheritance'
+    _inherit = 'school.student.kit'
+
+    teacher_ids = fields.Many2many(comodel_name='res.partner')
+
+
 class SchoolInherited(models.Model):
     _inherit = 'school.student'
 
@@ -93,5 +101,19 @@ class SchoolInherited(models.Model):
                 'view_id': self.env.ref('school_management.student_friends_view_form').id,
                 'domain': [('id', '=', self.id)],
                 'context': context
+            }
+        raise UserError(_(f'{self.name.name} has no friends.'))
+
+    def see_friends(self):
+
+        if self.friend_ids:
+            return {
+                'name': f'{self.name.name} has friends:',
+                'res_model': 'school.student',
+                'type': 'ir.actions.act_window',
+                'view_mode': 'kanban',
+                'target': 'new',
+                'view_id': self.env.ref('school_management.student_friends_view_kanban').id,
+                'domain': [('id', 'in', self.friend_ids.ids)],
             }
         raise UserError(_(f'{self.name.name} has no friends.'))
