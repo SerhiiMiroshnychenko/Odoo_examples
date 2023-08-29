@@ -28,6 +28,48 @@
         </field>
     </record>
 
+    <!-- Student Friends Form -->
+    <record id="student_friends_view_form" model="ir.ui.view">
+        <field name="name">student.friends.view.form</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <form create="false">
+                <script>
+                    $(document).ready(function(){
+<!--                    $(".modal-header").hide();-->
+                    $(".modal-footer").hide();
+                    });
+                </script>
+                <sheet>
+                    <field name="friend_ids"
+                           widget="many2many_tags"
+                           readonly="1"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- School Student Kanban -->
+    <record id="school_class_view_kanban" model="ir.ui.view">
+        <field name="name">school.student.view.kanban</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <kanban>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div style="text-align: center; padding: 5px">
+                                    <h2>
+                                        <field name="name"/>
+                                    </h2>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
     <!-- School Student Tree -->
     <record id="school_class_view_tree" model="ir.ui.view">
         <field name="name">school.student.view.tree</field>
@@ -45,6 +87,7 @@
             </tree>
 
             <button name="show_friends" type="object" string="Show friends"/>
+            <button name="open_friends" type="object" string="Open friends" class="btn btn-primary"/>
         </field>
     </record>
 

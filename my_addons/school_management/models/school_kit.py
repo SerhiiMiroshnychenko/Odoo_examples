@@ -1,5 +1,5 @@
 from odoo import fields, models, api, _
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, UserError
 from dateutil.relativedelta import relativedelta
 
 
@@ -72,17 +72,26 @@ class SchoolInherited(models.Model):
             if student in student.friend_ids:
                 raise ValidationError(_("Cannot add yourself as a friend."))
 
-    # def write(self, vals):
-    #     print(f'Before super(): {vals=}')
-    #     vals = {'friend_ids': [[6, False, [13, 14]]]}
-    #     if 'friend_ids' in vals:
-    #         friends = vals['friend_ids'][0][-1]
-    #         print(f'{friends=}')
-    #
-    #     result = super().write(vals)
-    #     print(f'After super(): {vals=}')
-    #
-    #     return result
-
     def show_friends(self):
-        print(f'"{self.name.name}"({self.id}) has friends: {[friend.name.name for friend in self.friend_ids]}')
+        for student in self:
+            if student.friend_ids:
+                friend_names = tuple([friend.name.name for friend in student.friend_ids])
+                raise UserError(_(f"{student.name.name} has friends: {friend_names}"))
+            raise UserError(_(f'{student.name.name} has no friends.'))
+
+    def open_friends(self):
+        context = {
+            'default_friend_ids': [(6, 0, self.friend_ids.ids)]  # Passing friend IDs as a list
+        }
+        if self.friend_ids:
+            return {
+                'name': f'{self.name.name} has friends:',
+                'res_model': 'school.student',
+                'type': 'ir.actions.act_window',
+                'view_mode': 'form',
+                'target': 'new',
+                'view_id': self.env.ref('school_management.student_friends_view_form').id,
+                'domain': [('id', '=', self.id)],
+                'context': context
+            }
+        raise UserError(_(f'{self.name.name} has no friends.'))
