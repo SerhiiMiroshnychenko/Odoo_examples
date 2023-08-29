@@ -36,7 +36,7 @@ class TipsTricks(models.Model):
             ('yes', 'Yes'),
             ('no', 'No'),
         ],)
-    product_id = fields.Many2one(comodel_name='product.product')
+    partner_id = fields.Many2one(comodel_name='res.partner')
     product_ids = fields.Many2many(comodel_name='product.product')
     tips_tricks_line_ids = fields.One2many(
         comodel_name='tips.tricks.line',

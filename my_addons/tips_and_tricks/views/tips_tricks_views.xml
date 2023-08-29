@@ -16,7 +16,7 @@
           <field name="date"/>
           <field name="date_time"/>
           <field name="yes_no"/>
-          <field name="product_id"/>
+          <field name="partner_id"/>
           <field name="product_ids"/>
           <field name="price"/>
           <field name="currency_id"/>
@@ -70,7 +70,7 @@
                     <sheet>
                       <group>
                         <field name="yes_no"/>
-                        <field name="product_id"/>
+                        <field name="partner_id"/>
                         <field name="product_ids" widget="many2many_tags"/>
                         <field name="price"/>
                         <field name="currency_id"/>
