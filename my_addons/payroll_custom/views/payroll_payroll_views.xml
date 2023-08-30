@@ -135,10 +135,21 @@
             <field name="view_id" ref="payroll_payroll_view_tree"/>
             <field name="search_view_id" ref="payroll_payroll_search_view"/>
         </record>
+        <!-- Payroll List web action -->
+        <record id="action_payroll_list" model="ir.actions.act_url">
+            <field name="name">Payroll List</field>
+            <field name="url">/payrolls</field>
+            <field name="target">self</field>
+        </record>
         <!-- A payroll_custom module's menu -->
         <menuitem name="Payroll"
                   id="menu_payroll_custom_main"
                   action="action_payroll_payroll"
+        />
+        <menuitem id="payroll_list_menu"
+              name="Payrolls"
+              parent="menu_payroll_custom_main"
+              action="action_payroll_list"
         />
     </data>
 </odoo>

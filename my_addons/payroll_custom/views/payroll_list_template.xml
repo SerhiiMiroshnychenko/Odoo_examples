@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="payroll_list_template" name="Payrolls List">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container"><br />
+                    <h2>Payrolls</h2>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Employee</th>
+                                <th>Date From</th>
+                                <th>Date To</th>
+                                <th>Currency</th>
+                                <th>Amount</th>
+                                <th>State</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="payrolls" t-as="payroll">
+                                <tr>
+                                    <td><t t-esc="payroll.employee_id.name" /></td>
+                                    <td><t t-esc="payroll.date_from" /></td>
+                                    <td><t t-esc="payroll.date_to" /></td>
+                                    <td><t t-esc="payroll.currency_id.name" /></td>
+                                    <td><t t-esc="payroll.amount" /></td>
+                                    <td><t t-esc="payroll.state" /></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -11,7 +11,8 @@
     'data': [
         'security/res_groups.xml',
         'security/ir.model.access.csv',
-        'views/payroll_payroll_views.xml'
+        'views/payroll_payroll_views.xml',
+        'views/payroll_list_template.xml',
     ],
     'installable': True,
     'application': True,
