@@ -19,3 +19,13 @@
 #         return http.request.render('scaffold_module.object', {
 #             'object': obj
 #         })
+
+from odoo import http
+from odoo.http import request
+
+
+class SchoolController(http.Controller):
+    @http.route(route=['/school/students'], type='http', auth='user', website=True)
+    def student_list(self, **kw):
+        students = request.env['school.student'].search([])
+        return request.render(template='school_management.student_list_template', qcontext={'students': students})

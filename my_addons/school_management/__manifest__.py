@@ -21,6 +21,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/school.xml',
+        'views/student_list_template.xml',
         'report/school_report.xml',
         'report/student_template.xml',
     ],
@@ -33,6 +34,9 @@
     'demo': [
 
     ],
+    'controllers': [
+            'controllers',
+        ],
     # 'images': ['static/description/icon/png'],
     'installable': True,
     'application': True,

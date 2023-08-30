@@ -209,6 +209,13 @@
         </field>
     </record>
 
+    <!-- Student List web action -->
+    <record id="action_student_list" model="ir.actions.act_url">
+        <field name="name">Student List</field>
+        <field name="url">/school/students</field>
+        <field name="target">self</field>
+    </record>
+
     <menuitem id="school_menu" name="School"/>
     <menuitem id="school_exams_menu"
               name="Exams"
@@ -228,6 +235,12 @@
               name="Student-Student"
               parent="school_exams_menu"
               action="action_student_student"
+     />
+    <!-- Додаємо дію для відображення списку студентів -->
+    <menuitem id="school_student_list_menu"
+              name="Student List"
+              parent="school_menu"
+              action="action_student_list"
      />
 
 </odoo>
