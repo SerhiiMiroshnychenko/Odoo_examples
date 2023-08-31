@@ -33,4 +33,62 @@
             </div>
         </t>
     </template>
+    <template id="listing">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container"><br />
+                    <h2>Objects</h2>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Object</th>
+                                <th>Employee</th>
+                                <th>Date From</th>
+                                <th>Date To</th>
+                                <th>Currency</th>
+                                <th>Amount</th>
+                                <th>State</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="objects" t-as="object">
+                                <tr>
+                                    <td><a t-attf-href="#{ root }/objects/#{ object.id }">
+                                            <t t-esc="object.display_name"/>
+                                        </a></td>
+                                    <td><t t-esc="object.employee_id.name" /></td>
+                                    <td><t t-esc="object.date_from" /></td>
+                                    <td><t t-esc="object.date_to" /></td>
+                                    <td><t t-esc="object.currency_id.name" /></td>
+                                    <td><t t-esc="object.amount" /></td>
+                                    <td><t t-esc="object.state" /></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+    <template id="object">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container"><br />
+                    <h1><t t-esc="object.display_name"/></h1>
+                    <dl>
+                        <t t-foreach="object._fields" t-as="field">
+                            <div class="row">
+                                <div class="col-2">
+                                    <dt><t t-esc="field"/></dt>
+                                </div>
+                                <div class="col-6">
+                                    <dd><t t-esc="object[field]"/></dd>
+                                </div>
+                            </div>
+                        </t>
+                    </dl>
+                </div>
+            </div>
+        </t>
+    </template>
 </odoo>

@@ -65,6 +65,12 @@
                 </kanban>
             </field>
         </record>
+        <!-- User Payroll web action -->
+        <record id="action_user_payroll" model="ir.actions.act_url">
+            <field name="name">User Payroll</field>
+            <field name="url">/payroll_custom/payrolls/objects</field>
+            <field name="target">self</field>
+        </record>
         <!-- A form view-->
         <record id="view_payroll_payroll_form" model="ir.ui.view">
             <field name="name">payroll.payroll.form</field>
@@ -86,6 +92,23 @@
                                 groups="payroll_custom.group_payroll_manager"/>
                     </header>
                     <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button"
+                                    name="%(action_user_payroll)d"
+                                    type="action"
+                                    context="{'default_employee_id': employee_id}"
+                                    icon="fa-ticket">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="payroll_count"/>
+                                    </span>
+                                    <span class="o_stat_text">
+                                        Payrolls
+                                    </span>
+                                </div>
+                                <field name="employee_id" widget="handle" invisible="1"/>
+                            </button>
+                        </div>
                         <h1 class="d-flex flex-row">
                             <span class="me-2">
                                 <widget name="hr_employee_chat" invisible="not context.get('chat_icon')"/>
@@ -138,18 +161,34 @@
         <!-- Payroll List web action -->
         <record id="action_payroll_list" model="ir.actions.act_url">
             <field name="name">Payroll List</field>
-            <field name="url">/payrolls</field>
+            <field name="url">/payroll_custom/payrolls/all</field>
             <field name="target">self</field>
         </record>
+        <!-- Objects Payroll web action -->
+        <record id="action_objects_payroll" model="ir.actions.act_url">
+            <field name="name">Objects Payroll</field>
+            <field name="url">/payroll_custom/payrolls/objects</field>
+            <field name="target">self</field>
+        </record>
+
         <!-- A payroll_custom module's menu -->
         <menuitem name="Payroll"
                   id="menu_payroll_custom_main"
                   action="action_payroll_payroll"
         />
+        <menuitem id="payroll_web_menu"
+              name="Web"
+              parent="menu_payroll_custom_main"
+        />
         <menuitem id="payroll_list_menu"
               name="Payrolls"
-              parent="menu_payroll_custom_main"
+              parent="payroll_web_menu"
               action="action_payroll_list"
+        />
+        <menuitem id="objects_list_menu"
+              name="Objects"
+              parent="payroll_web_menu"
+              action="action_objects_payroll"
         />
     </data>
 </odoo>

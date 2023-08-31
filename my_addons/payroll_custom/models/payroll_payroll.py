@@ -54,6 +54,18 @@ class PayrollPayroll(models.Model):
         default='draft'
     )
 
+    payroll_count = fields.Integer(
+        compute='_compute_payroll_count',
+        store=True,
+    )
+
+    @api.depends('employee_id')
+    def _compute_payroll_count(self):
+        for payroll in self:
+            payroll.payroll_count = self.env['payroll.payroll'].search_count([(
+                'employee_id', '=', payroll.employee_id.id)
+            ])
+
     def calculate_payroll(self):
         """
         The alternative method
