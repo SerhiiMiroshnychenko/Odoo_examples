@@ -1,0 +1,62 @@
+<odoo>
+<!-- Fish Web Home-Index Template -->
+    <template id="index" name="Payrolls List">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container"><br />
+                    <h2>All Fish</h2>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Common name</th>
+                                <th>Scientific name</th>
+                                <th>Average size, mm</th>
+                                <th>Image</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="fishes" t-as="fish">
+                                <tr>
+                                    <td>
+                                        <a t-attf-href="/fish/{{ slug(fish) }}">
+                                            <t t-esc="fish.common_name" />
+                                        </a>
+                                    </td>
+                                    <td><t t-esc="fish.scientific_name" /></td>
+                                    <td><t t-esc="fish.average_size" /></td>
+                                    <td>
+                                        <img t-if="fish.image" t-att-src="'data:image/png;base64,'+fish.image.decode('utf-8')"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+<!-- Fish Web Remarks Template -->
+    <template id="remarks">
+    <t t-call="website.layout">
+        <t t-set="title">Remarks</t>
+        <div class="oe_structure">
+            <div class="container">
+                <div style="padding-left: 190px">
+                    <h3><t t-esc="fish.common_name"/></h3>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <img t-if="fish.image" t-att-src="'data:image/png;base64,'+fish.image.decode('utf-8')"/>
+                    </div>
+                    <div class="col-6">
+                        <p><i>Scientific name:</i> <b><t t-esc="fish.scientific_name"/></b></p>
+                        <p><i>Average Size:</i> <b><t t-esc="fish.average_size"/></b> <i>mm</i></p>
+                    </div>
+                </div>
+                <div t-field="fish.remarks"/>
+            </div>
+        </div>
+    </t>
+</template>
+
+</odoo>

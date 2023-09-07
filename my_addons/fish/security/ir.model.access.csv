@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_fish_fish,fish.fish_fish,model_fish_fish,base.group_user,1,1,1,1

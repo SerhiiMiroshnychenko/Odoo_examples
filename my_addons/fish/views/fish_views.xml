@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!-- A tree view-->
+    <record id="fish_fish_view_tree" model="ir.ui.view">
+        <field name="name">fish.fish.view.tree</field>
+        <field name="model">fish.fish</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="image" widget="image" options="{'size': (50, 50)}"/>
+                <field name="common_name"/>
+                <field name="scientific_name"/>
+                <field name="average_size"/>
+            </tree>
+        </field>
+    </record>
+<!-- A kanban view-->
+    <record id="fish_fish_view_kanban" model="ir.ui.view">
+        <field name="name">fish.fish.view.kanban</field>
+        <field name="model">fish.fish</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="id"/>
+                <field name="image"/>
+                <field name="common_name"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <img t-att-src="kanban_image('fish.fish','image',record.id.raw_value)"
+                                     t-att-alt="record.common_name.raw_value"/>
+                            </div>
+                            <div style="text-align: center; padding: 13px; padding-right: 63px">
+                                <h3>
+                                    <field name="common_name"/>
+                                </h3>
+                            </div>
+                            <hr/>
+                            <div class="text-muted o_row" style="text-align: center; font-style: italic">
+                                <field name="scientific_name"/>
+                            </div>
+                            <div style="text-align: center;">
+                                ~ <b><field name="average_size"/></b> mm
+                            </div>
+                            <br/>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+<!-- A form view-->
+    <record id="fish_fish_view_form" model="ir.ui.view">
+        <field name="name">fish.fish.form</field>
+        <field name="model">fish.fish</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <h1 class="d-flex flex-row">
+                        <field name="common_name" placeholder="Common Fish Name" required="True" style="font-size: min(4vw, 2.6rem);"/>
+                    </h1>
+                    <hr/>
+                    <group>
+                        <group>
+                            <field name="scientific_name"/>
+                            <field name="average_size"/>
+                            <field name="image"/>
+                        </group>
+                        <group>
+                            <field name="image" widget="image" readonly="0" string=""/>
+                        </group>
+                    </group>
+                    <hr/>
+                    <group>
+                        <field name="remarks"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+<!-- A search view-->
+    <record id="fish_fish_view_search" model="ir.ui.view">
+        <field name="name">fish.fish.search</field>
+        <field name="model">fish.fish</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="common_name"/>
+                <field name="scientific_name"/>
+                <field name="average_size"/>
+            </search>
+        </field>
+    </record>
+<!-- A fish_fish model's action -->
+    <record id="action_fish_fish" model="ir.actions.act_window">
+        <field name="name">Fish</field>
+        <field name="res_model">fish.fish</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_id" ref="fish_fish_view_tree"/>
+        <field name="search_view_id" ref="fish_fish_view_search"/>
+    </record>
+<!-- Action Fish Web Home -->
+    <record id="action_fish_web_home" model="ir.actions.act_url">
+        <field name="name">Home</field>
+        <field name="url">/fish/home/</field>
+        <field name="target">self</field>
+    </record>
+<!-- A fish module's menu -->
+    <menuitem name="Fish"
+              id="menu_fish_main"
+    />
+    <menuitem id="fish_menu"
+              name="FISH"
+              parent="menu_fish_main"
+              action="action_fish_fish"
+    />
+    <menuitem id="fish_web_menu"
+          name="WEB"
+          parent="menu_fish_main"
+    />
+    <menuitem id="fish_web_home"
+              name="Home"
+              parent="fish_web_menu"
+              action="action_fish_web_home"
+        />
+</odoo>

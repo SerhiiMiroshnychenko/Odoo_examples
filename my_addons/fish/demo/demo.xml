@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+
+        <record id="object0" model="fish.fish">
+            <field name="common_name">Cherry barb</field>
+            <field name="scientific_name">Puntius titteya</field>
+            <field name="average_size">48</field>
+        </record>
+
+        <record id="object1" model="fish.fish">
+            <field name="common_name">Daisy's Ricefish</field>
+            <field name="scientific_name">Oryzias woworae</field>
+            <field name="average_size">30</field>
+        </record>
+
+        <record id="object2" model="fish.fish">
+            <field name="common_name">Cherry barb</field>
+            <field name="scientific_name">Puntius titteya</field>
+            <field name="average_size">48</field>
+        </record>
+
+        <record id="object3" model="fish.fish">
+            <field name="common_name">Bumblebee goby</field>
+            <field name="scientific_name">Brachygobius doriae</field>
+            <field name="average_size">40</field>
+        </record>
+
+        <record id="object4" model="fish.fish">
+            <field name="common_name">Threadfin rainbowfish</field>
+            <field name="scientific_name">Iriatherina werneri</field>
+            <field name="average_size">40</field>
+        </record>
+
+    </data>
+</odoo>
