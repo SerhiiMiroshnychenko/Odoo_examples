@@ -8,6 +8,7 @@
                 <sheet>
                     <group>
                         <field name="name" placeholder="Enter a patient name"/>
+                        <field name="uppercase_name" string="" readonly="0"/>
                         <field name="age"/>
                         <field name="is_child" widget="boolean_toggle"/>
                         <field name="gender" placeholder="Select a patient gander"/>
@@ -28,6 +29,7 @@
         <field name="arch" type="xml">
             <tree string="Hospital Patient">
                 <field name="name"/>
+                <field name="uppercase_name"/>
                 <field name="age"/>
                 <field name="is_child"/>
                 <field name="gender"/>
