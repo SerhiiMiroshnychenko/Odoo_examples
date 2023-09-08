@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import fields, models, api
 
 
 class HospitalPatient(models.Model):
@@ -17,3 +17,11 @@ class HospitalPatient(models.Model):
             ('female', 'Female'),
         ],
     )
+
+    @api.onchange('age')
+    def _onchange_age(self):
+        """
+        Automatically called when the 'age' field is changed.
+        Checks the patient's age and sets the 'is_child' field accordingly.
+        """
+        self.is_child = True if self.age <= 10 else False
