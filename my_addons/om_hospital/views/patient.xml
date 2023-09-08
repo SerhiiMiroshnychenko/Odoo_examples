@@ -5,11 +5,15 @@
         <field name="model">hospital.patient</field>
         <field name="arch" type="xml">
             <form string="Hospital Patient">
-                <field name="name"/>
-                <field name="age"/>
-                <field name="gender"/>
-                <field name="is_child"/>
-                <field name="notes"/>
+                <sheet>
+                    <group>
+                        <field name="name" placeholder="Enter a patient name"/>
+                        <field name="age"/>
+                        <field name="is_child" widget="boolean_toggle"/>
+                        <field name="gender" placeholder="Select a patient gander"/>
+                        <field name="notes" placeholder="Enter here some notes about a patient"/>
+                    </group>
+                </sheet>
             </form>
         </field>
     </record>
@@ -21,8 +25,8 @@
             <tree string="Hospital Patient">
                 <field name="name"/>
                 <field name="age"/>
-                <field name="gender"/>
                 <field name="is_child"/>
+                <field name="gender"/>
                 <field name="notes"/>
             </tree>
         </field>
