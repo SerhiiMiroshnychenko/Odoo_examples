@@ -1,4 +1,5 @@
-from odoo import fields, models, api
+from odoo import fields, models, api, _
+from odoo.exceptions import ValidationError
 
 
 class HospitalPatient(models.Model):
@@ -18,6 +19,14 @@ class HospitalPatient(models.Model):
         ],
     )
     uppercase_name = fields.Char(compute='_compute_uppercase_name', store=True)
+
+    @api.constrains('age', 'is_child')
+    def _check_age(self):
+        for patient in self:
+            if patient.age < 1:
+                message = "The child age has to be recorded!" if patient.is_child\
+                    else "The patient age has to be recorded!"
+                raise ValidationError(_(message))
 
     @api.depends('name')
     def _compute_uppercase_name(self):
