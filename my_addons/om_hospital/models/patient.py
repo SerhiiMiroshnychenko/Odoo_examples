@@ -14,7 +14,7 @@ class HospitalPatient(models.Model):
     gender = fields.Selection(
         string='Patient gender',
         selection=[
-            ('mail', 'Mail'),
+            ('male', 'Male'),
             ('female', 'Female'),
         ],
     )

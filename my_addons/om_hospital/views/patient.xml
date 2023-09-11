@@ -43,11 +43,34 @@
             </tree>
         </field>
     </record>
+    
+    <record id="hospital_patient_view_search" model="ir.ui.view">
+        <field name="name">hospital.patient.view.search</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <search string="">
+                <field name="ref"/>
+                <field name="name" filter_domain="['|', ('name', 'ilike', self),
+                                                    ('notes', 'ilike', self)]"/>
+                <field name="age"/>
+                <field name="gender"/>
+                <filter name="filter_male" string="Male" domain="[('gender', '=', 'male')]"/>
+                <filter name="filter_female" string="Female" domain="[('gender', '=', 'female')]"/>
+                <separator/>
+                <filter name="filter_child" string="Child" domain="[('is_child', '=', True)]"/>
+                <group expand="0" string="Group By...">
+                    <filter name="group_by_gender" string="Gender" context="{'group_by': 'gender'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
 
     <record id="action_hospital_patient" model="ir.actions.act_window">
         <field name="name">Patients</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">hospital.patient</field>
         <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_filter_child':1}</field>
+        <field name="search_view_id" ref="om_hospital.hospital_patient_view_search"/>
     </record>
 </odoo>
