@@ -7,7 +7,7 @@ class HospitalDoctor(models.Model):
     _description = 'Doctor Records'
 
     name = fields.Char(string='Doctor name', required=True, tracking=True)
-    ref = fields.Char(string='Reference', default=lambda self: _('New'))
+    ref = fields.Char(string='Reference', default=lambda self: _('New'), required=True)
     gender = fields.Selection(
         string='Doctor gender',
         selection=[

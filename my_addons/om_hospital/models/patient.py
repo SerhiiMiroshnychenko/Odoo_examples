@@ -20,6 +20,11 @@ class HospitalPatient(models.Model):
     )
     uppercase_name = fields.Char(compute='_compute_uppercase_name', store=True)
     ref = fields.Char(string='Reference', default=lambda self: _('New'))
+    doctor_id = fields.Many2one(
+        comodel_name='hospital.doctor',
+        string='Doctor',
+        required=False,
+    )
 
     @api.model_create_multi
     def create(self, vals_list):

@@ -17,6 +17,7 @@
                         <field name="age"/>
                         <field name="is_child" widget="boolean_toggle"/>
                         <field name="gender" placeholder="Select a patient gander"/>
+                        <field name="doctor_id" options="{'no_open': True, 'no_create': True}"/>
                         <field name="notes" placeholder="Enter here some notes about a patient"/>
                     </group>
                 </sheet>
@@ -39,6 +40,7 @@
                 <field name="age"/>
                 <field name="is_child"/>
                 <field name="gender"/>
+                <field name="doctor_id"/>
                 <field name="notes"/>
             </tree>
         </field>
