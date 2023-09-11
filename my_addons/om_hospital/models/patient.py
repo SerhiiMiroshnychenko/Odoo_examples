@@ -19,11 +19,13 @@ class HospitalPatient(models.Model):
         ],
     )
     uppercase_name = fields.Char(compute='_compute_uppercase_name', store=True)
+    ref = fields.Char(string='Reference', default=lambda self: _('New'))
 
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
             vals['name'] = vals['name'].title()
+            vals['ref'] = self.env['ir.sequence'].next_by_code('hospital.patient')
         return super(HospitalPatient, self).create(vals_list)
 
     @api.constrains('age', 'is_child')

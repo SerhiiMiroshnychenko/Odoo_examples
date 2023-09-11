@@ -6,6 +6,11 @@
         <field name="arch" type="xml">
             <form string="Hospital Patient">
                 <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="ref" readonly="1"/>
+                        </h1>
+                    </div>
                     <group>
                         <field name="name" placeholder="Enter a patient name"/>
                         <field name="uppercase_name" string="" readonly="0"/>
@@ -28,6 +33,7 @@
         <field name="model">hospital.patient</field>
         <field name="arch" type="xml">
             <tree string="Hospital Patient">
+                <field name="ref"/>
                 <field name="name"/>
                 <field name="uppercase_name"/>
                 <field name="age"/>
