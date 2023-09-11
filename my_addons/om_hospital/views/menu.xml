@@ -15,4 +15,15 @@
               action="om_hospital.action_hospital_patient"
               sequence="10"
     />
+    <menuitem id="menu_hospital_master_data"
+              name="Master Data"
+              parent="menu_hospital_root"
+              sequence="10"
+    />
+    <menuitem id="menu_doctors"
+              name="Doctors"
+              parent="menu_hospital_master_data"
+              action="om_hospital.action_hospital_doctor"
+              sequence="10"
+    />
 </odoo>
