@@ -20,6 +20,12 @@ class HospitalPatient(models.Model):
     )
     uppercase_name = fields.Char(compute='_compute_uppercase_name', store=True)
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            vals['name'] = vals['name'].title()
+        return super(HospitalPatient, self).create(vals_list)
+
     @api.constrains('age', 'is_child')
     def _check_age(self):
         for patient in self:
