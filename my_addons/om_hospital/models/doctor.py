@@ -17,6 +17,13 @@ class HospitalDoctor(models.Model):
         ],
     )
 
+    def name_get(self):
+        res = []
+        for doctor in self:
+            name = f'{doctor.ref} - {doctor.name}'
+            res.append((doctor.id, name))
+        return res
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
