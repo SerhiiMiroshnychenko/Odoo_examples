@@ -5,6 +5,7 @@ class HospitalDoctor(models.Model):
     _name = 'hospital.doctor'
     _inherit = 'mail.thread'
     _description = 'Doctor Records'
+    _rec_name = 'ref'
 
     name = fields.Char(string='Doctor name', required=True, tracking=True)
     ref = fields.Char(string='Reference', default=lambda self: _('New'), required=True)
