@@ -16,6 +16,7 @@ class HospitalDoctor(models.Model):
             ('female', 'Female'),
         ],
     )
+    active = fields.Boolean(default=True)
 
     def name_get(self):
         res = []
