@@ -3,7 +3,7 @@
     'author': 'Serhii Miroshnychenko',
     'website': 'https://github.com/SerhiiMiroshnychenko',
     'summary': 'Odoo 16 Hospital Management System',
-    'depends': ['mail'],
+    'depends': ['mail', 'estate'],
     'data': [
         'security/ir.model.access.csv',
         'data/sequence.xml',

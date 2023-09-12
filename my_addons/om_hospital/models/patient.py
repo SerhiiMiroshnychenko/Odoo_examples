@@ -25,6 +25,14 @@ class HospitalPatient(models.Model):
         string='Doctor',
         required=False,
     )
+    tag_ids = fields.Many2many(comodel_name='res.partner.category', string='Tags')
+    property_tag_ids = fields.Many2many(
+        comodel_name='estate.property.tag',
+        relation='hospital_patient_property_tag_rel',
+        column1='patient_id',
+        column2='property_tag_id',
+        string='Property Tags'
+    )
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -37,7 +45,7 @@ class HospitalPatient(models.Model):
     def _check_age(self):
         for patient in self:
             if patient.age < 1:
-                message = "The child age has to be recorded!" if patient.is_child\
+                message = "The child age has to be recorded!" if patient.is_child \
                     else "The patient age has to be recorded!"
                 raise ValidationError(_(message))
 
