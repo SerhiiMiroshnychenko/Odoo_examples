@@ -27,7 +27,7 @@ class EstatePropertyOffer(models.Model):
         "estate.property",
         required=True,
         ondelete='cascade'
-        #inverse_name='offer_ids'
+        # inverse_name='offer_ids'
     )
 
     validity = fields.Integer(default=7, string='Validity (days)')
@@ -91,4 +91,3 @@ class EstatePropertyOffer(models.Model):
          'CHECK(price > 0)',
          'The offer price must be strictly more then 0.')
     ]
-

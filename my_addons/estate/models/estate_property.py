@@ -13,9 +13,9 @@ class EstateProperty(models.Model):
     postcode = fields.Char()
     date_availability = fields.Date(copy=False,
                                     default=lambda self: fields.Datetime.add(
-        value=fields.Datetime.today(),
-        months=3
-    ))
+                                        value=fields.Datetime.today(),
+                                        months=3
+                                    ))
     expected_price = fields.Float(required=True)
     selling_price = fields.Float(readonly=True, copy=False, default=None)
     bedrooms = fields.Integer(default=2)
@@ -63,7 +63,6 @@ class EstateProperty(models.Model):
         for estate in self:
             estate.total_area = estate.living_area + estate.garden_area
 
-
     best_price = fields.Float(compute="_compute_best_price")
 
     @api.depends("offer_ids.price")
@@ -75,7 +74,6 @@ class EstateProperty(models.Model):
                     estate.state = 'offer received'
             else:
                 estate.best_price = 0
-
 
     @api.onchange("garden")
     def _onchange_garden(self):
@@ -94,7 +92,6 @@ class EstateProperty(models.Model):
         self.state = 'canceled'
         self.active = False
         return True
-
 
     def action_set_sold_status(self):
         if self.state == 'canceled':
