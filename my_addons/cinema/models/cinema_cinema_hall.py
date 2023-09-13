@@ -37,6 +37,22 @@ class CinemaCinemaHall(models.Model):
         hall.cinema_id.create_playbill()
         return hall
 
+    # @api.model
+    # def create(self, vals_list):
+    #     """
+    #     Create one or more records based on a list of dictionaries.
+    #
+    #     :param vals_list: List of dictionaries containing field values for each record.
+    #     :return: List of created record(s).
+    #     """
+    #     created_halls = self.env['cinema.cinema.hall']
+    #     for vals in vals_list:
+    #         hall = super(CinemaCinemaHall, self).create(vals)
+    #         hall.article = self.env['ir.sequence'].next_by_code('cinema.hall') or "CH0000"
+    #         hall.cinema_id.create_playbill()
+    #         created_halls += hall
+    #     return created_halls
+
     def _pin_newest_movies(self):
         newest = self.movie_ids.search([('premiere_date', '>=', fields.Date.today())])
         for record in self:

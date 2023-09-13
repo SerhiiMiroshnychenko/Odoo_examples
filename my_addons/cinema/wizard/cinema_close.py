@@ -3,6 +3,7 @@ from odoo import models, fields
 
 class CinemaClose(models.TransientModel):
     _name = 'cinema.close.wizard'
+    _description = 'Wizard of Cinema module'
 
     reason = fields.Text(string='Explanation of the reason')
 

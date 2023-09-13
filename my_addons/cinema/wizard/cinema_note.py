@@ -3,6 +3,7 @@ from odoo import models, fields
 
 class CinemaNote(models.TransientModel):
     _name = 'cinema.note.wizard'
+    _description = 'Wizard of Cinema module'
 
     note = fields.Text()
 

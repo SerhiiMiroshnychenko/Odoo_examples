@@ -1,7 +1,9 @@
 from odoo import models, fields
 
+
 class HallSeatWizard(models.TransientModel):
     _name = 'hall.seat.wizard'
+    _description = 'Wizard of Cinema module'
 
     seats = fields.Integer(string="Number of seats", required=True)
 

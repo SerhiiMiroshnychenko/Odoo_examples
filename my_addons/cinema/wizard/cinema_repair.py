@@ -4,6 +4,7 @@ from datetime import timedelta
 
 class CinemaRepair(models.TransientModel):
     _name = 'cinema.repair.wizard'
+    _description = 'Wizard of Cinema module'
 
     cinema_id = fields.Many2one(
         'cinema.cinema',
