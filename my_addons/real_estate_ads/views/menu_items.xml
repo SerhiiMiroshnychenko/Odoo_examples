@@ -3,13 +3,16 @@
     <menuitem id="menu_property_ads_root"
               name="Property Ads"
               sequence="1"
-              web_icon="real_estate_abs,static/description/icon.png"
-    >
+              web_icon="real_estate_abs,static/description/icon.png">
         <menuitem id="menu_property_ads" name="Abs">
             <menuitem id="menu_property"
                       name="Property"
-                      action="action_real_property"
-            />
+                      action="action_real_property"/>
+        </menuitem>
+        <menuitem id="menu_property_ads_settings" name="Settings">
+            <menuitem id="menu_property_type"
+                      name="Property Types"
+                      action="action_real_property_type"/>
         </menuitem>
     </menuitem>
 </odoo>

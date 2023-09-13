@@ -11,6 +11,7 @@
         <field name="arch" type="xml">
             <tree string="Real Property">
                 <field name="name"/>
+                <field name="type_id"/>
                 <field name="postcode"/>
                 <field name="date_availability"/>
                 <field name="expected_price"/>
@@ -29,6 +30,7 @@
                 <sheet>
                     <group>
                         <field name="name"/>
+                        <field name="type_id"/>
                         <group>
                             <field name="postcode"/>
                             <field name="date_availability"/>

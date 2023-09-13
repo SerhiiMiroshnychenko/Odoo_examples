@@ -26,3 +26,15 @@ class Property(models.Model):
             ('west', 'West')
         ],
     )
+    type_id = fields.Many2one(
+        comodel_name='real.property.type',
+        string='Property Type',
+        required=False,
+    )
+
+
+class PropertyType(models.Model):
+    _name = 'real.property.type'
+    _description = 'Real Property Type Model'
+
+    name = fields.Char(required=True)
