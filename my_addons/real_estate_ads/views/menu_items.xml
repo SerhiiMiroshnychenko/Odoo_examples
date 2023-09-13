@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_property_ads_root"
+              name="Property Ads"
+              sequence="1"
+              web_icon="real_estate_abs,static/description/icon.png"
+    >
+        <menuitem id="menu_property_ads" name="Abs">
+            <menuitem id="menu_property"
+                      name="Property"
+                      action="action_real_property"
+            />
+        </menuitem>
+    </menuitem>
+</odoo>
