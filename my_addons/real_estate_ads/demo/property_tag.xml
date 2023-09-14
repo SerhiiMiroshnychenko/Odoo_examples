@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="property_tag_cozy" model="real.property.tag">
+            <field name="name">Cozy</field>
+        </record>
+        <record id="property_tag_renovated" model="real.property.tag">
+            <field name="name">Renovated</field>
+        </record>
+        <record id="property_tag_new" model="real.property.tag">
+            <field name="name">New</field>
+        </record>
+        <record id="property_tag_abandoned" model="real.property.tag">
+            <field name="name">Abandoned</field>
+        </record>
+    </data>
+</odoo>

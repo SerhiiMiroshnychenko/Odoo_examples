@@ -17,6 +17,13 @@ Real estate module to show available properties
         'views/property_tag_view.xml',
         'views/menu_items.xml',
 
+        # Data files
+        'data/property_type.xml',
+        'data/real.property.type.csv',
+
+    ],
+    "demo": [
+        'demo/property_tag.xml',
     ],
     "installable": True,
     "application": True,

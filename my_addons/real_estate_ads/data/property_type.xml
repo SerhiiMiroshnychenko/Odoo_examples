@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="property_type_house" model="real.property.type">
+            <field name="name">House</field>
+        </record>
+        <record id="property_type_apartment" model="real.property.type">
+            <field name="name">Apartment</field>
+        </record>
+        <record id="property_type_penthouse" model="real.property.type">
+            <field name="name">Penthouse</field>
+        </record>
+        <record id="property_type_castle" model="real.property.type">
+            <field name="name">Castle</field>
+        </record>
+    </data>
+</odoo>

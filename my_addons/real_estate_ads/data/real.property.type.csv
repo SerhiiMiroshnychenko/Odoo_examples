@@ -1,0 +1,5 @@
+"id","name"
+property_type_villa, Villa
+property_type_cabin, Cabin
+property_type_ranch, Ranch
+property_type_cottage, Cottage
