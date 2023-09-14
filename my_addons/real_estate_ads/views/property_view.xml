@@ -43,15 +43,37 @@
                             <field name="best_offer"/>
                             <field name="selling_price"/>
                         </group>
-                        <field name="offer_ids">
-                            <tree>
-                                <field name="price"/>
-                                <field name="partner_id"/>
-                                <field name="status"/>
-                            </tree>
-                        </field>
                     </group>
-
+                    <notebook>
+                        <page name="Description">
+                            <group>
+                                <field name="description"/>
+                                <field name="bedrooms"/>
+                                <field name="living_area"/>
+                                <field name="facades"/>
+                                <field name="garage"/>
+                                <field name="garden"/>
+                                <field name="garden_area"/>
+                                <field name="garden_orientation"/>
+                            </group>
+                        </page>
+                        <page name="Offers">
+                            <field name="offer_ids">
+                                <tree editable="bottom">
+                                    <field name="price"/>
+                                    <field name="partner_id"/>
+                                    <field name="deadline"/>
+                                    <field name="status" nolabel="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="Other info">
+                            <group>
+                                <field name="sales_id"/>
+                                <field name="buyer_id"/>
+                            </group>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

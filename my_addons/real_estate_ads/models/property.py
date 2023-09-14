@@ -40,6 +40,8 @@ class Property(models.Model):
         inverse_name='property_id',
         string='Offers'
     )
+    sales_id = fields.Many2one('res.users', string='Salesman')
+    buyer_id = fields.Many2one('res.partner')
 
 
 class PropertyType(models.Model):

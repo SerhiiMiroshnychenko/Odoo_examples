@@ -21,3 +21,5 @@ class PropertyOffer(models.Model):
         comodel_name='real.property',
         required=True,
     )
+    validity = fields.Integer()
+    deadline = fields.Date()
