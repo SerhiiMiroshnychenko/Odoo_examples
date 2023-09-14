@@ -11,6 +11,7 @@
         <field name="arch" type="xml">
             <tree string="Real Property">
                 <field name="name"/>
+                <field name="tag_ids" widget="many2many_tags"/>
                 <field name="type_id"/>
                 <field name="postcode"/>
                 <field name="date_availability"/>
@@ -29,9 +30,10 @@
             <form string="Real Property">
                 <sheet>
                     <group>
-                        <field name="name"/>
-                        <field name="type_id"/>
+                        <field name="name" placeholder="Real Property Name"/>
+                        <field name="tag_ids" widget="many2many_tags" placeholder="Property Tags"/>
                         <group>
+                            <field name="type_id"/>
                             <field name="postcode"/>
                             <field name="date_availability"/>
                         </group>

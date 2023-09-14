@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Real Property Tag View Tree -->
+    <record id="real_property_tag_view_tree" model="ir.ui.view">
+        <field name="name">real.property.tag.view.tree</field>
+        <field name="model">real.property.tag</field>
+        <field name="arch" type="xml">
+            <tree string="Property Tag">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Real Property Tag View Form -->
+    <record id="real_property_tag_view_form" model="ir.ui.view">
+        <field name="name">real.property.tag.view.form</field>
+        <field name="model">real.property.tag</field>
+        <field name="arch" type="xml">
+            <form string="Property Tag">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action Real Property Tag -->
+    <record id="action_real_property_tag" model="ir.actions.act_window">
+        <field name="name">Property Tag</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">real.property.tag</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="real_property_tag_view_tree"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a Property Tag
+            </p>
+        </field>
+    </record>
+
+</odoo>

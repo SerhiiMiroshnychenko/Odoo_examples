@@ -13,6 +13,9 @@
             <menuitem id="menu_property_type"
                       name="Property Types"
                       action="action_real_property_type"/>
+            <menuitem id="menu_property_tag"
+                      name="Property Tag"
+                      action="action_real_property_tag"/>
         </menuitem>
     </menuitem>
 </odoo>

@@ -6,7 +6,7 @@
         <field name="name">real.property.type.view.tree</field>
         <field name="model">real.property.type</field>
         <field name="arch" type="xml">
-            <tree string="Real Property">
+            <tree string="Property Type">
                 <field name="name"/>
             </tree>
         </field>
@@ -17,7 +17,7 @@
         <field name="name">real.property.type.view.form</field>
         <field name="model">real.property.type</field>
         <field name="arch" type="xml">
-            <form string="Real Property">
+            <form string="Property Type">
                 <sheet>
                     <group>
                         <field name="name"/>

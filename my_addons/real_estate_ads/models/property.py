@@ -31,10 +31,21 @@ class Property(models.Model):
         string='Property Type',
         required=False,
     )
+    tag_ids = fields.Many2many(
+        comodel_name='real.property.tag',
+        string='Property Tag'
+    )
 
 
 class PropertyType(models.Model):
     _name = 'real.property.type'
-    _description = 'Real Property Type Model'
+    _description = 'Property Type Model'
+
+    name = fields.Char(required=True)
+
+
+class PropertyTag(models.Model):
+    _name = 'real.property.tag'
+    _description = 'Property Tag Model'
 
     name = fields.Char(required=True)
