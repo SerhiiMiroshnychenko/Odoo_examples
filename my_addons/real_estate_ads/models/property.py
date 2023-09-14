@@ -35,6 +35,11 @@ class Property(models.Model):
         comodel_name='real.property.tag',
         string='Property Tag'
     )
+    offer_ids = fields.One2many(
+        comodel_name='real.property.offer',
+        inverse_name='property_id',
+        string='Offers'
+    )
 
 
 class PropertyType(models.Model):

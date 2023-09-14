@@ -16,6 +16,7 @@
                 <field name="postcode"/>
                 <field name="date_availability"/>
                 <field name="expected_price"/>
+                <field name="offer_ids"/>
                 <field name="best_offer"/>
                 <field name="selling_price"/>
             </tree>
@@ -42,6 +43,13 @@
                             <field name="best_offer"/>
                             <field name="selling_price"/>
                         </group>
+                        <field name="offer_ids">
+                            <tree>
+                                <field name="price"/>
+                                <field name="partner_id"/>
+                                <field name="status"/>
+                            </tree>
+                        </field>
                     </group>
 
                 </sheet>
