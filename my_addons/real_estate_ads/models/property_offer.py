@@ -25,7 +25,19 @@ class PropertyOffer(models.Model):
     )
     validity = fields.Integer()
     deadline = fields.Date(compute='_compute_deadline', inverse='_inverse_deadline')
-    creation_date = fields.Date(string='Create Date')
+
+    @api.model
+    def _set_create_date(self):
+        """
+        Decorate a record-style method where self is a recordset,
+        but its contents is not relevant, only the model is.
+
+        This method returns today's date.
+        :return: <class 'datetime.date'>
+        """
+        return fields.Date.today()
+
+    creation_date = fields.Date(string='Create Date', default=_set_create_date)
 
     @api.depends('creation_date', 'validity')
     def _compute_deadline(self):
@@ -37,7 +49,8 @@ class PropertyOffer(models.Model):
 
     def _inverse_deadline(self):
         for offer in self:
-            offer.validity = (offer.deadline - offer.creation_date).days
+            if offer.deadline and offer.creation_date:
+                offer.validity = (offer.deadline - offer.creation_date).days
 
     @api.autovacuum
     def _clean_offers(self):
@@ -50,3 +63,10 @@ class PropertyOffer(models.Model):
         які не заслуговують на певне завдання cron.
         """
         self.search([('status', '=', 'refused')]).unlink()
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for val in vals_list:
+            if not val.get('validity'):
+                val['validity'] = 10
+        return super(PropertyOffer, self).create(vals_list)
