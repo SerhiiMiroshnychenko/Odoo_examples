@@ -41,7 +41,11 @@ class Property(models.Model):
         string='Offers'
     )
     sales_id = fields.Many2one('res.users', string='Salesman')
-    buyer_id = fields.Many2one('res.partner', required=False)
+    buyer_id = fields.Many2one(
+        comodel_name='res.partner',
+        domain=[('is_company', '=', True)]
+    )
+    phone = fields.Char(related='buyer_id.phone', string='Buyer phone')
 
     total_area = fields.Integer()
 

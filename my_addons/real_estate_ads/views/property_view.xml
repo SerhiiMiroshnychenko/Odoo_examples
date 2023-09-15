@@ -74,6 +74,7 @@
                             <group>
                                 <field name="sales_id"/>
                                 <field name="buyer_id"/>
+                                <field name="phone"/>
                             </group>
                         </page>
                     </notebook>
