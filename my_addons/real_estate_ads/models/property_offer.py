@@ -39,13 +39,14 @@ class PropertyOffer(models.Model):
 
     creation_date = fields.Date(string='Create Date', default=_set_create_date)
 
-    @api.depends('creation_date', 'validity')
+    @api.depends('creation_date', 'validity')  # Викликається при зміні полів 'creation_date', 'validity'
+    @api.depends_context('uid')  # Викликається при зміні поточного користувача
     def _compute_deadline(self):
+        print(f'CONTEXT: {self.env.context}')
+        print(f'_CONTEXT: {self._context}')
         for offer in self:
             if offer.creation_date and offer.validity:
                 offer.deadline = offer.creation_date + timedelta(days=offer.validity)
-            else:
-                offer.deadline = False
 
     def _inverse_deadline(self):
         for offer in self:
