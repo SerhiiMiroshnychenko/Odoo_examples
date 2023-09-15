@@ -1,6 +1,7 @@
 from datetime import timedelta
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class PropertyOffer(models.Model):
@@ -71,3 +72,9 @@ class PropertyOffer(models.Model):
             if not val.get('validity'):
                 val['validity'] = 10
         return super(PropertyOffer, self).create(vals_list)
+
+    @api.constrains('validity')
+    def _check_validity(self):
+        for offer in self:
+            if offer.deadline <= offer.creation_date:
+                raise ValidationError(_('Deadline must be after creation date'))
