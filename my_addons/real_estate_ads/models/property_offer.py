@@ -3,6 +3,8 @@ from datetime import timedelta
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
 
+from .log_check import _logger
+
 
 class PropertyOffer(models.Model):
     _name = 'real.property.offer'
@@ -47,8 +49,8 @@ class PropertyOffer(models.Model):
     @api.depends('creation_date', 'validity')  # Викликається при зміні полів 'creation_date', 'validity'
     @api.depends_context('uid')  # Викликається при зміні поточного користувача
     def _compute_deadline(self):
-        print(f'CONTEXT: {self.env.context}')
-        print(f'_CONTEXT: {self._context}')
+        _logger.check(f'CONTEXT: {self.env.context}')
+        _logger.check(f'_CONTEXT: {self._context}')
         for offer in self:
             if offer.creation_date and offer.validity:
                 offer.deadline = offer.creation_date + timedelta(days=offer.validity)
@@ -82,3 +84,7 @@ class PropertyOffer(models.Model):
         for offer in self:
             if offer.deadline <= offer.creation_date:
                 raise ValidationError(_('Deadline must be after creation date'))
+
+    def write(self, vals):
+        _logger.check(f'VALS: {vals}')
+        return super(PropertyOffer, self).write(vals)
