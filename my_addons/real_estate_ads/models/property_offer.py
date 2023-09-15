@@ -25,6 +25,10 @@ class PropertyOffer(models.Model):
         required=True,
     )
     validity = fields.Integer()
+    _sql_constraints = [
+        ('check_max_validity', 'check(validity < 30)', 'Validity must be less than 30 days')
+    ]
+
     deadline = fields.Date(compute='_compute_deadline', inverse='_inverse_deadline')
 
     @api.model
