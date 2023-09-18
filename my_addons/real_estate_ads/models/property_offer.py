@@ -3,7 +3,7 @@ from datetime import timedelta
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
 
-from .log_check import _logger
+from .log_print import _print
 
 
 class PropertyOffer(models.Model):
@@ -49,8 +49,8 @@ class PropertyOffer(models.Model):
     @api.depends('creation_date', 'validity')  # Викликається при зміні полів 'creation_date', 'validity'
     @api.depends_context('uid')  # Викликається при зміні поточного користувача
     def _compute_deadline(self):
-        _logger.check(f'CONTEXT: {self.env.context}')
-        _logger.check(f'_CONTEXT: {self._context}')
+        _print(f'{self.env.context = }')
+        _print(f'{self._context = }')
         for offer in self:
             if offer.creation_date and offer.validity:
                 offer.deadline = offer.creation_date + timedelta(days=offer.validity)
@@ -86,5 +86,42 @@ class PropertyOffer(models.Model):
                 raise ValidationError(_('Deadline must be after creation date'))
 
     def write(self, vals):
-        _logger.check(f'VALS: {vals}')
+        _print(f'{self = }')
+        _print(f'{self.env.cr = }')
+        _print(f'{self.env.uid = }')
+        _print(f'{self.env.context = }')
+
+        _print(f'{vals = }')
+
+        res_partner_ids = self.env['res.partner'].search([
+            ('is_company', '=', True),
+        ], order='name ASC').mapped('name')
+        _print(f'Ordered and mapped by name {res_partner_ids = }')
+
+        res_partner_ids = self.env['res.partner'].search([
+            ('is_company', '=', True),
+        ]).mapped('phone')
+        _print(f'Mapped by phone {res_partner_ids = }')
+
+        res_partner_ids = self.env['res.partner'].search([
+            ('is_company', '=', True),
+        ]).filtered(lambda x: x.phone == '(603)-996-3829')
+        _print(f'Filtered by phone {res_partner_ids = }')
+
+        res_partner_ids = self.env['res.partner'].search([
+            ('is_company', '=', True),
+        ], limit=1)
+        _print(f'Limited 1 {res_partner_ids = }')
+
+        res_partner_ids = self.env['res.partner'].browse([10, 14])
+        _print(f'Browsed {res_partner_ids = }')
+
+        res_partner_ids = self.env['res.partner'].browse(10)
+        _print(f'Browsed {res_partner_ids.name = }')
+
+        res_partner_number = self.env['res.partner'].search_count([
+            ('is_company', '=', True),
+        ])
+        _print(f'Counted {res_partner_number = }')
+
         return super(PropertyOffer, self).write(vals)
