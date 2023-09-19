@@ -1,7 +1,7 @@
 import logging
 import colorlog
 
-TRACE = 23
+TRACE = 35
 logging.addLevelName(TRACE, 'TRACE')
 
 
