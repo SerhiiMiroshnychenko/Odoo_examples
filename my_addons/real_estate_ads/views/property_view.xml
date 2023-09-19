@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- -->
-    <!-- -->
-    <!-- -->
 
     <!-- Real Property View Tree -->
     <record id="real_property_view_tree" model="ir.ui.view">
@@ -49,18 +46,26 @@
                     <div class="oe_button_box" name="button_box">
                         <button class="oe_stat_button"
                                 type="action"
-                                name="%(real_estate_ads.action_real_property_offer_smart_button)d">
+                                name="%(real_estate_ads.action_real_property_offer_smart_button)d"
+                                icon="fa-handshake-o"
+                        >
                             <field name="offer_count" string="Offers" widget="statinfo"/>
                         </button>
                         <button class="oe_stat_button"
                                 type="object"
-                                name="action_property_view_offer_for_button">
+                                name="action_property_view_offer_for_button"
+                                icon="fa-cubes"
+                        >
                             <field name="offer_count" string="Offers" widget="statinfo"/>
                         </button>
                     </div>
                     <group>
                         <field name="name" placeholder="Real Property Name"/>
-                        <field name="tag_ids" widget="many2many_tags" placeholder="Property Tags"/>
+                        <field name="tag_ids"
+                               widget="many2many_tags"
+                               placeholder="Property Tags"
+                               options="{'color_field': 'color'}"
+                        />
                         <group>
                             <field name="state"/>
                             <field name="type_id"/>
@@ -82,20 +87,30 @@
                                 <field name="facades"/>
                                 <field name="garage"/>
                                 <field name="garden"/>
-                                <field name="garden_area"/>
-                                <field name="garden_orientation"/>
+                                <field name="garden_area"
+                                       attrs="{'invisible': [('garden', '=', False)]}"/>
+                                <field name="garden_orientation"
+                                       attrs="{'invisible': [('garden', '=', False)]}"/>
                                 <field name="total_area"/>
                             </group>
                         </page>
                         <page name="Offers">
                             <field name="offer_ids">
-                                <tree editable="bottom">
+                                <tree editable="bottom"
+                                      decoration-success="status == 'accepted'"
+                                      decoration-danger="status == 'refused'">
                                     <field name="price"/>
                                     <field name="partner_id"/>
-                                    <field name="creation_date"/>
+                                    <field name="creation_date" invisible="1"/>
                                     <field name="validity"/>
                                     <field name="deadline"/>
-                                    <field name="status" nolabel="1"/>
+                                    <button type="object"
+                                            name="action_accept_offer"
+                                            icon="fa-check"/>
+                                    <button type="object"
+                                            name="action_decline_offer"
+                                            icon="fa-times"/>
+                                    <field name="status" nolabel="1" readonly="1"/>
                                 </tree>
                             </field>
                         </page>
