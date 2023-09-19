@@ -132,3 +132,15 @@ class PropertyOffer(models.Model):
         _print(f'Counted {res_partner_number = }')
 
         return super(PropertyOffer, self).write(vals)
+
+    def action_accept_offer(self):
+        """
+        Sets the status of the offer to 'accepted'.
+        """
+        self.status = 'accepted'
+
+    def action_decline_offer(self):
+        """
+        Declines the offer by setting the status to 'refused'.
+        """
+        self.status = 'refused'
