@@ -6,7 +6,9 @@
         <field name="name">real.property.offer.view.tree</field>
         <field name="model">real.property.offer</field>
         <field name="arch" type="xml">
-            <tree string="Property Offers">
+            <tree string="Property Offers"
+                  decoration-success="status == 'accepted'"
+                  decoration-danger="status == 'refused'">
                 <field name="price"/>
                 <field name="status"/>
                 <field name="partner_id"/>
@@ -33,7 +35,7 @@
                             <field name="property_id"/>
                         </group>
                         <group>
-                            <field name="creation_date"/>
+                            <field name="creation_date" readonly="1"/>
                             <field name="validity"/>
                             <field name="deadline"/>
                         </group>
