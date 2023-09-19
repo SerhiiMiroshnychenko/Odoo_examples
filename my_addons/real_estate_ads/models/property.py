@@ -19,7 +19,7 @@ class Property(models.Model):
     postcode = fields.Char()
     date_availability = fields.Date(string='Available From')
     expected_price = fields.Float()
-    best_offer = fields.Float()
+    best_offer = fields.Float(compute='_compute_best_offer')
     selling_price = fields.Float()
     bedrooms = fields.Integer()
     living_area = fields.Integer(string='Living Area (sqm)')
@@ -83,6 +83,11 @@ class Property(models.Model):
             'view_mode': 'tree',
             'res_model': 'real.property.offer',
         }
+
+    @api.depends('offer_ids')
+    def _compute_best_offer(self):
+        for prop in self:
+            prop.best_offer = max(prop.offer_ids.mapped('price')) if prop.offer_ids else 0
 
 
 class PropertyType(models.Model):
