@@ -10,6 +10,13 @@ class PropertyOffer(models.Model):
     _name = 'real.property.offer'
     _description = 'Property Offer Model'
 
+    @api.depends('property_id', 'partner_id')
+    def _compute_name(self):
+        for offer in self:
+            if offer.property_id and offer.partner_id:
+                offer.name = f'{offer.property_id.name} - {offer.partner_id.name}'
+
+    name = fields.Char(string='Description', compute=_compute_name)
     price = fields.Float(required=True)
     status = fields.Selection(
         selection=[

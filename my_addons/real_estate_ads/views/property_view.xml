@@ -29,11 +29,40 @@
         <field name="model">real.property</field>
         <field name="arch" type="xml">
             <form string="Real Property">
+                <header>
+                    <button type="object"
+                            name="action_sold"
+                            string="Sold"
+                            class="btn btn-primary"
+                    />
+                    <button type="object"
+                            name="action_cancel"
+                            string="Cancel"
+                            class="btn btn-danger"
+                    />
+                    <field name="state"
+                           widget="statusbar"
+                           statusbar_visible="new,received,accepted,sold"
+                    />
+                </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button"
+                                type="action"
+                                name="%(real_estate_ads.action_real_property_offer_smart_button)d">
+                            <field name="offer_count" string="Offers" widget="statinfo"/>
+                        </button>
+                        <button class="oe_stat_button"
+                                type="object"
+                                name="action_property_view_offer_for_button">
+                            <field name="offer_count" string="Offers" widget="statinfo"/>
+                        </button>
+                    </div>
                     <group>
                         <field name="name" placeholder="Real Property Name"/>
                         <field name="tag_ids" widget="many2many_tags" placeholder="Property Tags"/>
                         <group>
+                            <field name="state"/>
                             <field name="type_id"/>
                             <field name="postcode"/>
                             <field name="date_availability"/>

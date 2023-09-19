@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Real Property Offer View Tree -->
+    <record id="real_property_offer_view_tree" model="ir.ui.view">
+        <field name="name">real.property.offer.view.tree</field>
+        <field name="model">real.property.offer</field>
+        <field name="arch" type="xml">
+            <tree string="Property Offers">
+                <field name="price"/>
+                <field name="status"/>
+                <field name="partner_id"/>
+                <field name="property_id"/>
+                <field name="creation_date"/>
+                <field name="validity"/>
+                <field name="deadline"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Real Property offer View Form -->
+    <record id="real_property_offer_view_form" model="ir.ui.view">
+        <field name="name">real.property.offer.view.form</field>
+        <field name="model">real.property.offer</field>
+        <field name="arch" type="xml">
+            <form string="Property Offer">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="price"/>
+                            <field name="status"/>
+                            <field name="partner_id"/>
+                            <field name="property_id"/>
+                        </group>
+                        <group>
+                            <field name="creation_date"/>
+                            <field name="validity"/>
+                            <field name="deadline"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action Real Property Offer -->
+    <record id="action_real_property_offers" model="ir.actions.act_window">
+        <field name="name">Property Offers</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">real.property.offer</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="real_property_offer_view_tree"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a Property Offer
+            </p>
+        </field>
+    </record>
+
+    <!-- Action Real Property Offer for SmartButton-->
+    <record id="action_real_property_offer_smart_button" model="ir.actions.act_window">
+        <field name="name">Property Offers</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">real.property.offer</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('property_id', '=', active_id)]</field>
+    </record>
+
+</odoo>

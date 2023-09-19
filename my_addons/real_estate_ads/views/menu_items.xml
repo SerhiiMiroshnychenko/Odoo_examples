@@ -16,6 +16,9 @@
             <menuitem id="menu_property_tag"
                       name="Property Tag"
                       action="action_real_property_tag"/>
+            <menuitem id="menu_property_offer"
+                      name="Property Offer"
+                      action="action_real_property_offers"/>
         </menuitem>
     </menuitem>
 </odoo>
