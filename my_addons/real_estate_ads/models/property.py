@@ -20,7 +20,7 @@ class Property(models.Model):
     date_availability = fields.Date(string='Available From')
     expected_price = fields.Float()
     best_offer = fields.Float(compute='_compute_best_offer')
-    selling_price = fields.Float()
+    selling_price = fields.Float(readonly=True)
     bedrooms = fields.Integer()
     living_area = fields.Integer(string='Living Area (sqm)')
     facades = fields.Integer()

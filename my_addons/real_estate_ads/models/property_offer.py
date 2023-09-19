@@ -4,6 +4,7 @@ from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
 
 from .log_print import _print
+from .log_trace import _trace
 
 
 class PropertyOffer(models.Model):
@@ -137,10 +138,36 @@ class PropertyOffer(models.Model):
         """
         Sets the status of the offer to 'accepted'.
         """
+        if self.property_id:
+            self._validate_accepted_offer()
+            self.property_id.selling_price = self.price / 1000
+            _print(f'{self.property_id.selling_price = } thousand')
+            self.property_id.write({
+                'selling_price': self.price,
+                'state': 'accepted'
+            })
+            _print(f'{self.property_id.selling_price = } (self.price)')
         self.status = 'accepted'
+
+    def _validate_accepted_offer(self):
+        if offer_ids := self.env['real.property.offer'].search(
+                [
+                    ('property_id', '=', self.property_id.id),
+                    ('status', '=', 'accepted'),
+                ]
+        ):
+            _trace(f'{offer_ids = }')
+            raise ValidationError("You have an accepted offer already")
 
     def action_decline_offer(self):
         """
         Declines the offer by setting the status to 'refused'.
         """
         self.status = 'refused'
+        _trace(f"{self.property_id.offer_ids.mapped('status') = }")
+        if 'accepted' not in self.property_id.offer_ids.mapped('status'):
+            # if all(self.property_id.offer_ids.mapped('status')):
+            self.property_id.write({
+                'selling_price': 0,
+                'state': 'received'
+            })
