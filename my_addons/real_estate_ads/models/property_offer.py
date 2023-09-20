@@ -24,6 +24,12 @@ class TransientOffer(models.TransientModel):
     _transient_max_count = 3  # If "0" then unlimited
     _transient_max_hours = 1  # If "0" then unlimited
 
+    partner_address = fields.Char(string='Address')
+
+    @api.autovacuum
+    def _transient_vacuum(self):
+        pass
+
 
 class PropertyOffer(models.Model):
     _name = 'real.property.offer'
