@@ -129,6 +129,45 @@
         </field>
     </record>
 
+    <!-- Real Property View Search -->
+    <record id="real_property_view_search" model="ir.ui.view">
+        <field name="name">real.property.view.search</field>
+        <field name="model">real.property</field>
+        <field name="arch" type="xml">
+            <search string="Real Property">
+                <field name="name"/>
+                <field name="state"/>
+                <field name="buyer_id"/>
+                <field name="postcode"/>
+                <filter name="new_status"
+                        string="New"
+                        domain="[('state', '=', 'new')]"/>
+                <filter name="sold_status"
+                        string="Sold"
+                        domain="[('state', '=', 'sold')]"/>
+                <separator/>
+                <filter name="received_status"
+                        string="Received Offer"
+                        domain="[('state', '=', 'received')]"/>
+                <filter name="accepted_status"
+                        string="Accepted Offer"
+                        domain="[('state', '=', 'accepted')]"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_state"
+                            string="Status"
+                            context="{'group_by': 'state'}"/>
+                </group>
+                <searchpanel>
+                    <field name="state"
+                           icon="fa-filter"
+                           groupby="group_by_state"
+                           limit="0"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
     <!-- Action Real Property -->
     <record id="action_real_property" model="ir.actions.act_window">
         <field name="name">Property</field>
