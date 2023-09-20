@@ -106,9 +106,11 @@
                                     <field name="deadline"/>
                                     <button type="object"
                                             name="action_accept_offer"
+                                            string=" "
                                             icon="fa-check"/>
                                     <button type="object"
                                             name="action_decline_offer"
+                                            string=" "
                                             icon="fa-times"/>
                                     <field name="status" nolabel="1" readonly="1"/>
                                 </tree>

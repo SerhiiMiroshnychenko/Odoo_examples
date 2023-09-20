@@ -39,6 +39,10 @@
                             <field name="validity"/>
                             <field name="deadline"/>
                         </group>
+                        <group>
+                            <field name="partner_email"/>
+                            <field name="partner_phone"/>
+                        </group>
                     </group>
                 </sheet>
             </form>

@@ -7,8 +7,27 @@ from .log_print import _print
 from .log_trace import _trace
 
 
+# Abstract, Transient, Regular Model
+
+
+class AbstractOffer(models.AbstractModel):
+    _name = 'abstract.offer'
+    _description = 'Abstract Offer'
+
+    partner_email = fields.Char(string='Email')
+    partner_phone = fields.Char(string='Phone Number')
+
+
+class TransientOffer(models.TransientModel):
+    _name = 'transient.offer'
+    _description = 'Transient Offer'
+    _transient_max_count = 3  # If "0" then unlimited
+    _transient_max_hours = 1  # If "0" then unlimited
+
+
 class PropertyOffer(models.Model):
     _name = 'real.property.offer'
+    _inherit = ['abstract.offer']
     _description = 'Property Offer Model'
 
     @api.depends('property_id', 'partner_id')
