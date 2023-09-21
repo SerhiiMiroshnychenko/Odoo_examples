@@ -104,6 +104,23 @@
         </field>
     </record>
 
+    <!-- Real Property View Calendar -->
+    <record id="real_property_view_calendar" model="ir.ui.view">
+        <field name="name">real.property.view.calendar</field>
+        <field name="model">real.property</field>
+        <field name="arch" type="xml">
+            <calendar date_start="date_availability"
+                      string="Properties"
+                      mode="month"
+                      event_open_popup="true"
+                      quick_add="false">
+                <field name="name"/>
+                <field name="date_availability"/>
+                <field name="postcode"/>
+            </calendar>
+        </field>
+    </record>
+
     <!-- Real Property View Form -->
     <record id="real_property_view_form" model="ir.ui.view">
         <field name="name">real.property.view.form</field>
@@ -257,7 +274,7 @@
         <field name="name">Property</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">real.property</field>
-        <field name="view_mode">kanban,graph,pivot,tree,form</field>
+        <field name="view_mode">kanban,graph,calendar,pivot,tree,form</field>
         <field name="view_id" ref="real_property_view_kanban"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
