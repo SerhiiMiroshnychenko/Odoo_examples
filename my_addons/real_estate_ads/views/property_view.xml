@@ -19,6 +19,7 @@
                 <field name="offer_ids"/>
                 <field name="best_offer"/>
                 <field name="selling_price"/>
+                <field name="state" widget="badge"/>
             </tree>
         </field>
     </record>
@@ -161,7 +162,9 @@
                         </button>
                     </div>
                     <group>
-                        <field name="name" placeholder="Real Property Name"/>
+                        <field name="name"
+                               placeholder="Real Property Name"
+                               widget="char_emojis"/>
                         <field name="tag_ids"
                                widget="many2many_tags"
                                placeholder="Property Tags"
@@ -170,7 +173,8 @@
                         <group>
                             <field name="state"/>
                             <field name="type_id"/>
-                            <field name="postcode"/>
+                            <field name="postcode" password="True"/>
+                            <field name="postcode" readonly="True"/>
                             <field name="date_availability"/>
                         </group>
                         <group>
@@ -186,13 +190,18 @@
                                 <field name="bedrooms"/>
                                 <field name="living_area"/>
                                 <field name="facades"/>
-                                <field name="garage"/>
+                                <field name="garage" widget="boolean_toggle"/>
                                 <field name="garden"/>
                                 <field name="garden_area"
                                        attrs="{'invisible': [('garden', '=', False)]}"/>
                                 <field name="garden_orientation"
-                                       attrs="{'invisible': [('garden', '=', False)]}"/>
-                                <field name="total_area"/>
+                                       attrs="{'invisible': [('garden', '=', False)]}"
+                                       widget="radio"/>
+                                <field name="garden_orientation"
+                                       attrs="{'invisible': [('garden', '=', False)]}"
+                                       widget="selection_badge"/>
+                                <field name="total_area"
+                                       attrs="{'readonly': [('garden', '=', True)]}"/>
                             </group>
                         </page>
                         <page name="Offers">
@@ -204,7 +213,7 @@
                                     <field name="partner_id"/>
                                     <field name="creation_date" invisible="1"/>
                                     <field name="validity"/>
-                                    <field name="deadline"/>
+                                    <field name="deadline" widget="remaining_days"/>
                                     <button type="object"
                                             name="action_accept_offer"
                                             string=" "
@@ -219,9 +228,10 @@
                         </page>
                         <page name="Other info">
                             <group>
-                                <field name="sales_id"/>
-                                <field name="buyer_id"/>
-                                <field name="phone"/>
+                                <field name="sales_id" widget="many2one_avatar"/>
+                                <field name="buyer_id" widget="many2one_avatar"/>
+                                <field name="phone" widget="phone"/>
+                                <field name="email" widget="email"/>
                             </group>
                         </page>
                     </notebook>

@@ -43,7 +43,7 @@
                         <group>
                             <field name="price"/>
                             <field name="status"/>
-                            <field name="partner_id"/>
+                            <field name="partner_id" widget="many2one_avatar"/>
                             <field name="property_id"/>
                         </group>
                         <group>
@@ -52,8 +52,8 @@
                             <field name="deadline"/>
                         </group>
                         <group>
-                            <field name="partner_email"/>
-                            <field name="partner_phone"/>
+                            <field name="partner_email" widget="email"/>
+                            <field name="partner_phone" widget="phone"/>
                         </group>
                     </group>
                 </sheet>
