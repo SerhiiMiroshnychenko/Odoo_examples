@@ -20,6 +20,18 @@
         </field>
     </record>
 
+    <!-- Real Property Offer View Gantt -->
+    <record id="real_property_offer_view_gantt" model="ir.ui.view">
+        <field name="name">real.property.offer.view.gantt</field>
+        <field name="model">real.property.offer</field>
+        <field name="arch" type="xml">
+            <gantt date_start="creation_date"
+                   date_stop="deadline"
+                   default_group_by="partner_id"
+            />
+        </field>
+    </record>
+
     <!-- Real Property offer View Form -->
     <record id="real_property_offer_view_form" model="ir.ui.view">
         <field name="name">real.property.offer.view.form</field>
@@ -68,7 +80,7 @@
         <field name="name">Property Offers</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">real.property.offer</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,gantt,form</field>
         <field name="domain">[('property_id', '=', active_id)]</field>
     </record>
 
