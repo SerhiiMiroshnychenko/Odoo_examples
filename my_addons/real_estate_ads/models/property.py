@@ -55,6 +55,7 @@ class Property(models.Model):
         domain=[('is_company', '=', True)]
     )
     phone = fields.Char(related='buyer_id.phone', string='Buyer phone')
+    email = fields.Char(related='buyer_id.email', string='Buyer email')
 
     total_area = fields.Integer()
 
