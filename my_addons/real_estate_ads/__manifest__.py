@@ -14,6 +14,7 @@ Real estate module to show available properties
 
         'security/ir.model.access.csv',
         'security/res_groups.xml',
+        'security/model_access.xml',
 
         'views/property_type_view.xml',
         'views/property_tag_view.xml',
