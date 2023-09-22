@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--Property Rule for Users-->
+        <record id="property_user_rule" model="ir.rule">
+            <field name="name">Property Rule for Users</field>
+            <field name="model_id" ref="real_estate_ads.model_real_property"/>
+            <field name="domain_force">[('sales_id', '=', user.id)]</field>
+            <field name="groups" eval="[Command.link(ref('real_estate_ads.group_real_estate_ads_user'))]"/>
+            <!--<field name="global" eval="1"/> -->
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+
+        </record>
+
+<!--       [Command.link(ref('real_estate_ads.group_real_estate_ads_user'))]
+                                        ==
+           [(4, ref('real_estate_ads.group_real_estate_ads_user')]-->
+
+            <!--Property Rule for Manager-->
+            <record id="property_manager_rule" model="ir.rule">
+            <field name="name">Property Rule for Manager</field>
+            <field name="model_id" ref="real_estate_ads.model_real_property"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[Command.link(ref('real_estate_ads.group_real_estate_ads_manager'))]"/>
+            <!--<field name="global" eval="1"/> -->
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+
+        </record>
+
+
+    </data>
+</odoo>
