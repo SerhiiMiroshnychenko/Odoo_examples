@@ -1,4 +1,4 @@
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 
 
 class Property(models.Model):
@@ -50,6 +50,9 @@ class Property(models.Model):
         string='Offers'
     )
     sales_id = fields.Many2one('res.users', string='Salesman')
+    sales_phone = fields.Char(related='sales_id.phone', string='Salesman phone')
+    sales_email = fields.Char(related='sales_id.email', string='Salesman email')
+
     buyer_id = fields.Many2one(
         comodel_name='res.partner',
         domain=[('is_company', '=', True)]
@@ -89,6 +92,21 @@ class Property(models.Model):
     def _compute_best_offer(self):
         for prop in self:
             prop.best_offer = max(prop.offer_ids.mapped('price')) if prop.offer_ids else 0
+
+    def action_client_action(self):
+        return {
+            'type': 'ir.actions.client',
+            # 'tag': 'reload',  # перезавантаження сторінки
+            # 'tag': 'apps',  # перехід на Apps Store
+            'tag': 'display_notification',  # повідомлення що спливає
+            'params': {
+                'title': _('Salesman'),
+                'message': f'Email: {self.sales_email} Phone: {self.sales_phone}',
+                'type': 'success',  # warning, danger
+                'sticky': True  # чи залишається на екрані
+            }
+
+        }
 
 
 class PropertyType(models.Model):

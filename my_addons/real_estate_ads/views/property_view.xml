@@ -160,6 +160,15 @@
                         >
                             <field name="offer_count" string="Offers" widget="statinfo"/>
                         </button>
+                        <button class="oe_stat_button"
+                                type="object"
+                                name="action_client_action"
+                                icon="fa-user"
+                        >
+                            <field name="sales_id"
+                                   string="Salesman"
+                                   widget="statinfo"/>
+                        </button>
                     </div>
                     <group>
                         <field name="name"
