@@ -1,6 +1,7 @@
-ORM Methods : 𝐜𝐡𝐞𝐜𝐤_𝐚𝐜𝐜𝐞𝐬𝐬_𝐫𝐢𝐠𝐡𝐭𝐬() Function
+1. ORM Methods : 𝐜𝐡𝐞𝐜𝐤_𝐚𝐜𝐜𝐞𝐬𝐬_𝐫𝐢𝐠𝐡𝐭𝐬() Function
 
 It is a helper function that can be used to verify that the current user is allowed to perform a given operation, like writing to a model.
+Це допоміжна функція, яку можна використовувати для перевірки того, що поточному користувачеві дозволено виконувати задану операцію, наприклад, запис до моделі.
 
 𝐀𝐫𝐠𝐮𝐦𝐞𝐧𝐭𝐬
 ⚒ operation : create, read, write, or unlink
@@ -31,3 +32,71 @@ IF operation == write
 # {AccessError} You are not allowed to modify...
 
 Feel free to let me know if you need more information about when or how to use this function.
+
+2. ORM Methods : 𝐮𝐬𝐞𝐫_𝐡𝐚𝐬_𝐠𝐫𝐨𝐮𝐩𝐬 Function
+
+The user_has_groups function is a model method that can be used to check
+if the user is a member of at least one of the groups
+specified in the groups passed.
+Функція user_has_groups є модельним методом, який може бути використаний для перевірки
+якщо користувач є учасником хоча б однієї з груп
+зазначена в пройдених групах.
+
+🌀  𝐀𝐫𝐠𝐮𝐦𝐞𝐧𝐭𝐬
+groups : comma-separated list of fully-qualified group external IDs
+
+🌀  𝐑𝐞𝐭𝐮𝐫𝐧
+True if the current user is a member of one of the groups in groups
+else False
+
+🌀  𝐄𝐱𝐚𝐦𝐩𝐥𝐞
+groups = 'base.group_no_one, base.group_admin'
+has_groups = self.𝐮𝐬𝐞𝐫_𝐡𝐚𝐬_𝐠𝐫𝐨𝐮𝐩𝐬(groups)
+# True or False depend on groups assigned to the user
+
+3. 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬 : default_get Function ☔
+
+default_get() method can be used to get a list of fields' default values.
+
+It takes a list of field names as input and gives back a dictionary
+that maps field names to their default values.
+
+Метод default_get() можна використовувати для отримання списку значень полів за замовчуванням.
+
+Він приймає список назв полів як вхідні дані та повертає словник
+, який зіставляє імена полів зі значеннями за замовчуванням.
+
+🐟 # get a list of fields' default values
+fields = ['𝐜𝐨𝐦𝐩𝐚𝐧𝐲_𝐢𝐝', '𝐬𝐭𝐚𝐭𝐞', '𝐝𝐚𝐭𝐞_𝐟𝐫𝐨𝐦']
+self.env['hr.payslip'].default_get(fields)
+
+# Result:
+{'𝐜𝐨𝐦𝐩𝐚𝐧𝐲_𝐢𝐝': 1, '𝐝𝐚𝐭𝐞_𝐟𝐫𝐨𝐦': 2023-10-01, '𝐬𝐭𝐚𝐭𝐞': 'draft'}
+
+
+🔽 The following determines the default values:
+
+↪ From the field itself: If the field has a default value,
+that value is used.
+
+↪ From the context
+
+↪ If there is a record for the field in the 𝐢𝐫.𝐝𝐞𝐟𝐚𝐮𝐥𝐭 𝐭𝐚𝐛𝐥𝐞,
+The value of that record is used as the field's default value(s).
+
+↪ From the parent model: If the field is inherited from a parent model, the default_get() function is called on the parent model to get the default value for the field.
+
+
+🐟 # Update default value for field
+@api.model
+def default_get(self, fields_list):
+x = super(MyModel, self).default_get(fields_list)
+x['country_id'] = self.env.context.get('country_id')
+return x
+
+The default_get() function can be used to
+
+🔆 save you time while creating new record
+🔆 Improved user experience
+🔆 Reduced errors when user entering data from form view
+🔆 Increased efficiency: users can create new records more quickly and easily.
