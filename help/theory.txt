@@ -100,3 +100,44 @@ The default_get() function can be used to
 🔆 Improved user experience
 🔆 Reduced errors when user entering data from form view
 🔆 Increased efficiency: users can create new records more quickly and easily.
+
+4. 📚 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬 : Sorted Function
+
+The sorted() function is a powerful function for ordering records.
+It is possible to sort records using any field or even a custom function.
+
+# Sort the records from oldest to newest by ID.
+env['sale.order'].search([]).sorted(key='id')
+
+The sorted() method takes three arguments  
+♦ 𝘴𝘦𝘭𝘧 : The recordset that you want to
+
+♦ key: A function or field name that is used to determine the sorting order.
+
+♦ reverse: A boolean value that indicates whether the records should be sorted in reverse order
+
+
+𝐄𝐱𝐚𝐦𝐩𝐥𝐞𝐬
+
+🐟 # Sort the records from 𝐨𝐥𝐝𝐞𝐬𝐭 to 𝐧𝐞𝐰𝐞𝐬𝐭
+by create date.
+env['sale.order'].search([]).
+𝐬𝐨𝐫𝐭𝐞𝐝(key='create_date').
+mapped('create_date')
+# [ (2023, 10, 01), (2023, 10, 02), (2023, 10, 03)]
+
+
+🐟 # Sort the records from 𝐧𝐞𝐰𝐞𝐬𝐭 to 𝐨𝐥𝐝𝐞𝐬𝐭
+by create date.
+env['sale.order'].search([]).
+𝐬𝐨𝐫𝐭𝐞𝐝(key='create_date', 𝐫𝐞𝐯𝐞𝐫𝐬𝐞=𝐓𝐫𝐮𝐞).
+mapped('create_date')
+
+# [ (2023, 10, 03), (2023, 10, 02), (2023, 10, 01)]
+
+
+🐟 # Sort the records using multiple fields
+env['sale.order'].search([]).
+𝐬𝐨𝐫𝐭𝐞𝐝(key=lambda x: (𝐱.𝐧𝐚𝐦𝐞, 𝐱.𝐩𝐚𝐫𝐭𝐧𝐞𝐫_𝐢𝐝, 𝐱.𝐜𝐫𝐞𝐚𝐭𝐞_𝐝𝐚𝐭𝐞))
+
+# sale.order(1, 2, 3, 4)
