@@ -141,3 +141,28 @@ env['sale.order'].search([]).
 𝐬𝐨𝐫𝐭𝐞𝐝(key=lambda x: (𝐱.𝐧𝐚𝐦𝐞, 𝐱.𝐩𝐚𝐫𝐭𝐧𝐞𝐫_𝐢𝐝, 𝐱.𝐜𝐫𝐞𝐚𝐭𝐞_𝐝𝐚𝐭𝐞))
 
 # sale.order(1, 2, 3, 4)
+
+5. 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬 : 𝐅𝐢𝐥𝐭𝐞𝐫𝐞𝐝 Function ☔
+
+filtered() is a powerful function that allows you to filter records based on a given criteria. This can be useful for a variety of tasks, such as:
+
+Only processing records that meet certain conditions. For example, you might want to only process records that have a certain status.
+
+The filtered() function takes two arguments:
+
+♦ 𝘴𝘦𝘭𝘧 :  The recordset that you want to filter.
+♦ 𝘧𝘶𝘯𝘤 : A function or a dot-separated sequence of field names
+
+𝐄𝐱𝐚𝐦𝐩𝐥𝐞𝐬
+
+# Only keep records of whose user is the current user.
+⏩ records.filtered(lambda r: r.user_id == user.id)
+
+# Only keep records that have a status of "done".
+⏩ records.filtered("state == 'done'")
+
+# Only keep records of whose partner is a company.
+⏩ records.filtered("partner_id.is_company")
+
+The filtered() function is very efficient and can be used
+to filter large recordsets quickly
