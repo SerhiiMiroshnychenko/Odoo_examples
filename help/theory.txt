@@ -199,3 +199,31 @@ The mapped() function takes two arguments:
 ❄ Filtering records
 ❄ Converting recordsets to different formats
 ❄ Joining recordsets
+
+7. 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬 : Create 📚
+
+It is used to create new records for a given model. It takes a 𝐥𝐢𝐬𝐭 𝐨𝐟 𝐝𝐢𝐜𝐭𝐢𝐨𝐧𝐚𝐫𝐢𝐞𝐬 as input, where each dictionary represents the values for the fields of the new record.
+
+𝐑𝐞𝐭𝐮𝐫𝐧:  a list of the created records.
+
+𝐄𝐱𝐚𝐦𝐩𝐥𝐞
+
+self.env['res.partner'].create(
+[
+{'name': 'test1'},
+{'name': 'test2'}
+])
+# Result : res.partner(7, 8)
+
+
+𝐃𝐞𝐜𝐨𝐫𝐚𝐭𝐞𝐝 𝐰𝐢𝐭𝐡 🔽
+
+1️⃣ The @api.model_create_multi decorator : indicates that the function can be used to create multiple records at once.
+2️⃣ The @api.returns() decorator : indicates that the function returns a list of records.
+
+🔆 If you don't know what a 𝐝𝐞𝐜𝐨𝐫𝐚𝐭𝐨𝐫 is or how work don't worry,
+we'll talk about that in more detail in the post about how to make your own decorator.
+
+🔆 The create method first checks if the user has permission
+to create records of the specified model.
+If the user does not have permission, an AccessError is raised.
