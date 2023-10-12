@@ -166,3 +166,36 @@ The filtered() function takes two arguments:
 
 The filtered() function is very efficient and can be used
 to filter large recordsets quickly
+
+6. 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬 : 𝐌𝐚𝐩𝐩𝐞𝐝 Function ☔
+
+mapped() is quite important in code optimization
+It avoids loops that have been defined by the user.
+It gives you a list of field values. Its argument accepts a string value as the column name and returns all the possible values from the recordset.
+
+The mapped() function takes two arguments:
+
+𝐬𝐞𝐥𝐟: The recordset to which the function will be applied.
+𝐟𝐮𝐧𝐜: A function or a field name sequence separated by a dot.
+
+
+𝐄𝐱𝐚𝐦𝐩𝐥𝐞𝐬
+
+🌀 self.env['res.partner'].search([]).𝐦𝐚𝐩𝐩𝐞𝐝('email')
+# ['test1@yourcompany', 'test2@agrolait', 'test3@example']
+
+🌀 records.𝐦𝐚𝐩𝐩𝐞𝐝(lambda r: r.field1 + r.field2)
+# loop every record and sum two fields
+
+🌀 self.env['sale.order'].search([]).
+𝐦𝐚𝐩𝐩𝐞𝐝('order_line.product_uom_qty')
+# [3.0, 3.0, 2.0, 4.0, 6.0]
+# Return quantity from each order line from order_line for each sale order
+
+
+𝐓𝐡𝐞 𝐦𝐚𝐩𝐩𝐞𝐝() function can be used to implement a variety of different data transformations, such as:
+
+❄ Calculating new fields
+❄ Filtering records
+❄ Converting recordsets to different formats
+❄ Joining recordsets
