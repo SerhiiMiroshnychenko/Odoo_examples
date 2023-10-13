@@ -227,3 +227,37 @@ we'll talk about that in more detail in the post about how to make your own deco
 🔆 The create method first checks if the user has permission
 to create records of the specified model.
 If the user does not have permission, an AccessError is raised.
+
+8. 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬 :Read 📚
+
+it allows you to read data from the database.
+It 𝐭𝐚𝐤𝐞𝐬 𝐚 𝐥𝐢𝐬𝐭 𝐨𝐟 𝐟𝐢𝐞𝐥𝐝𝐬 𝐚𝐬 𝐢𝐧𝐩𝐮𝐭 and returns a list of dictionaries mapping field
+
+it takes param called 𝐟𝐢𝐞𝐥𝐝𝐬 : This parameter specifies which
+fields you want to read from the database.
+
+𝐄𝐱𝐚𝐦𝐩𝐥𝐞
+
+fields = ['name', 'email']
+res = self.env['res.partner'].browse( (7,8) ).read(fields)
+
+Result
+# [
+# {'email': 'mark.brown23@example', 'id': 7, 'name': 'Marc Demo'},
+# {'email': 'joel.willis63@example', 'id': 8, 'name': 'Joel Willis'}
+# ]
+
+💡 IF you do not specify any fields the read function will return
+all fields for the record.
+
+
+- How work ?
+
+works by first fetching the stored fields from the database to the cache. 
+Stored fields are fields that are stored in the database
+
+- Why important ?
+
+- Send data to Another system (Integration)
+- Display data in a list view or form view
+- Export data to a file
