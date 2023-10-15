@@ -309,4 +309,16 @@
         <field name="tag">custom_client_action</field>
     </record>
 
+    <!-- Action Real Property -->
+    <record id="action_extend_offer_deadline" model="ir.actions.server">
+        <field name="name">Extend Deadline</field>
+        <field name="model_id" ref="real_estate_ads.model_real_property_offer"/>
+        <field name="state">code</field>
+        <field name="binding_model_id" ref="real_estate_ads.model_real_property_offer"/>
+        <field name="binding_view_types">tree, form</field>
+        <field name="code">
+            action = model.extend_offer_deadline()
+        </field>
+    </record>
+
 </odoo>

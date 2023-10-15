@@ -196,3 +196,12 @@ class PropertyOffer(models.Model):
                 'selling_price': 0,
                 'state': 'received'
             })
+
+    def extend_offer_deadline(self):
+        if activ_ids := self._context.get('active_ids', []):
+            _trace(f'{activ_ids = }')
+            offer_ids = self.env['real.property.offer'].browse(activ_ids)
+            for offer in offer_ids:
+                offer.validity = 15
+
+
