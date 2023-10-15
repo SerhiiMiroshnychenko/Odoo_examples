@@ -20,6 +20,9 @@
             <menuitem id="menu_property_offer"
                       name="Property Offer"
                       action="action_real_property_offers"/>
+            <menuitem id="menu_test_client_action"
+                      name="Test Client Action"
+                      action="real_estate_ads.action_custom_client_action"/>
         </menuitem>
     </menuitem>
 </odoo>

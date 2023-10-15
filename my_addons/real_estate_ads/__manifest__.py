@@ -32,6 +32,14 @@ Real estate module to show available properties
     "demo": [
         'demo/property_tag.xml',
     ],
+
+    'assets': {
+        'web.assets_backend': [
+            'real_estate_ads/static/src/js/custom_tag.js',
+            'real_estate_ads/static/src/xml/custom_tag.xml',
+        ]
+    },
+
     "installable": True,
     "application": True,
     "license": "LGPL-3"
