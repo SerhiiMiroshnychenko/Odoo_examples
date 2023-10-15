@@ -100,3 +100,164 @@ The default_get() function can be used to
 🔆 Improved user experience
 🔆 Reduced errors when user entering data from form view
 🔆 Increased efficiency: users can create new records more quickly and easily.
+
+4. 📚 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬 : Sorted Function
+
+The sorted() function is a powerful function for ordering records.
+It is possible to sort records using any field or even a custom function.
+
+# Sort the records from oldest to newest by ID.
+env['sale.order'].search([]).sorted(key='id')
+
+The sorted() method takes three arguments  
+♦ 𝘴𝘦𝘭𝘧 : The recordset that you want to
+
+♦ key: A function or field name that is used to determine the sorting order.
+
+♦ reverse: A boolean value that indicates whether the records should be sorted in reverse order
+
+
+𝐄𝐱𝐚𝐦𝐩𝐥𝐞𝐬
+
+🐟 # Sort the records from 𝐨𝐥𝐝𝐞𝐬𝐭 to 𝐧𝐞𝐰𝐞𝐬𝐭
+by create date.
+env['sale.order'].search([]).
+𝐬𝐨𝐫𝐭𝐞𝐝(key='create_date').
+mapped('create_date')
+# [ (2023, 10, 01), (2023, 10, 02), (2023, 10, 03)]
+
+
+🐟 # Sort the records from 𝐧𝐞𝐰𝐞𝐬𝐭 to 𝐨𝐥𝐝𝐞𝐬𝐭
+by create date.
+env['sale.order'].search([]).
+𝐬𝐨𝐫𝐭𝐞𝐝(key='create_date', 𝐫𝐞𝐯𝐞𝐫𝐬𝐞=𝐓𝐫𝐮𝐞).
+mapped('create_date')
+
+# [ (2023, 10, 03), (2023, 10, 02), (2023, 10, 01)]
+
+
+🐟 # Sort the records using multiple fields
+env['sale.order'].search([]).
+𝐬𝐨𝐫𝐭𝐞𝐝(key=lambda x: (𝐱.𝐧𝐚𝐦𝐞, 𝐱.𝐩𝐚𝐫𝐭𝐧𝐞𝐫_𝐢𝐝, 𝐱.𝐜𝐫𝐞𝐚𝐭𝐞_𝐝𝐚𝐭𝐞))
+
+# sale.order(1, 2, 3, 4)
+
+5. 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬 : 𝐅𝐢𝐥𝐭𝐞𝐫𝐞𝐝 Function ☔
+
+filtered() is a powerful function that allows you to filter records based on a given criteria. This can be useful for a variety of tasks, such as:
+
+Only processing records that meet certain conditions. For example, you might want to only process records that have a certain status.
+
+The filtered() function takes two arguments:
+
+♦ 𝘴𝘦𝘭𝘧 :  The recordset that you want to filter.
+♦ 𝘧𝘶𝘯𝘤 : A function or a dot-separated sequence of field names
+
+𝐄𝐱𝐚𝐦𝐩𝐥𝐞𝐬
+
+# Only keep records of whose user is the current user.
+⏩ records.filtered(lambda r: r.user_id == user.id)
+
+# Only keep records that have a status of "done".
+⏩ records.filtered("state == 'done'")
+
+# Only keep records of whose partner is a company.
+⏩ records.filtered("partner_id.is_company")
+
+The filtered() function is very efficient and can be used
+to filter large recordsets quickly
+
+6. 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬 : 𝐌𝐚𝐩𝐩𝐞𝐝 Function ☔
+
+mapped() is quite important in code optimization
+It avoids loops that have been defined by the user.
+It gives you a list of field values. Its argument accepts a string value as the column name and returns all the possible values from the recordset.
+
+The mapped() function takes two arguments:
+
+𝐬𝐞𝐥𝐟: The recordset to which the function will be applied.
+𝐟𝐮𝐧𝐜: A function or a field name sequence separated by a dot.
+
+
+𝐄𝐱𝐚𝐦𝐩𝐥𝐞𝐬
+
+🌀 self.env['res.partner'].search([]).𝐦𝐚𝐩𝐩𝐞𝐝('email')
+# ['test1@yourcompany', 'test2@agrolait', 'test3@example']
+
+🌀 records.𝐦𝐚𝐩𝐩𝐞𝐝(lambda r: r.field1 + r.field2)
+# loop every record and sum two fields
+
+🌀 self.env['sale.order'].search([]).
+𝐦𝐚𝐩𝐩𝐞𝐝('order_line.product_uom_qty')
+# [3.0, 3.0, 2.0, 4.0, 6.0]
+# Return quantity from each order line from order_line for each sale order
+
+
+𝐓𝐡𝐞 𝐦𝐚𝐩𝐩𝐞𝐝() function can be used to implement a variety of different data transformations, such as:
+
+❄ Calculating new fields
+❄ Filtering records
+❄ Converting recordsets to different formats
+❄ Joining recordsets
+
+7. 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬 : Create 📚
+
+It is used to create new records for a given model. It takes a 𝐥𝐢𝐬𝐭 𝐨𝐟 𝐝𝐢𝐜𝐭𝐢𝐨𝐧𝐚𝐫𝐢𝐞𝐬 as input, where each dictionary represents the values for the fields of the new record.
+
+𝐑𝐞𝐭𝐮𝐫𝐧:  a list of the created records.
+
+𝐄𝐱𝐚𝐦𝐩𝐥𝐞
+
+self.env['res.partner'].create(
+[
+{'name': 'test1'},
+{'name': 'test2'}
+])
+# Result : res.partner(7, 8)
+
+
+𝐃𝐞𝐜𝐨𝐫𝐚𝐭𝐞𝐝 𝐰𝐢𝐭𝐡 🔽
+
+1️⃣ The @api.model_create_multi decorator : indicates that the function can be used to create multiple records at once.
+2️⃣ The @api.returns() decorator : indicates that the function returns a list of records.
+
+🔆 If you don't know what a 𝐝𝐞𝐜𝐨𝐫𝐚𝐭𝐨𝐫 is or how work don't worry,
+we'll talk about that in more detail in the post about how to make your own decorator.
+
+🔆 The create method first checks if the user has permission
+to create records of the specified model.
+If the user does not have permission, an AccessError is raised.
+
+8. 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬 :Read 📚
+
+it allows you to read data from the database.
+It 𝐭𝐚𝐤𝐞𝐬 𝐚 𝐥𝐢𝐬𝐭 𝐨𝐟 𝐟𝐢𝐞𝐥𝐝𝐬 𝐚𝐬 𝐢𝐧𝐩𝐮𝐭 and returns a list of dictionaries mapping field
+
+it takes param called 𝐟𝐢𝐞𝐥𝐝𝐬 : This parameter specifies which
+fields you want to read from the database.
+
+𝐄𝐱𝐚𝐦𝐩𝐥𝐞
+
+fields = ['name', 'email']
+res = self.env['res.partner'].browse( (7,8) ).read(fields)
+
+Result
+# [
+# {'email': 'mark.brown23@example', 'id': 7, 'name': 'Marc Demo'},
+# {'email': 'joel.willis63@example', 'id': 8, 'name': 'Joel Willis'}
+# ]
+
+💡 IF you do not specify any fields the read function will return
+all fields for the record.
+
+
+- How work ?
+
+works by first fetching the stored fields from the database to the cache. 
+Stored fields are fields that are stored in the database
+
+- Why important ?
+
+- Send data to Another system (Integration)
+- Display data in a list view or form view
+- Export data to a file
