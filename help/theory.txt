@@ -261,3 +261,28 @@ Stored fields are fields that are stored in the database
 - Send data to Another system (Integration)
 - Display data in a list view or form view
 - Export data to a file
+
+9. 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬 : Write 📚
+
+write() function is a used for updating records. 
+It allows you to update multiple fields on multiple records at once 
+and it handles all of the necessary validation and security checks for you.
+
+𝐀𝐫𝐠𝐮𝐦𝐞𝐧𝐭𝐬:
+
+1️⃣ self: This is the record or set of records that you want to write.
+2️⃣ vals: This is a dictionary of field names and values.
+
+𝐄𝐱𝐚𝐦𝐩𝐥𝐞𝐬
+
+🔰# update multi records
+orders= self.env['sale.order'].browse((6, 7))
+orders.write({'state': 'to_cancel'})
+
+🔰 # update one record
+self.user_admin = self.env.ref('base.user_admin')
+self.user_admin.write({'name': 'Zahra'})
+
+
+↪ raise 𝐀𝐜𝐜𝐞𝐬𝐬𝐄𝐫𝐫𝐨𝐫: if user is not allowed to modify the specified records/fields
+
