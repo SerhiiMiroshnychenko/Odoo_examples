@@ -3,3 +3,4 @@ real_estate_ads.access_real_property,access_real_property,real_estate_ads.model_
 real_estate_ads.access_real_property_type,access_real_property_type,real_estate_ads.model_real_property_type,base.group_user,1,1,1,1
 real_estate_ads.access_real_property_tag,access_real_property_tag,real_estate_ads.model_real_property_tag,base.group_user,1,1,1,1
 real_estate_ads.access_real_property_offer,access_real_property_offer,real_estate_ads.model_real_property_offer,base.group_user,1,1,1,1
+real_estate_ads.access_transient_offer,access_transient_offer,real_estate_ads.model_transient_offer,base.group_user,1,1,1,1

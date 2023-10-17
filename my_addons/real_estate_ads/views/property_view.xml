@@ -309,7 +309,7 @@
         <field name="tag">custom_client_action</field>
     </record>
 
-    <!-- Action Real Property -->
+    <!-- Action Extend Deadline -->
     <record id="action_extend_offer_deadline" model="ir.actions.server">
         <field name="name">Extend Deadline</field>
         <field name="model_id" ref="real_estate_ads.model_real_property_offer"/>
@@ -319,6 +319,19 @@
         <field name="code">
             action = model.extend_offer_deadline()
         </field>
+    </record>
+
+    <!-- Cron Extend Deadline Everyday -->
+    <record id="ir_cron_extend_offer_deadline" model="ir.cron">
+        <field name="name">Offers: Extend Deadline Everyday</field>
+        <field name="model_id" ref="real_estate_ads.model_real_property_offer"/>
+        <field name="state">code</field>
+        <field name="code">model._extend_offer_deadline()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+    <!--<field name="doall" eval=""/>-->
+    <!--<field name="active" eval="False"/>-->
     </record>
 
 </odoo>
