@@ -1,5 +1,7 @@
 from odoo import api, fields, models, _
 
+from .log_trace import _trace
+
 
 class Property(models.Model):
     _name = 'real.property'
@@ -106,6 +108,16 @@ class Property(models.Model):
                 'sticky': True  # чи залишається на екрані
             }
 
+        }
+
+    def action_url_action(self):
+        language = self._context.get("lang")
+        _trace(f'{language = }')
+        return {
+            'type': 'ir.actions.act_url',
+            'url': f'https://odoo.com/{language}',
+            # 'target': 'self',
+            'target': 'new',
         }
 
 
