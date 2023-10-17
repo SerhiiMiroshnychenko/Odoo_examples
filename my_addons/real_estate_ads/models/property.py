@@ -120,6 +120,10 @@ class Property(models.Model):
             'target': 'new',
         }
 
+    def _get_report_base_filename(self):
+        self.ensure_one()
+        return f'Estate Property - {self.name}'
+
 
 class PropertyType(models.Model):
     _name = 'real.property.type'

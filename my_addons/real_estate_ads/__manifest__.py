@@ -28,6 +28,10 @@ Real estate module to show available properties
         'data/property_type.xml',
         'data/real.property.type.csv',
 
+        # Reports
+        'report/report_template.xml',
+        'report/property_report.xml',
+
     ],
     "demo": [
         'demo/property_tag.xml',

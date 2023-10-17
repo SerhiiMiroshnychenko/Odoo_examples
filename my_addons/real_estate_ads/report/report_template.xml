@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+<!--        <report-->
+<!--                id="report_ModelName"-->
+<!--                model="ProjectName.ModelName"-->
+<!--                string="ReportTitle"-->
+<!--                name="ProjectName.report_ModelName_view"-->
+<!--                file="ProjectName.report_ModelName"-->
+<!--                report_type="qweb-pdf"/>-->
+
+        <template id="report_estate_property_document">
+            <t t-call="web.external_layout">
+                <div class="mt-5">
+                    <div class="page">
+                        <h2>Property Report</h2>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <template id="report_estate_property">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="real_estate_ads.report_estate_property_document"/>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>
