@@ -5,6 +5,7 @@ from .log_trace import _trace
 
 class Property(models.Model):
     _name = 'real.property'
+    _inherit = ['mail.thread']
     _description = 'Real Estate Property Model'
 
     name = fields.Char(required=True)

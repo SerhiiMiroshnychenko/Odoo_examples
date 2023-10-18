@@ -9,7 +9,7 @@
 Real estate module to show available properties
     """,
     "category": "Sales",
-    "depends": ["base"],
+    "depends": ["base", "mail"],
     "data": [
         # Security
         'security/ir.model.access.csv',
