@@ -1,0 +1,568 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* real_estate_ads
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-18 07:37+0000\n"
+"PO-Revision-Date: 2023-10-18 07:37+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: real_estate_ads
+#: model:ir.actions.report,print_report_name:real_estate_ads.property_report_action
+msgid "(object._get_report_base_filename())"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.ui.menu,name:real_estate_ads.menu_property_ads
+msgid "Abs"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model,name:real_estate_ads.model_abstract_offer
+msgid "Abstract Offer"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields.selection,name:real_estate_ads.selection__real_property_offer__status__accepted
+msgid "Accepted"
+msgstr "Прийнято"
+
+#. module: real_estate_ads
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.real_property_view_search
+msgid "Accepted Offer"
+msgstr "Прийнята пропозиція"
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_transient_offer__partner_address
+msgid "Address"
+msgstr "Адреса"
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__date_availability
+msgid "Available From"
+msgstr "Доступний з"
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__bedrooms
+msgid "Bedrooms"
+msgstr "Спальні"
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__best_offer
+msgid "Best Offer"
+msgstr "Найкраща пропозиція"
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__buyer_id
+msgid "Buyer"
+msgstr "Покупець"
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__email
+msgid "Buyer email"
+msgstr "Електронна адреса покупця"
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__phone
+msgid "Buyer phone"
+msgstr "Телефон покупця"
+
+#. module: real_estate_ads
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.real_property_view_form
+msgid "Cancel"
+msgstr "Скасувати"
+
+#. module: real_estate_ads
+#: model:ir.model.fields.selection,name:real_estate_ads.selection__real_property__state__cancel
+msgid "Canceled"
+msgstr "Скасовано"
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_tag__color
+msgid "Color"
+msgstr "Колір"
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_offer__creation_date
+msgid "Create Date"
+msgstr "Дата створення"
+
+#. module: real_estate_ads
+#: model_terms:ir.actions.act_window,help:real_estate_ads.action_real_property_offers
+msgid "Create a Property Offer"
+msgstr "Створіть пропозицію нерухомості"
+
+#. module: real_estate_ads
+#: model_terms:ir.actions.act_window,help:real_estate_ads.action_real_property_tag
+msgid "Create a Property Tag"
+msgstr ""
+
+#. module: real_estate_ads
+#: model_terms:ir.actions.act_window,help:real_estate_ads.action_real_property_type
+msgid "Create a Property Type"
+msgstr "Створіть тег властивості"
+
+#. module: real_estate_ads
+#: model_terms:ir.actions.act_window,help:real_estate_ads.action_real_property
+msgid "Create a Property to Advertise"
+msgstr "Створіть нерухомість для реклами"
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__create_uid
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_offer__create_uid
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_tag__create_uid
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_type__create_uid
+#: model:ir.model.fields,field_description:real_estate_ads.field_transient_offer__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__create_date
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_offer__create_date
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_tag__create_date
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_type__create_date
+#: model:ir.model.fields,field_description:real_estate_ads.field_transient_offer__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: real_estate_ads
+#. odoo-javascript
+#: code:addons/real_estate_ads/static/src/xml/custom_tag.xml:0
+#, python-format
+msgid "Custom Actions"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.actions.client,name:real_estate_ads.action_custom_client_action
+msgid "Custom Client Action"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_offer__partner_id
+msgid "Customer"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_offer__deadline
+msgid "Deadline"
+msgstr ""
+
+#. module: real_estate_ads
+#. odoo-python
+#: code:addons/real_estate_ads/models/property_offer.py:0
+#, python-format
+msgid "Deadline must be after creation date"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__description
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_offer__name
+msgid "Description"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__display_name
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_offer__display_name
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_tag__display_name
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_type__display_name
+#: model:ir.model.fields,field_description:real_estate_ads.field_transient_offer__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields.selection,name:real_estate_ads.selection__real_property__garden_orientation__east
+msgid "East"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_abstract_offer__partner_email
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_offer__partner_email
+msgid "Email"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__expected_price
+msgid "Expected Price"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.actions.server,name:real_estate_ads.action_extend_offer_deadline
+msgid "Extend Deadline"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__facades
+msgid "Facades"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__garage
+msgid "Garage"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__garden
+msgid "Garden"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__garden_area
+msgid "Garden Area"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__garden_orientation
+msgid "Garden Orientation"
+msgstr ""
+
+#. module: real_estate_ads
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.real_property_view_search
+msgid "Group By"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.module.category,description:real_estate_ads.real_estate_ads_category
+msgid "Helps you handle properties, and offers"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__id
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_offer__id
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_tag__id
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_type__id
+#: model:ir.model.fields,field_description:real_estate_ads.field_transient_offer__id
+msgid "ID"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property____last_update
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_offer____last_update
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_tag____last_update
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_type____last_update
+#: model:ir.model.fields,field_description:real_estate_ads.field_transient_offer____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__write_uid
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_offer__write_uid
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_tag__write_uid
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_type__write_uid
+#: model:ir.model.fields,field_description:real_estate_ads.field_transient_offer__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__write_date
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_offer__write_date
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_tag__write_date
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_type__write_date
+#: model:ir.model.fields,field_description:real_estate_ads.field_transient_offer__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__living_area
+msgid "Living Area (sqm)"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:res.groups,name:real_estate_ads.group_real_estate_ads_manager
+msgid "Manager: Manage all property"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__name
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_tag__name
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_type__name
+msgid "Name"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields.selection,name:real_estate_ads.selection__real_property__state__new
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.real_property_view_search
+msgid "New"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields.selection,name:real_estate_ads.selection__real_property__garden_orientation__north
+msgid "North"
+msgstr ""
+
+#. module: real_estate_ads
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.real_property_view_form
+msgid "Odoo.com"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields.selection,name:real_estate_ads.selection__real_property__state__accepted
+msgid "Offer Accepted"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__offer_count
+msgid "Offer Count"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields.selection,name:real_estate_ads.selection__real_property__state__received
+msgid "Offer Received"
+msgstr ""
+
+#. module: real_estate_ads
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.real_property_view_kanban
+msgid "Offer(s)"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__offer_ids
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.real_property_view_form
+msgid "Offers"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.actions.server,name:real_estate_ads.ir_cron_extend_offer_deadline_ir_actions_server
+#: model:ir.cron,cron_name:real_estate_ads.ir_cron_extend_offer_deadline
+msgid "Offers: Extend Deadline Everyday"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_abstract_offer__partner_phone
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_offer__partner_phone
+msgid "Phone Number"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__postcode
+msgid "Postcode"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_offer__price
+msgid "Price"
+msgstr ""
+
+#. module: real_estate_ads
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.real_property_view_calendar
+msgid "Properties"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.actions.act_window,name:real_estate_ads.action_real_property
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_offer__property_id
+#: model:ir.ui.menu,name:real_estate_ads.menu_property
+msgid "Property"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.ui.menu,name:real_estate_ads.menu_property_ads_root
+msgid "Property Ads"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.ui.menu,name:real_estate_ads.menu_property_offer
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.real_property_offer_view_form
+msgid "Property Offer"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model,name:real_estate_ads.model_real_property_offer
+msgid "Property Offer Model"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.actions.act_window,name:real_estate_ads.action_real_property_offer_smart_button
+#: model:ir.actions.act_window,name:real_estate_ads.action_real_property_offers
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.real_property_offer_view_tree
+msgid "Property Offers"
+msgstr ""
+
+#. module: real_estate_ads
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.report_estate_property_document
+msgid "Property Report"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.actions.report,name:real_estate_ads.property_report_action
+msgid "Property Report Action"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.actions.act_window,name:real_estate_ads.action_real_property_tag
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__tag_ids
+#: model:ir.ui.menu,name:real_estate_ads.menu_property_tag
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.real_property_tag_view_form
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.real_property_tag_view_tree
+msgid "Property Tag"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model,name:real_estate_ads.model_real_property_tag
+msgid "Property Tag Model"
+msgstr ""
+
+#. module: real_estate_ads
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.real_property_view_form
+msgid "Property Tags"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.actions.act_window,name:real_estate_ads.action_real_property_type
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__type_id
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.real_property_type_view_form
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.real_property_type_view_tree
+msgid "Property Type"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model,name:real_estate_ads.model_real_property_type
+msgid "Property Type Model"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.ui.menu,name:real_estate_ads.menu_property_type
+msgid "Property Types"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.module.category,name:real_estate_ads.real_estate_ads_category
+msgid "Real Estate Ads"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model,name:real_estate_ads.model_real_property
+msgid "Real Estate Property Model"
+msgstr ""
+
+#. module: real_estate_ads
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.real_property_view_form
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.real_property_view_search
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.real_property_view_tree
+msgid "Real Property"
+msgstr ""
+
+#. module: real_estate_ads
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.real_property_quick_create_view_form
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.real_property_view_form
+msgid "Real Property Name"
+msgstr ""
+
+#. module: real_estate_ads
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.real_property_quick_create_view_form
+msgid "Real Property Quick Create"
+msgstr ""
+
+#. module: real_estate_ads
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.real_property_quick_create_view_form
+msgid "Real Property Type"
+msgstr ""
+
+#. module: real_estate_ads
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.real_property_view_search
+msgid "Received Offer"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields.selection,name:real_estate_ads.selection__real_property_offer__status__refused
+msgid "Refused"
+msgstr ""
+
+#. module: real_estate_ads
+#. odoo-python
+#: code:addons/real_estate_ads/models/property.py:0
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__sales_id
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.real_property_view_form
+#, python-format
+msgid "Salesman"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__sales_email
+msgid "Salesman email"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__sales_phone
+msgid "Salesman phone"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__selling_price
+msgid "Selling Price"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.ui.menu,name:real_estate_ads.menu_property_ads_settings
+msgid "Settings"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields.selection,name:real_estate_ads.selection__real_property__state__sold
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.real_property_view_form
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.real_property_view_search
+msgid "Sold"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields.selection,name:real_estate_ads.selection__real_property__garden_orientation__south
+msgid "South"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__state
+msgid "State"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_offer__status
+#: model_terms:ir.ui.view,arch_db:real_estate_ads.real_property_view_search
+msgid "Status"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:res.groups,name:real_estate_ads.group_property_test
+msgid "Test"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.ui.menu,name:real_estate_ads.menu_test_client_action
+msgid "Test Client Action"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property__total_area
+msgid "Total Area"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model,name:real_estate_ads.model_transient_offer
+msgid "Transient Offer"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:res.groups,name:real_estate_ads.group_real_estate_ads_user
+msgid "User: Manage own property"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields,field_description:real_estate_ads.field_real_property_offer__validity
+msgid "Validity"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.constraint,message:real_estate_ads.constraint_real_property_offer_check_max_validity
+msgid "Validity must be less than 30 days"
+msgstr ""
+
+#. module: real_estate_ads
+#: model:ir.model.fields.selection,name:real_estate_ads.selection__real_property__garden_orientation__west
+msgid "West"
+msgstr ""
