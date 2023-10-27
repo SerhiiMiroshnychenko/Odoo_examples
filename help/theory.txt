@@ -16,6 +16,7 @@ Contents:
 13. How do I execute a SQL 𝐪𝐮𝐞𝐫𝐲 inside an Odoo module?
 14. Str2bool(value)
 15. 𝐀𝐝𝐝(value, *args, **kwargs) function
+16. 𝐞𝐧𝐝_𝐨𝐟 function
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
 1. ORM Methods : 𝐜𝐡𝐞𝐜𝐤_𝐚𝐜𝐜𝐞𝐬𝐬_𝐫𝐢𝐠𝐡𝐭𝐬() Function
@@ -523,3 +524,57 @@ from odoo.tools.date_utils import 𝐚𝐝𝐝
 The below expression is used to add days, months, and years together.
 >>> add(date(2023, 8, 7), days = 1, months = 1, years = 1)
 2024-09-08
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+16. 𝐞𝐧𝐝_𝐨𝐟 function 💡
+
+𝐞𝐧𝐝_𝐨𝐟 is a built-in function in Odoo that can be used to get the end of a time period.
+end_of - це вбудована функція в Odoo, яку можна використовувати для отримання кінця періоду часу.
+
+The time period can be specified by a string
+such as “hour”,"day", "week", or "month"
+Період часу може бути вказано рядком
+Наприклад, "година", "день", "тиждень" або "місяць"
+
+This function takes two arguments:
+Ця функція приймає два аргументи:
+
+1️⃣ 𝐯𝐚𝐥𝐮𝐞: A date or datetime object.
+2️⃣ 𝐠𝐫𝐚𝐧𝐮𝐥𝐚𝐫𝐢𝐭𝐲: The allowed values are
+year, quarter, month, week, day, and hour
+
+1️⃣ value: об'єкт date або datetime.
+2️⃣ деталізація: допустимі значення
+рік, квартал, місяць, тиждень, день і година
+
+𝐑𝐞𝐭𝐮𝐫𝐧
+a date/datetime object corresponding to the end of the specified period.
+об'єкт date/datetime, що відповідає закінченню вказаного періоду.
+
+
+𝐄𝐱𝐚𝐦𝐩𝐥𝐞𝐬 📢
+
+# import
+from datetime import date, datetime
+from odoo.tools.date_utils import end_of
+
+
+# get end of year
+>>> end_of(date(2023, 9, 12), "year")
+2023-12-31
+
+# get end of month
+>>> end_of(date(2023, 9, 12), "month")
+2023-09-30
+
+# get end of week
+>>> end_of(date(2023, 9, 12), "week")
+2023-09-17
+
+# get end of hour
+>>> end_of(datetime(2023, 9, 12, 14, 10), "hour")
+2023-09-12 14:59:59.999999
+
+-------------
+
+in case you need to know the start of time period, check below
