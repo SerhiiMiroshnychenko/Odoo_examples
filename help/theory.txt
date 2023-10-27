@@ -15,6 +15,7 @@ Contents:
 12. 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬: Unlink
 13. How do I execute a SQL 𝐪𝐮𝐞𝐫𝐲 inside an Odoo module?
 14. Str2bool(value)
+15. 𝐀𝐝𝐝(value, *args, **kwargs) function
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
 1. ORM Methods : 𝐜𝐡𝐞𝐜𝐤_𝐚𝐜𝐜𝐞𝐬𝐬_𝐫𝐢𝐠𝐡𝐭𝐬() Function
@@ -472,3 +473,53 @@ The function raises a ValueError exception.
 
 ❇️ str2bool(‘foo’)
 >>> Exception from type {ValueError}
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+15. 𝐀𝐝𝐝(value, *args, **kwargs) function
+
+The add function defined in date utils Package can be used to add days, weeks, and months to a date / datetime
+Функція add, визначена в date utils Package, може бути використана для додавання днів, тижнів і місяців до дати / datetime
+
+𝐀𝐫𝐠𝐮𝐦𝐞𝐧𝐭𝐬
+
+- 𝐯𝐚𝐥𝐮𝐞: This is the initial date or datetime that you want
+to add the relativedelta to.
+
+- *𝐚𝐫𝐠𝐬: A variable number of positional arguments explicitly passed to the relativedelta() class.
+
+- **𝐤𝐰𝐚𝐫𝐠𝐬: This is a dictionary of keyword arguments sent straight to the relativedelta() class.
+
+Аргументи
+
+- value: це початкова дата або дата, яку ви хочете
+, щоб додати відносну дельту до.
+
+- *args: Змінна кількість позиційних аргументів, явно переданих класу relativedelta().
+
+- **kwargs: Це словник аргументів ключових слів, що надсилаються безпосередньо до класу relativedelta().
+
+𝐑𝐞𝐭𝐮𝐫𝐧: date/datetime
+
+-------------
+
+𝐄𝐱𝐚𝐦𝐩𝐥𝐞𝐬 📢
+
+# import
+from datetime import 𝐝𝐚𝐭𝐞
+from odoo.tools.date_utils import 𝐚𝐝𝐝
+
+>>> add(date(2023,8, 7), days=1)
+2023-08-08
+
+>>> add(date(2023,8, 7), weeks=1)
+2023-08-14
+
+>>> add(date(2023,8, 7), months=1)
+2023-09-07
+
+>>> add(date(2023,8, 7), years=1)
+2024-08-07
+
+The below expression is used to add days, months, and years together.
+>>> add(date(2023, 8, 7), days = 1, months = 1, years = 1)
+2024-09-08
