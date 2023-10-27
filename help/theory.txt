@@ -14,6 +14,7 @@ Contents:
 11. Методи ORM: name_get
 12. 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬: Unlink
 13. How do I execute a SQL 𝐪𝐮𝐞𝐫𝐲 inside an Odoo module?
+14. Str2bool(value)
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
 1. ORM Methods : 𝐜𝐡𝐞𝐜𝐤_𝐚𝐜𝐜𝐞𝐬𝐬_𝐫𝐢𝐠𝐡𝐭𝐬() Function
@@ -434,3 +435,40 @@ res_data = { id: (name, email) for id, name, email in res }
 # 1: ('My Company (San Francisco)', info@yourcompany'),
 # 2: ('OdooBot', 'odoobot@example')
 # }
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+14. Str2bool(value) 🚀
+
+Sometimes, when we're working in Odoo, we need to change the return result to a bool. To do this, you can import a simple function called str2bool.
+
+takes a string as input and converts it to a boolean value.
+
+Іноді, коли ми працюємо в Odoo, нам потрібно змінити результат повернення на булеве значення. Для цього можна імпортувати просту функцію під назвою str2bool.
+
+приймає рядок як вхідні дані та перетворює його на логічне значення.
+
+➖➖➖
+
+𝐏𝐚𝐫𝐚𝐦𝐬
+value (str)
+
+𝐑𝐞𝐭𝐮𝐫𝐧 
+The boolean value is True if the string is one of the following: 
+"y", "yes", "1", "true", "t", or "on".
+
+The boolean value is False if the string is one of the following:
+"n", "no", "0", "false", "f", or "off".
+
+If the string is not in any of the above lists,
+The function raises a ValueError exception.
+
+𝐄𝐱𝐚𝐦𝐩𝐥𝐞𝐬
+
+❇️ str2bool('yes')
+>>> True
+
+❇️ str2bool('off')
+>>> False
+
+❇️ str2bool(‘foo’)
+>>> Exception from type {ValueError}
