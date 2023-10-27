@@ -1,3 +1,4 @@
+----------------------------------------------------------------------------------------------------------------------------------------------
 1. ORM Methods : 𝐜𝐡𝐞𝐜𝐤_𝐚𝐜𝐜𝐞𝐬𝐬_𝐫𝐢𝐠𝐡𝐭𝐬() Function
 
 It is a helper function that can be used to verify that the current user is allowed to perform a given operation, like writing to a model.
@@ -33,6 +34,7 @@ IF operation == write
 
 Feel free to let me know if you need more information about when or how to use this function.
 
+----------------------------------------------------------------------------------------------------------------------------------------------
 2. ORM Methods : 𝐮𝐬𝐞𝐫_𝐡𝐚𝐬_𝐠𝐫𝐨𝐮𝐩𝐬 Function
 
 The user_has_groups function is a model method that can be used to check
@@ -54,6 +56,7 @@ groups = 'base.group_no_one, base.group_admin'
 has_groups = self.𝐮𝐬𝐞𝐫_𝐡𝐚𝐬_𝐠𝐫𝐨𝐮𝐩𝐬(groups)
 # True or False depend on groups assigned to the user
 
+----------------------------------------------------------------------------------------------------------------------------------------------
 3. 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬 : default_get Function ☔
 
 default_get() method can be used to get a list of fields' default values.
@@ -101,6 +104,7 @@ The default_get() function can be used to
 🔆 Reduced errors when user entering data from form view
 🔆 Increased efficiency: users can create new records more quickly and easily.
 
+----------------------------------------------------------------------------------------------------------------------------------------------
 4. 📚 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬 : Sorted Function
 
 The sorted() function is a powerful function for ordering records.
@@ -142,6 +146,7 @@ env['sale.order'].search([]).
 
 # sale.order(1, 2, 3, 4)
 
+----------------------------------------------------------------------------------------------------------------------------------------------
 5. 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬 : 𝐅𝐢𝐥𝐭𝐞𝐫𝐞𝐝 Function ☔
 
 filtered() is a powerful function that allows you to filter records based on a given criteria. This can be useful for a variety of tasks, such as:
@@ -167,6 +172,7 @@ The filtered() function takes two arguments:
 The filtered() function is very efficient and can be used
 to filter large recordsets quickly
 
+----------------------------------------------------------------------------------------------------------------------------------------------
 6. 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬 : 𝐌𝐚𝐩𝐩𝐞𝐝 Function ☔
 
 mapped() is quite important in code optimization
@@ -200,6 +206,7 @@ The mapped() function takes two arguments:
 ❄ Converting recordsets to different formats
 ❄ Joining recordsets
 
+----------------------------------------------------------------------------------------------------------------------------------------------
 7. 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬 : Create 📚
 
 It is used to create new records for a given model. It takes a 𝐥𝐢𝐬𝐭 𝐨𝐟 𝐝𝐢𝐜𝐭𝐢𝐨𝐧𝐚𝐫𝐢𝐞𝐬 as input, where each dictionary represents the values for the fields of the new record.
@@ -228,6 +235,7 @@ we'll talk about that in more detail in the post about how to make your own deco
 to create records of the specified model.
 If the user does not have permission, an AccessError is raised.
 
+----------------------------------------------------------------------------------------------------------------------------------------------
 8. 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬 :Read 📚
 
 it allows you to read data from the database.
@@ -262,6 +270,7 @@ Stored fields are fields that are stored in the database
 - Display data in a list view or form view
 - Export data to a file
 
+----------------------------------------------------------------------------------------------------------------------------------------------
 9. 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬 : Write 📚
 
 write() function is a used for updating records. 
@@ -286,6 +295,7 @@ self.user_admin.write({'name': 'Zahra'})
 
 ↪ raise 𝐀𝐜𝐜𝐞𝐬𝐬𝐄𝐫𝐫𝐨𝐫: if user is not allowed to modify the specified records/fields
 
+----------------------------------------------------------------------------------------------------------------------------------------------
 10. 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬 : name_create 📚
 
 convenient way to create a new record by providing only the display name (𝐫𝐞𝐜_𝐧𝐚𝐦𝐞).
@@ -310,6 +320,7 @@ Return 𝐅𝐚𝐥𝐬𝐞 and in log, we have below warning
 
 Don't worry if you have trouble with 𝐫𝐞𝐜_𝐧𝐚𝐦𝐞; we'll look into it more when we talk about class attributes that Odoo provide
 
+----------------------------------------------------------------------------------------------------------------------------------------------
 11. Методи ORM : name_get 📚
 
 Метод name_get(), визначений у базовій моделі, дозволяє налаштувати спосіб відображення записів.
@@ -332,3 +343,33 @@ def name_get(self):
 За допомогою функції name_get() можна відобразити додаткову інформацію про кожен запис, наприклад електронну пошту та стан клієнта або вартість продукту
 
 Це може зробити ваші списки та розкривні меню простішими для розуміння та більш читабельними.
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+12. 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬 : Unlink 📚
+
+It is a simple method used for deleting records from the database.
+There is no way to undo the deletion once you have executed it.
+Це простий метод, який використовується для видалення записів з бази даних.
+Неможливо скасувати видалення після його виконання.
+
+𝐄𝐱𝐚𝐦𝐩𝐥𝐞 🔰
+
+cancel_orders= env['sale.order'].search([('state', '=', 'cancel')])
+cancel_orders.𝐮𝐧𝐥𝐢𝐧𝐤()
+# Return True
+
+𝐇𝐨𝐰 𝐰𝐨𝐫𝐤 ?
+
+➡ Checking access rights to ensure that the user is allowed to delete the records
+➡ Deleting any attachments associated with the records
+➡ Invalidating the entire cache
+➡ Deleting the records' properties
+
+Як працюють ?
+
+➡ Перевірка прав доступу, щоб переконатися, що користувачеві дозволено видаляти записи
+➡ Видалення вкладень, пов'язаних із записами
+➡ Визнання недійсним усього кешу
+➡ Видалення властивостей записів
+
+
