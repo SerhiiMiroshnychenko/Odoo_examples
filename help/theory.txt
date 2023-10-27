@@ -17,6 +17,7 @@ Contents:
 14. Str2bool(value)
 15. 𝐀𝐝𝐝(value, *args, **kwargs) function
 16. 𝐞𝐧𝐝_𝐨𝐟 function
+17. 𝐒𝐭𝐚𝐫𝐭_𝐨𝐟 function in Odoo
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
 1. ORM Methods : 𝐜𝐡𝐞𝐜𝐤_𝐚𝐜𝐜𝐞𝐬𝐬_𝐫𝐢𝐠𝐡𝐭𝐬() Function
@@ -578,3 +579,52 @@ from odoo.tools.date_utils import end_of
 -------------
 
 in case you need to know the start of time period, check below
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+17. 𝐒𝐭𝐚𝐫𝐭_𝐨𝐟 function in Odoo 💡
+
+The start_of is a built-in function in Odoo that can be used to get the start of a time period.
+start_of - це вбудована функція в Odoo, яку можна використовувати для отримання початку періоду часу.
+
+The time period can be specified by a string
+such as “hour”,"day", "week", or "month"
+Період часу може бути вказано рядком
+Наприклад, "година", "день", "тиждень" або "місяць"
+
+
+This function takes two arguments:
+Ця функція приймає два аргументи:
+
+1️⃣ 𝐯𝐚𝐥𝐮𝐞: A date or datetime object.
+2️⃣ 𝐠𝐫𝐚𝐧𝐮𝐥𝐚𝐫𝐢𝐭𝐲: The allowed values are
+year, quarter, month, week, day, and hour.
+
+1️⃣ value: об'єкт date або datetime.
+2️⃣ деталізація: допустимі значення
+рік, квартал, місяць, тиждень, день і година.
+
+𝐑𝐞𝐭𝐮𝐫𝐧
+a date/datetime object corresponding to the start of the specified period.
+об'єкт date/datetime, що відповідає початку вказаного періоду.
+
+𝐄𝐱𝐚𝐦𝐩𝐥𝐞𝐬 💥
+
+# import
+from datetime import datetime
+from odoo.tools.date_utils import 𝐬𝐭𝐚𝐫𝐭_𝐨𝐟
+
+# get the start of year
+>>> start_of(datetime(2023, 8, 31), "year")
+2023-01-01 00:00:00
+
+# get the start of month
+>>> start_of(datetime(2023, 8, 31), "month")
+2023-08-01 00:00:00
+
+# get the start of week
+>>> start_of(datetime(2023, 8, 31), "week")
+2023-08-28 00:00:00
+
+# get the start of hour
+>>> start_of(datetime(2023, 8, 31, 14, 55), "hour")
+2023-08-31 14:00:00
