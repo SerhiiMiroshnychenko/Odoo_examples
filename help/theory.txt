@@ -628,3 +628,46 @@ from odoo.tools.date_utils import 𝐬𝐭𝐚𝐫𝐭_𝐨𝐟
 # get the start of hour
 >>> start_of(datetime(2023, 8, 31, 14, 55), "hour")
 2023-08-31 14:00:00
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+18. Model.with_env 🚀
+
+The with_env() method temporarily changes the environment of the current model to the new environment.
+Метод with_env() тимчасово змінює оточення поточної моделі на нове середовище.
+
+This can be useful for testing code in different contexts or accessing data that is not normally accessible in the current environment.
+Це може бути корисним для тестування коду в різних контекстах або доступу до даних, які зазвичай недоступні в поточному середовищі.
+
+Return a new version of this recordset attached to the provided environment
+Повертає нову версію цього набору записів, долучену до наданого середовища
+
+𝐇𝐨𝐰 𝐭𝐨 𝐮𝐬𝐞 ❓
+
+To use the with_env() method, you first need to create a new environment object. You can do this by passing the current environment to the with_env() method.
+Щоб використовувати метод with_env(), спочатку потрібно створити новий об'єкт середовища. Зробити це можна, передавши поточне середовище в метод with_env().
+
+𝐄𝐱𝐚𝐦𝐩𝐥𝐞𝐬
+
+❇️ env_object = self.env(
+user=self.browse_ref('base.public_user'))
+
+self = self.with_env(env_objcect)
+
+❇️ env_object_ = api.Environment(
+cr, self._session.uid, self._session.context)
+
+self = self.with_env(env_objcect)
+
+➖➖➖
+
+𝐖𝐡𝐲 𝐢𝐬 𝐢𝐭 𝐢𝐦𝐩𝐨𝐫𝐭𝐚𝐧𝐭?
+
+⏏ Testing code in a different environment
+⏏ Changing the current Cr ( database cursor), Context, and user , Language
+⏏ Change the entire environment for the model
+
+⏏ Тестування коду в іншому середовищі
+⏏ Зміна поточного Cr ( курсор бази даних), Контекст і користувач , Мова
+⏏ Змініть все оточення для моделі
+
+----------------------------------------------------------------------------------------------------------------------------------------------
