@@ -13,6 +13,7 @@ Contents:
 10. 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬: name_create
 11. Методи ORM: name_get
 12. 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬: Unlink
+13. How do I execute a SQL 𝐪𝐮𝐞𝐫𝐲 inside an Odoo module?
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
 1. ORM Methods : 𝐜𝐡𝐞𝐜𝐤_𝐚𝐜𝐜𝐞𝐬𝐬_𝐫𝐢𝐠𝐡𝐭𝐬() Function
@@ -388,4 +389,48 @@ cancel_orders.𝐮𝐧𝐥𝐢𝐧𝐤()
 ➡ Визнання недійсним усього кешу
 ➡ Видалення властивостей записів
 
+----------------------------------------------------------------------------------------------------------------------------------------------
+13. How do I execute a SQL 𝐪𝐮𝐞𝐫𝐲 inside an Odoo module? 👾
 
+1️⃣ 𝐜𝐫 = 𝐬𝐞𝐥𝐟.𝐞𝐧𝐯.𝐜𝐫
+You can use the self.env.cr object. This object provides a direct connection
+to the database.
+Можна використовувати об'єкт self.env.cr. Цей об'єкт забезпечує пряме з'єднання
+в базу даних.
+
+2️⃣ 𝐜𝐫.𝐞𝐱𝐞𝐜𝐮𝐭𝐞() 
+Use the cr.execute() method to execute the query.
+You can pass in the query as a string or as a variable containing the query
+Використовуйте метод cr.execute() для виконання запиту.
+У запиті можна передати рядок або змінну, що містить запит
+
+3️⃣ 𝐜𝐫.𝐟𝐞𝐭𝐜𝐡𝐚𝐥𝐥()
+Use the cr.fetchall() method to fetch the results of the query.
+This will return a list of tuples, where each tuple represents
+a row in the result set.
+Використовуйте метод cr.fetchall() для отримання результатів запиту.
+Це поверне список кортежів, де кожен кортеж представляє
+рядок у наборі результатів.
+
+4️⃣ 𝐃𝐨 𝐬𝐨𝐦𝐞𝐭𝐡𝐢𝐧𝐠 𝐰𝐢𝐭𝐡 𝐭𝐡𝐞 𝐫𝐞𝐬𝐮𝐥𝐭𝐬
+
+Example 🎲
+
+cr = self.env.cr
+
+# Execute the query
+cr.execute(""" SELECT id ,name,email
+FROM res_partner
+WHERE id in %s
+""", (((1, 2)),))
+
+res = cr.fetchall()
+
+# Do something with the results
+res_data = { id: (name, email) for id, name, email in res }
+
+# Result
+# {
+# 1: ('My Company (San Francisco)', info@yourcompany'),
+# 2: ('OdooBot', 'odoobot@example')
+# }
