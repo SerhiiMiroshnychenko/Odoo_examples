@@ -286,3 +286,26 @@ self.user_admin.write({'name': 'Zahra'})
 
 ↪ raise 𝐀𝐜𝐜𝐞𝐬𝐬𝐄𝐫𝐫𝐨𝐫: if user is not allowed to modify the specified records/fields
 
+10. 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬 : name_create 📚
+
+convenient way to create a new record by providing only the display name (𝐫𝐞𝐜_𝐧𝐚𝐦𝐞).
+
+The name_create() method will initialize the new record with any default values applicable to the model or provided through the context.
+
+𝐚𝐫𝐠𝐮𝐦𝐞𝐧𝐭: the display name of the new record
+𝐫𝐞𝐭𝐮𝐫𝐧 : name_get for the record
+
+𝐄𝐱𝐚𝐦𝐩𝐥𝐞
+
+self.env['res.partner'].name_create('Test1')
+# Output : (1, 'Test 1')
+
+⏩ The usual behavior of create() applies, such as checking access rights.
+
+⏩ useful method for creating new records quickly and easily then handle more data later on
+
+🔰 What happens if you call this method on a model that doesn't have a rec_name?
+Return 𝐅𝐚𝐥𝐬𝐞 and in log, we have below warning
+"""Cannot execute name_create, no _rec_name defined..."""
+
+Don't worry if you have trouble with 𝐫𝐞𝐜_𝐧𝐚𝐦𝐞; we'll look into it more when we talk about class attributes that Odoo provide
