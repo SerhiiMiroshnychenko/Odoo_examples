@@ -175,6 +175,12 @@
                                 type="object"
                                 string="Odoo.com"
                         />
+                        <button class="oe_stat_button"
+                                type="object"
+                                name="website_publish_button"
+                                icon="fa-globe">
+                            <field name="is_published" widget="website_publish_button"/>
+                        </button>
                     </div>
                     <group>
                         <field name="name"
@@ -245,9 +251,13 @@
                         <page name="Other info">
                             <group>
                                 <field name="sales_id" widget="many2one_avatar"/>
+                                <field name="campaign_id"/>
+                                <field name="source_id"/>
+                                <field name="medium_id"/>
                                 <field name="buyer_id" widget="many2one_avatar"/>
                                 <field name="phone" widget="phone"/>
                                 <field name="email" widget="email"/>
+                                <field name="website_url"/>
                             </group>
                         </page>
                     </notebook>

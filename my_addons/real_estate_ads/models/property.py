@@ -8,7 +8,10 @@ class Property(models.Model):
     _inherit = [
         'mail.thread',
         'mail.activity.mixin',
-        # 'mail.alias.mixin'
+        # 'mail.alias.mixin',
+        'utm.mixin',
+        'website.published.mixin',
+        'website.seo.metadata'
     ]
     _description = 'Real Estate Property Model'
 
@@ -128,6 +131,11 @@ class Property(models.Model):
     def _get_report_base_filename(self):
         self.ensure_one()
         return f'Estate Property - {self.name}'
+
+    def _compute_website_url(self):
+        for rec in self:
+            # rec.website_url = '/properties/%s' % rec.id
+            rec.website_url = f'/properties/{rec.id}'
 
 
 class PropertyType(models.Model):
