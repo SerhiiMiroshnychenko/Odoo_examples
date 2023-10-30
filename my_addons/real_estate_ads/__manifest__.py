@@ -27,6 +27,7 @@ Real estate module to show available properties
         # Data files
         'data/property_type.xml',
         'data/real.property.type.csv',
+        'data/mail_template.xml',
 
         # Reports
         'report/report_template.xml',

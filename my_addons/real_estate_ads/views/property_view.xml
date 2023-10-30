@@ -143,6 +143,11 @@
                            widget="statusbar"
                            statusbar_visible="new,received,accepted,sold"
                     />
+                    <button type="object"
+                            name="action_send_email"
+                            string="Send Email"
+                            class="btn btn-danger"
+                    />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">

@@ -137,6 +137,14 @@ class Property(models.Model):
             # rec.website_url = '/properties/%s' % rec.id
             rec.website_url = f'/properties/{rec.id}'
 
+    def action_send_email(self):
+        mail_template = self.env.ref('real_estate_ads.offer_mail_template')
+        mail_template.send_mail(self.id, force_send=True)
+
+    def _get_emails(self):
+        # return self.mapped('buyer_id').mapped('email')
+        return ','.join(self.offer_ids.mapped('partner_email'))
+
 
 class PropertyType(models.Model):
     _name = 'real.property.type'

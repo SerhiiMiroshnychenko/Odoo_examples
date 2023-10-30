@@ -55,6 +55,10 @@ class PropertyOffer(models.Model):
         string='Customer',
         required=True,
     )
+    partner_email = fields.Char(
+        string='Customer Email',
+        related='partner_id.email',
+    )
     property_id = fields.Many2one(
         comodel_name='real.property',
         required=True,
