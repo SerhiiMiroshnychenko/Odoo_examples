@@ -5,7 +5,11 @@ from .log_trace import _trace
 
 class Property(models.Model):
     _name = 'real.property'
-    _inherit = ['mail.thread']
+    _inherit = [
+        'mail.thread',
+        'mail.activity.mixin',
+        # 'mail.alias.mixin'
+    ]
     _description = 'Real Estate Property Model'
 
     name = fields.Char(required=True)
@@ -21,7 +25,7 @@ class Property(models.Model):
     description = fields.Text()
     postcode = fields.Char()
     date_availability = fields.Date(string='Available From')
-    expected_price = fields.Float()
+    expected_price = fields.Float(tracking=True)
     best_offer = fields.Float(compute='_compute_best_offer')
     selling_price = fields.Float(readonly=True)
     bedrooms = fields.Integer()
