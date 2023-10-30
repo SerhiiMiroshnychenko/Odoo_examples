@@ -1,3 +1,5 @@
+import base64
+
 from odoo import api, fields, models, _
 
 from .log_trace import _trace

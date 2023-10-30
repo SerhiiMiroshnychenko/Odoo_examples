@@ -3,10 +3,10 @@
     <data>
         <record model="mail.template" id="offer_mail_template">
             <field name="name">Property Information</field>
-<!--            <field name="email_from">{{object.email_from }}</field>-->
+            <!--            <field name="email_from">{{object.email_from }}</field>-->
             <field name="email_from">test@qa.team</field>
-<!--            <field name="email_to">{{object.offer_ids.}}</field>-->
-<!--            <field name="email_to">customer@our.team</field>-->
+            <!--            <field name="email_to">{{object.offer_ids.}}</field>-->
+            <!--            <field name="email_to">customer@our.team</field>-->
             <field name="email_to">{{object._get_emails()}}</field>
             <field name="model_id" ref="real_estate_ads.model_real_property"/>
             <field name="auto_delete" eval="True"/>
@@ -19,12 +19,40 @@
                     <br/>
                     <br/>
                     Regards,
-                <br/>
-                TheRealEstate Properties
+                    <br/>
+                    TheRealEstate Properties
                 </p>
-
+                <!-- Вставка інформаційної картки kanban -->
+                <div class="property-info">
+                    <h2>Property Information</h2>
+                    <strong>Property Name:</strong> <t t-esc="object.name"/><br/>
+                    <strong>State:</strong> <t t-esc="object.state"/><br/>
+                    <strong>Buyer:</strong> <t t-esc="object.buyer_id.name"/><br/>
+                    <strong>Postcode:</strong> <t t-esc="object.postcode"/><br/>
+                    <!-- Додайте інші поля, які вам потрібні -->
+                    <br/>
+                    <h3>Property Kanban Card</h3>
+                    <div class="oe_kanban_global_click">
+                        <div class="oe_kanban_details">
+                            <strong class="o_kanban_record_title">
+                                <t t-esc="object.name"/>
+                            </strong>
+                            <div class="o_kanban_tags_section">
+                                <ul>
+                                    <li t-foreach="object.tag_ids" t-as="tag">
+                                        <span t-esc="tag.name"/>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="o_kanban_record_bottom">
+                                <div class="oe_kanban_bottom_left">
+                                    <t t-esc="object.offer_count"/> Offer(s)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </field>
-
         </record>
     </data>
 </odoo>
