@@ -20,6 +20,7 @@ Contents:
 17. 𝐒𝐭𝐚𝐫𝐭_𝐨𝐟 function in Odoo
 18. Model.with_env
 19. Model.sudo()
+20. Model.with_context()
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -708,5 +709,55 @@ The default value of flag is true.
 
 ☘ The Model.sudo() method should be used with caution, as it can bypass all access rights checks
 ☘ Метод Model.sudo() слід використовувати з обережністю, оскільки він може обійти всі перевірки прав доступу
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+20. Model.with_context()
+
+with_context() method returns a new model object with the modified context. This object can then be used to access the 𝐦𝐨𝐝𝐞𝐥'𝐬 𝐦𝐞𝐭𝐡𝐨𝐝𝐬 𝐚𝐧𝐝 𝐚𝐭𝐭𝐫𝐢𝐛𝐮𝐭𝐞𝐬.
+Метод with_context() повертає новий об'єкт моделі зі зміненим контекстом. Потім цей об'єкт може бути використаний для доступу до методів та атрибутів моделі.
+
+The method is often used to temporarily change the context for a specific operation
+Метод часто використовується для тимчасової зміни контексту певної операції
+
+such as changing the current user, date, company, language, timezone, 𝐚𝐧𝐝 𝐜𝐮𝐬𝐭𝐨𝐦-𝐬𝐩𝐞𝐜𝐢𝐟𝐢𝐜 𝐤𝐞𝐲
+Наприклад, зміна поточного користувача, дати, компанії, мови, часового поясу та спеціального ключа
+
+❇️ 𝑬𝒙𝒂𝒎𝒑𝒍𝒆
+
+self.env['account.move'].browse(10).
+𝐰𝐢𝐭𝐡_𝐜𝐨𝐧𝐭𝐞𝐱𝐭(𝐩𝐫𝐢𝐧𝐭_𝐦𝐞𝐬𝐬𝐚𝐠𝐞=𝐓𝐫𝐮𝐞).send_and_print_action ()
+
+def send_and_print_action(self):
+# Here, check if key passed; if yes,
+# make any logic you need
+if self.env.𝐜𝐨𝐧𝐭𝐞𝐱𝐭.𝐠𝐞𝐭('print_message', False):
+print(“مرحبا”)
+
+
+❇️ 𝐄𝐱𝐚𝐦𝐩𝐥𝐞𝐬 𝐟𝐫𝐨𝐦 𝐎𝐝𝐨𝐨
+
+☘ self.env['res.users'].with_context(active_test=False)
+
+☘ self.env['account.move.line'].browse(to_delete).
+with_context(dynamic_unlink=True).unlink()
+
+☘ res = super(AccountMove, self.with_context(skip_account_move_synchronization=True)).write(vals)
+
+
+➖➖➖
+
+❇️Use Cases?
+
+☘ Changing the language that is being used
+Зміна мови, що використовується
+
+☘Changing the date and timezone
+Зміна дати та часового поясу
+
+☘ You can use "with context" with all of the methods described in "Model" and make some conditions based on the key you get. This is very helpful in many situations.
+ Ви можете використовувати "з контекстом" з усіма методами, описаними в розділі "Модель", і створити деякі умови на основі ключа, який ви отримуєте. Це дуже допомагає в багатьох ситуаціях.
+
+✨ The context changes are only temporary. They will be reverted back to the original values when the with_context() block is exited.
+Зміни контексту є лише тимчасовими. Вони будуть повернуті до початкових значень при виході з блоку with_context().
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
