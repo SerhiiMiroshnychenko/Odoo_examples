@@ -33,9 +33,9 @@ class Property(models.Model):
     description = fields.Text()
     postcode = fields.Char()
     date_availability = fields.Date(string='Available From')
-    expected_price = fields.Float(tracking=True)
-    best_offer = fields.Float(compute='_compute_best_offer')
-    selling_price = fields.Float(readonly=True)
+    expected_price = fields.Monetary(tracking=True)
+    best_offer = fields.Monetary(compute='_compute_best_offer')
+    selling_price = fields.Monetary(readonly=True)
     bedrooms = fields.Integer()
     living_area = fields.Integer(string='Living Area (sqm)')
     facades = fields.Integer()
@@ -76,6 +76,10 @@ class Property(models.Model):
     email = fields.Char(related='buyer_id.email', string='Buyer email')
 
     total_area = fields.Integer()
+    currency_id = fields.Many2one(
+        comodel_name='res.currency',
+        default=lambda self: self.env.user.company_id.currency_id,
+    )
 
     @api.onchange('living_area', 'garden_area')
     def _compute_total_area(self):

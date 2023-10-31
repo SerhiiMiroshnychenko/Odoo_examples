@@ -43,7 +43,12 @@ class PropertyOffer(models.Model):
                 offer.name = f'{offer.property_id.name} - {offer.partner_id.name}'
 
     name = fields.Char(string='Description', compute=_compute_name)
-    price = fields.Float(required=True)
+    price = fields.Monetary(required=True)
+    currency_id = fields.Many2one(
+        comodel_name='res.currency',
+        default=lambda self: self.env.user.company_id.currency_id,
+    )
+
     status = fields.Selection(
         selection=[
             ('accepted', 'Accepted'),
