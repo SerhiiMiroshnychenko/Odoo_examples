@@ -15,9 +15,9 @@
         'real_estate_ads',
         'base'
     ],
-    #'data': [
-    #    ''
-    #],
+    'data': [
+       'views/res_users.xml',
+    ],
     # 'demo': [
     #     'demo/document_page.xml'
     # ],

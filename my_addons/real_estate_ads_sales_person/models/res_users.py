@@ -9,3 +9,9 @@ class Users(models.Model):
         inverse_name='sales_id',
         string='Properties',
     )
+
+    type_id = fields.Many2one(
+        comodel_name='real.property.type',
+        string='Property Type',
+        required=False,
+    )
