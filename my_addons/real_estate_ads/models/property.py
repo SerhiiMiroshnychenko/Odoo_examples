@@ -25,7 +25,10 @@ class Property(models.Model):
             ('accepted', 'Offer Accepted'),
             ('sold', 'Sold'),
             ('cancel', 'Canceled'),
-        ], default='new'
+        ],
+        default='new',
+        string='Status',
+        group_expand='_expand_state'
     )
     description = fields.Text()
     postcode = fields.Char()
@@ -146,6 +149,11 @@ class Property(models.Model):
     def _get_emails(self):
         # return self.mapped('buyer_id').mapped('email')
         return ','.join(self.offer_ids.mapped('partner_email'))
+
+    def _expand_state(self, states, domain, order):
+        return [
+            key for key, dummy in type(self).state.selection
+        ]
 
 
 class PropertyType(models.Model):

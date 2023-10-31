@@ -28,6 +28,7 @@
     <record id="real_property_quick_create_view_form" model="ir.ui.view">
         <field name="name">real.property.view.form</field>
         <field name="model">real.property</field>
+        <field name="priority">1000</field>
         <field name="arch" type="xml">
             <form string="Real Property Quick Create">
                 <group>
