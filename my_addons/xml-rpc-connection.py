@@ -30,3 +30,40 @@ print(f'search function ==> {property_ids}')  # search function ==> [1, 2, 3, 4,
 count_property_ids = models.execute_kw(db, user_id, password, 'real.property', 'search_count', [[]])
 print(f'count function ==> {count_property_ids}')  # count function ==> 5
 
+# read function
+read_property_ids = models.execute_kw(
+    db,
+    user_id,
+    password,
+    'real.property',
+    'read',
+    [property_ids],
+    {'fields': ['id', 'name']}
+)
+print(f'read function ==> {read_property_ids}')
+# read function ==> [
+# {'id': 1, 'name': 'New House'},
+# {'id': 2, 'name': 'New Villa😎'},
+# {'id': 3, 'name': 'New Tower'},
+# {'id': 4, 'name': 'New Test House'},
+# {'id': 5, 'name': 'New Test Cabin'}
+# ]
+
+
+# search and read function
+search_and_read_property_ids = models.execute_kw(
+    db,
+    user_id,
+    password,
+    'real.property',
+    'search_read',
+    [[]],
+    {'fields': ['name', 'sales_id'], 'limit': 2}
+)
+print(f'search and read function ==> {search_and_read_property_ids}')
+# search and read function ==> [
+# {'id': 1, 'name': 'New House', 'sales_id': [2, 'Mitchell Admin']},
+# {'id': 2, 'name': 'New Villa😎', 'sales_id': [6, 'Marc Demo']}
+# ]
+
+
