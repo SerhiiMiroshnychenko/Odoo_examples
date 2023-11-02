@@ -33,6 +33,7 @@ Contents:
 29. 𝐡𝐨𝐰 𝐝𝐨 𝐈 𝐦𝐚𝐤𝐞 𝐟𝐢𝐞𝐥𝐝𝐬 𝐞𝐝𝐢𝐭𝐚𝐛𝐥𝐞 𝐟𝐨𝐫 𝐬𝐩𝐞𝐜𝐢𝐟𝐢𝐜 𝐠𝐫𝐨𝐮𝐩𝐬?
 30. 𝐟𝐥𝐨𝐚𝐭_𝐫𝐞𝐩𝐫()
 31. 𝐟𝐥𝐨𝐚𝐭_𝐬𝐩𝐥𝐢𝐭_𝐬𝐭𝐫() 𝐟𝐮𝐧𝐜𝐭𝐢𝐨𝐧
+32. float_is_zero() 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
 1. ORM Methods : 𝐜𝐡𝐞𝐜𝐤_𝐚𝐜𝐜𝐞𝐬𝐬_𝐫𝐢𝐠𝐡𝐭𝐬() Function
@@ -1336,5 +1337,51 @@ be equal to 𝐩𝐫𝐞𝐜𝐢𝐬𝐢𝐨𝐧_𝐝𝐢𝐠𝐢𝐭𝐬
 Ця публікація служить нагадуванням про те, що завжди потрібно використовувати вбудовані функції, а не створювати їх з нуля.
 
 Odoo has more built-in Python functions that will be talked about in later posts.
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+32. float_is_zero() 
+
+What does the *float_is_zero* function perform and how do you use it?
+
+float_is_zero() is useful for checking if a float value is close to zero.
+float_is_zero() корисний для перевірки, чи близьке значення з плаваючою точкою до нуля.
+
+💠 Params
+
+1- value (float): to be checked.
+
+2- precision_digits(int): Number of fractional digits to round to.
+default is None.
+    кількість дробових цифр, до яких потрібно округлити.
+типовим значенням є None.
+
+3- precision_rounding(float): representing the minimum non-zero value at the desired precision (for example, 0.01 for a 2-digit precision).
+default is None.
+    представляє мінімальне ненульове значення з бажаною точністю (наприклад, 0,01 для 2-значної точності).
+типовим значенням є None.
+
+
+🔶 Return
+
+True if the value is considered zero.
+Else False.
+
+💡 Examples
+
+float_is_zero(0.001, precision_digits=2)
+Result: True
+--
+float_is_zero(0.001, precision_digits=3)
+Result: False
+--
+float_is_zero(0.001, precision_rounding=0.001)
+Result: False
+
+Parameters are forbidden
+🐞 float_is_zero(0.0, precision_rounding= 0.0)
+🐞 float_is_zero(0.0, precision_rounding= -0.1)
+
+Reason: precision_rounding must be positive
+Причина: precision_rounding має бути позитивним
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
