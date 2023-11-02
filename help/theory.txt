@@ -30,6 +30,7 @@ Contents:
 26. 𝐩𝐫𝐞_𝐢𝐧𝐢𝐭_𝐡𝐨𝐨𝐤 𝐈𝐧 𝐎𝐝𝐨𝐨
 27. 𝐇𝐨𝐰 𝐭𝐨 𝐟𝐞𝐭𝐜𝐡 𝐟𝐢𝐥𝐞𝐬 𝐢𝐧 𝐌𝐨𝐝𝐮𝐥𝐞 𝐚𝐧𝐝 𝐫𝐞𝐚𝐝 𝐭𝐡𝐞𝐦, 𝐥𝐢𝐤𝐞 𝐚𝐬 𝐫𝐞𝐚𝐝𝐢𝐧𝐠 𝐚𝐧 𝐢𝐦𝐚𝐠𝐞, 𝐚 𝐭𝐱𝐭 𝐟𝐢𝐥𝐞, 𝐨𝐫 𝐚𝐧𝐲 𝐨𝐭𝐡𝐞𝐫 𝐟𝐢𝐥𝐞
 28. 𝐈𝐟 𝐏𝐃𝐅 𝐫𝐞𝐩𝐨𝐫𝐭𝐬 𝐚𝐫𝐞 𝐧𝐨𝐭 𝐩𝐫𝐢𝐧𝐭𝐢𝐧𝐠 𝐢𝐧 𝐭𝐡𝐞 𝐜𝐨𝐫𝐫𝐞𝐜𝐭 𝐟𝐨𝐫𝐦𝐚𝐭
+29. 𝐡𝐨𝐰 𝐝𝐨 𝐈 𝐦𝐚𝐤𝐞 𝐟𝐢𝐞𝐥𝐝𝐬 𝐞𝐝𝐢𝐭𝐚𝐛𝐥𝐞 𝐟𝐨𝐫 𝐬𝐩𝐞𝐜𝐢𝐟𝐢𝐜 𝐠𝐫𝐨𝐮𝐩𝐬?
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
 1. ORM Methods : 𝐜𝐡𝐞𝐜𝐤_𝐚𝐜𝐜𝐞𝐬𝐬_𝐫𝐢𝐠𝐡𝐭𝐬() Function
@@ -1166,5 +1167,84 @@ Later, I'll write a post regarding Odoo system parameters and how they might hel
 🌱 Зменшення навантаження на сервер Odoo: Серверу Odoo більше не доведеться самостійно генерувати звіти, що може зменшити навантаження на сервер та покращити його загальну продуктивність.
 
 🌱 Підвищена гнучкість: змінивши ключ report.url, ви можете використовувати будь-який сервер звітів, включаючи сторонній сервер звітів. Це дає вам більше гнучкості та контролю над процесом звітування.
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+29. 𝐡𝐨𝐰 𝐝𝐨 𝐈 𝐦𝐚𝐤𝐞 𝐟𝐢𝐞𝐥𝐝𝐬 𝐞𝐝𝐢𝐭𝐚𝐛𝐥𝐞 𝐟𝐨𝐫 𝐬𝐩𝐞𝐜𝐢𝐟𝐢𝐜 𝐠𝐫𝐨𝐮𝐩𝐬 ? 📣
+
+In certain levels of customization, we need to make some fields editable for only specific users in form view
+
+For example, I want specific users to be able to change the birth date field on the employee form view
+
+Let's say we have the following:
+
+- form view already defined in system with ref called 𝐞𝐦𝐟𝐦
+- field defined in form view (𝐞𝐦𝐟𝐦) called 𝐛𝐢𝐫𝐭𝐡𝐝𝐚𝐲
+(visible and editable for all users)
+- new group (res.groups) called 𝐠𝐫𝐨𝐮𝐩_𝐭𝐞𝐬𝐭
+
+We only want users in 𝐠𝐫𝐨𝐮𝐩_𝐭𝐞𝐬𝐭 to be able to make changes to this field ?
+
+make the below steps to solve this problem.
+
+1️⃣ Make a new form called 𝐞𝐦𝐟𝐦_1 that inherits from 𝐞𝐦𝐟𝐦 and makes the birthday field read-only by setting it to "true"
+
+2️⃣ Create a new form called 𝐞𝐦𝐟𝐦_2 that inherits from 𝐞𝐦𝐟𝐦_1 and make the birthday field read-only by setting it to “false”.
+
+while define this form view, we'll add a new key called 𝐠𝐫𝐨𝐮𝐩𝐬_𝐢𝐝, like below
+
+<field name="groups_id" eval="[(4, ref('new_module.group_test'))]" />
+
+=====
+
+Why 𝐠𝐫𝐨𝐮𝐩𝐬_𝐢𝐝 important here ?
+
+𝐞𝐦𝐟𝐦_2 view override attribute called readonly exists in 𝐞𝐦𝐟𝐦_1 view, and in this case, odoo will check form view with who has access rights
+
+You can also make a lot of changes. You can hide XML parts or change their attributes however you want. Odoo gives you many useful attributes to choose from, such as "invisible," "required," and so on.
+
+=====
+🌻 You can also make your own attributes from scratch if you want to, but that's a more difficult topic that we'll talk about later.
+
+*** EDIT
+This feature is not supported in 𝐎𝐝𝐨𝐨 𝐯16 but still works fine in old versions.
+
+як зробити поля доступними для редагування для певних груп? 📣
+
+На певних рівнях налаштування нам потрібно зробити деякі поля доступними для редагування лише для певних користувачів у вигляді форми
+
+Наприклад, я хочу, щоб певні користувачі могли змінювати поле дати народження в поданні форми працівника
+
+Припустимо, у нас є наступне:
+
+- Вигляд форми вже визначено в системі з ref під назвою emfm
+- Поле, визначене у вигляді форми (emfm) під назвою День народження
+(видимий і редагований для всіх користувачів)
+- Нова група (res.groups) під назвою group_test
+
+Ми лише хочемо, щоб користувачі в group_test могли вносити зміни в це поле ?
+
+Виконайте наведені нижче дії, щоб вирішити цю проблему.
+
+1️⃣ Створіть нову форму під назвою emfm_1, яка успадковується від emfm і робить поле дня народження доступним лише для читання, встановивши для нього значення "true"
+
+2️⃣ Створіть нову форму під назвою emfm_2, яка успадковується від emfm_1, і зробіть поле дня народження доступним лише для читання, встановивши для нього значення «false».
+
+Визначаючи це подання форми, ми додамо новий ключ під назвою groups_id, як показано нижче
+
+<field name="groups_id" eval="[(4, ref('new_module.group_test'))]" />
+
+=====
+
+Чому тут groups_id важливо?
+
+emfm_2 атрибут view override під назвою readonly існує в emfm_1 представленні, і в цьому випадку Odoo перевірить вигляд форми з тим, хто має права доступу
+
+Ви також можете внести багато змін. Ви можете приховати частини XML або змінити їх атрибути як завгодно. Odoo надає вам багато корисних атрибутів на вибір, таких як "невидимий", "обов'язковий" тощо.
+
+=====
+🌻 Ви також можете створити власні атрибути з нуля, якщо хочете, але це складніша тема, про яку ми поговоримо пізніше.
+
+РЕДАГУВАТИ
+Ця функція не підтримується в Odoo v16, але все ще нормально працює в старих версіях.
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
