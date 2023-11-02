@@ -1,0 +1,1 @@
+odoo scaffold library_app /home/smiroshnychenko/my_odoo/odoo_examples/my_addons
