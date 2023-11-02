@@ -35,6 +35,7 @@ Contents:
 31. 𝐟𝐥𝐨𝐚𝐭_𝐬𝐩𝐥𝐢𝐭_𝐬𝐭𝐫() 𝐟𝐮𝐧𝐜𝐭𝐢𝐨𝐧
 32. float_is_zero() 
 33. float_compare()
+34. 𝐚𝐮𝐭𝐨_𝐢𝐧𝐬𝐭𝐚𝐥𝐥
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 1. ORM Methods : 𝐜𝐡𝐞𝐜𝐤_𝐚𝐜𝐜𝐞𝐬𝐬_𝐫𝐢𝐠𝐡𝐭𝐬() Function
@@ -1436,5 +1437,24 @@ result : 0
 
 print(float_compare(val1,val2,precision_rounding=0.001))
 result: 1
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+34. 𝐚𝐮𝐭𝐨_𝐢𝐧𝐬𝐭𝐚𝐥𝐥 = True 🔅
+
+It is key-defined in __manifest__.py file, which lets you choose if a module should be installed immediately when other modules that depend on it are installed.
+Він визначається ключем у __manifest__.py файлі, що дозволяє вибрати, чи слід встановлювати модуль негайно, коли встановлюються інші модулі, які залежать від нього.
+
+For example, if you have Module 𝐞𝐯𝐞𝐧𝐭_𝐬𝐚𝐥𝐞 has auto_install = True that depends on [ event , sale_management]
+
+then when a user installs 𝐞𝐯𝐞𝐧𝐭 and 𝐬𝐚𝐥𝐞_𝐦𝐚𝐧𝐚𝐠𝐞𝐦𝐞𝐧𝐭 , Module 𝐞𝐯𝐞𝐧𝐭_𝐬𝐚𝐥𝐞 will be automatically installed as well.
+
+if auto_install is false, the user will need to manually install Module event_sale
+
+
+𝐌𝐚𝐧𝐢𝐟𝐞𝐬𝐭 ❗❓
+
+it is simple file that allows you define basic information about the module, such as the module's name, version, description,Dependencies,Data Files, and author
+
+will focus only on keys that are important and may be tricky.
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
