@@ -4,10 +4,6 @@
 
     'summary': "Manage library catalog and book lending.",
 
-    'description': """
-        Long description of module's purpose
-    """,
-
     'author': "Serhii Miroshnychenko",
     "license": "AGPL-3",
     'website': "https://github.com/SerhiiMiroshnychenko/Odoo_examples/tree/main/my_addons/library_app",
