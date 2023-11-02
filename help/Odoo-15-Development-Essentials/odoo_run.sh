@@ -1,1 +1,1 @@
-odoo -c /home/smiroshnychenko/my_odoo/odoo_examples/odoo_ws.conf -d edu-data --dev=all
+odoo -c /home/smiroshnychenko/my_odoo/odoo_examples/odoo_ws.conf -d edu-data -u library_app --dev=all
