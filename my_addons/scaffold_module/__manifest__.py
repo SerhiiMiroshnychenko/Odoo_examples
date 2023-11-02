@@ -7,7 +7,15 @@
         subtitle on modules listing or apps.openerp.com""",
 
     'description': """
-        Long description of module's purpose
+        Title
+=====
+Subtitle
+--------
+This is *emphasis*, rendered in italics.
+This is **strong emphasis**, rendered in bold.
+This is a bullet list:
+- Item one.
+- Item two.
     """,
 
     'author': "My Company",
