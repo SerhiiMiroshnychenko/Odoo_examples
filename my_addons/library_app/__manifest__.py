@@ -3,6 +3,7 @@
     'name': "Library Management",
 
     'summary': "Manage library catalog and book lending.",
+    "sequence": -100,
 
     'author': "Serhii Miroshnychenko",
     "license": "AGPL-3",
