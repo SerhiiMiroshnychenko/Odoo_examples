@@ -23,7 +23,7 @@ print(f'{user_id = }')  # user_id = 2
 models = xmlrpc.client.ServerProxy(f'{url}/xmlrpc/2/object')
 
 # search function
-property_ids = models.execute_kw(db, user_id, password, 'real.property', 'search', [[]])
+property_ids = models.execute_kw(db, user_id, password, 'real.property', 'search', [[]], {'offset': 2, 'limit': 3})
 print(f'search function ==> {property_ids}')  # search function ==> [1, 2, 3, 4, 5]
 
 # count function
