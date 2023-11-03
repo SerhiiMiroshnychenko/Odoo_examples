@@ -67,3 +67,51 @@ print(f'search and read function ==> {search_and_read_property_ids}')
 # ]
 
 
+# create function
+try:
+    create_property_id = models.execute_kw(
+        db, user_id, password,
+        'real.property',
+        'create',
+        [{'name': 'Property from RPC', 'sales_id': 2}],
+        {'context': {'lang': 'en_US'}}
+    )
+    print(f'create property ==> {create_property_id}')
+except Exception as e:
+    print(e.__class__, e)
+
+
+# write function
+try:
+    write_property_id = models.execute_kw(
+        db, user_id, password,
+        'real.property',
+        'write',
+        [[8], {'name': 'Property from RPC Updated'}],
+    )
+    print(f'write property ==> {write_property_id}')
+except Exception as e:
+    print(e.__class__, e)
+
+try:
+    read_name_get = models.execute_kw(
+        db, user_id, password,
+        'real.property',
+        'name_get',
+        [[8]],
+    )
+    print(f'read_name_get ==> {read_name_get}')
+except Exception as e:
+    print(e.__class__, e)
+
+# unlink function
+try:
+    unlink_property_id = models.execute_kw(
+        db, user_id, password,
+        'real.property',
+        'unlink',
+        [[8]],
+    )
+    print(f'unlink property ==> {unlink_property_id}')
+except Exception as e:
+    print(e.__class__, e)
