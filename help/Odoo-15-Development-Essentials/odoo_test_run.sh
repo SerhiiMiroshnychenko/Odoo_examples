@@ -1,0 +1,1 @@
+odoo -c /home/smiroshnychenko/my_odoo/odoo_examples/odoo_ws.conf -u library_app --test-enable
