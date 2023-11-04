@@ -23,6 +23,7 @@ Real estate module to show available properties
         'views/property_offer_view.xml',
         'views/property_view.xml',
         'views/menu_items.xml',
+        'views/property_web_template.xml',
 
         # Data files
         'data/property_type.xml',

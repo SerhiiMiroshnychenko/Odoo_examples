@@ -1,5 +1,3 @@
-import json
-
 from odoo import http
 from odoo.http import request
 
@@ -11,6 +9,10 @@ class PropertyController(http.Controller):
         property_ids = request.env['real.property'].sudo().search([])
         print(f'{property_ids = }')
 
+        return request.render(
+            'real_estate_ads.property_list',
+            {'property_ids': property_ids}
+        )
 
 # class ModelName(http.Controller):
 #
