@@ -4,7 +4,7 @@ from odoo import fields, models
 class Member(models.Model):
     _name = "library.member"
     _description = "Library Member"
-    _inherits = {"res.partner": "partner_id"}
+    _inherits = {"res.partner": "partner_id"}  # еквівалентно: delegate=True в полі partner_id
     _inherit = ["mail.thread", "mail.activity.mixin"]
 
     card_number = fields.Char()
@@ -12,6 +12,7 @@ class Member(models.Model):
         "res.partner",
         delegate=True,  # delegation inheritance
                         # -> всі поля та методи моделі "res.partner" доступні через нотацію "partner_id."
+                        # delegate=True - еквівалентно: _inherits = {"res.partner": "partner_id"}
         ondelete="cascade",
         required=True
     )
