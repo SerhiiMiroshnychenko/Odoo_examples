@@ -9,5 +9,9 @@ class Member(models.Model):
 
     card_number = fields.Char()
     partner_id = fields.Many2one(
-        "res.partner", delegate=True, ondelete="cascade", required=True
+        "res.partner",
+        delegate=True,  # delegation inheritance
+                        # -> всі поля та методи моделі "res.partner" доступні через нотацію "partner_id."
+        ondelete="cascade",
+        required=True
     )
