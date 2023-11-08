@@ -28,6 +28,7 @@
     ],
     # only loaded in demonstration mode
     "demo": [
+        "data/res.partner.csv",
     ],
 
     "application": True,
