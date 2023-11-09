@@ -29,6 +29,7 @@
     # only loaded in demonstration mode
     "demo": [
         "data/res.partner.csv",
+        "data/library.book.csv",
     ],
 
     "application": True,
