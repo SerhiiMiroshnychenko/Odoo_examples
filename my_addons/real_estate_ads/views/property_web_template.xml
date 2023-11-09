@@ -6,11 +6,19 @@
                 <div class="container">
                     <h3>Available Properties</h3>
                 </div>
+                <div class="container">
+                    <t t-set="property_number" t-value="len(property_ids)"/>
+                    <h5>
+                        <i>There are</i> <b><span t-esc="property_number"/></b> <i>properties</i>
+                    </h5>
+                </div>
+
                 <table class="table-striped table">
                     <thead>
                         <tr>
                             <th>Property Name</th>
                             <th>Expected Price</th>
+                            <th>Additionally</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -18,10 +26,25 @@
                             <tr>
                                 <th><span t-esc="property_id.name"/></th>
                                 <th><span t-esc="property_id.expected_price"/></th>
+                                <th>
+                                    <t t-if="property_id.garage and property_id.garden">
+                                        garage, garden
+                                    </t>
+                                    <t t-elif="property_id.garage and not property_id.garden">
+                                        garage
+                                    </t>
+                                    <t t-elif="not property_id.garage and property_id.garden">
+                                        garden
+                                    </t>
+                                    <t t-else="">
+                                        -
+                                    </t>
+                                </th>
                             </tr>
                         </t>
                     </tbody>
                 </table>
+
             </div>
         </t>
     </template>
