@@ -8,6 +8,10 @@
             <menuitem id="menu_property"
                       name="Property"
                       action="action_real_property"/>
+            <menuitem id="web_property"
+                      name="Web properties"
+                      action="action_web_property"/>
+
         </menuitem>
         <menuitem id="menu_property_ads_settings" name="Settings">
             <menuitem id="menu_property_type"

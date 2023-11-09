@@ -353,6 +353,13 @@
         </field>
     </record>
 
+    <!-- Action Web Property -->
+    <record id="action_web_property" model="ir.actions.act_url">
+        <field name="name">Web properties</field>
+        <field name="url">/properties</field>
+        <field name="target">new</field>
+    </record>
+
     <!-- Cron Extend Deadline Everyday -->
     <record id="ir_cron_extend_offer_deadline" model="ir.cron">
         <field name="name">Offers: Extend Deadline Everyday</field>
