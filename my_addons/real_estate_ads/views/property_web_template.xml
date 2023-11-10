@@ -9,7 +9,7 @@
                 <div class="container">
                     <t t-set="property_number" t-value="len(property_ids)"/>
                     <h5>
-                        <i>There are</i> <b><span t-esc="property_number"/></b> <i>properties</i>
+                        <i>There are</i> <b><t t-out="property_number"/></b> <i>properties</i>
                     </h5>
                 </div>
 
