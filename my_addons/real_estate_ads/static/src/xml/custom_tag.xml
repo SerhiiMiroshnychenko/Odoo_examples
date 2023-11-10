@@ -1,9 +1,20 @@
 <templates>
     <t t-name="CustomActions">
+<!--    <t t-name="CustomActions"-->
+<!--       t-inherit="web.TemplateName"-->
+<!--       t-inherit-mode="extension"-->
+<!--    >-->
         <div>
             <h3>
                 Custom Actions
             </h3>
         </div>
+<!--        <xpath expr="//tr[1]" position="after">-->
+<!--            <tr>-->
+<!--                <td>-->
+<!--                    Here!-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--        </xpath>-->
     </t>
 </templates>
