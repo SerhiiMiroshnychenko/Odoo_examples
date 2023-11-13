@@ -21,7 +21,7 @@ class Book(models.Model):
     english_description = fields.Text()
     description_language = fields.Char(default="en")
     description = fields.Text(compute="_compute_description")
-    
+
     @api.depends('english_description', 'description_language')
     def _compute_description(self):
         # context_lang = self._context.get("lang")
@@ -35,8 +35,7 @@ class Book(models.Model):
                         dest=book.description_language
                     ).text
                 except ValueError as e:
-                    print(e.__class__, e)
-                    book.description = e
+                    book.description = str(e).title()
             elif book.english_description:
                 book.description = 'No description language selected'
             elif book.description_language:
