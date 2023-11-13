@@ -1,4 +1,6 @@
-from odoo import fields, models
+from googletrans import Translator
+
+from odoo import fields, models, api
 from odoo.exceptions import ValidationError
 
 
@@ -16,6 +18,21 @@ class Book(models.Model):
     image = fields.Binary("Cover")
     publisher_id = fields.Many2one("res.partner", string="Publisher")
     author_ids = fields.Many2many("res.partner", string="Authors")
+    english_description = fields.Text()
+    description_language = fields.Char(default="en")
+    description = fields.Text(compute="_compute_description")
+    
+    @api.depends('english_description', 'description_language')
+    def _compute_description(self):
+        for book in self:
+            if book.english_description and book.description_language:
+                book.description = Translator().translate(
+                    book.english_description,
+                    src='en',
+                    dest=book.description_language
+                ).text
+            else:
+                book.description = book.english_description
 
     def _check_isbn(self):
         self.ensure_one()

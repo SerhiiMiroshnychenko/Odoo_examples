@@ -25,6 +25,11 @@
                                 <field name="image" widget="image"/>
                             </group>
                         </group>
+                        <group>
+                            <field name="english_description"/>
+                            <field name="description_language"/>
+                            <field name="description"/>
+                        </group>
                     </sheet>
                 </form>
             </field>
