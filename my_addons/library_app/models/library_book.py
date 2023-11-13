@@ -24,6 +24,8 @@ class Book(models.Model):
     
     @api.depends('english_description', 'description_language')
     def _compute_description(self):
+        # context_lang = self._context.get("lang")
+        # print(f'{context_lang = }')
         for book in self:
             if book.english_description and book.description_language:
                 book.description = Translator().translate(
