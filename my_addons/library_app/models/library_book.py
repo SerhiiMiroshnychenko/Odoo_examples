@@ -28,13 +28,21 @@ class Book(models.Model):
         # print(f'{context_lang = }')
         for book in self:
             if book.english_description and book.description_language:
-                book.description = Translator().translate(
-                    book.english_description,
-                    src='en',
-                    dest=book.description_language
-                ).text
+                try:
+                    book.description = Translator().translate(
+                        book.english_description,
+                        src='en',
+                        dest=book.description_language
+                    ).text
+                except ValueError as e:
+                    print(e.__class__, e)
+                    book.description = e
+            elif book.english_description:
+                book.description = 'No description language selected'
+            elif book.description_language:
+                book.description = 'No description provided'
             else:
-                book.description = book.english_description
+                book.description = 'No description and language provided'
 
     def _check_isbn(self):
         self.ensure_one()
