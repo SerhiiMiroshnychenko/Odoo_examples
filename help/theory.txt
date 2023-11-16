@@ -40,6 +40,7 @@ Contents:
 36. 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬 : 𝐬𝐞𝐚𝐫𝐜𝐡_𝐜𝐨𝐮𝐧𝐭()
 37. 𝐞𝐱𝐩𝐫𝐞𝐬𝐬𝐢𝐨𝐧 𝐌𝐨𝐝𝐮𝐥𝐞
 38. 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬 : search_read()
+39. auto_delete in odoo mail.template model
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 1. ORM Methods : 𝐜𝐡𝐞𝐜𝐤_𝐚𝐜𝐜𝐞𝐬𝐬_𝐫𝐢𝐠𝐡𝐭𝐬() Function
@@ -1616,3 +1617,48 @@ server
 сервера
 
  --------------------------------------------------------------------------------------------------------------------------------------------
+39. auto_delete in odoo mail.template model
+
+what is (auto_delete) property in odoo mail.template model :
+In Odoo, there is indeed an auto_delete property available for the mail.template model, which is used for email templates.
+В Odoo дійсно є властивість auto_delete, доступна для моделі mail.template, яка використовується для шаблонів листів.
+
+The auto_delete property in the mail.template model controls the automatic deletion behavior of email records generated from the template.
+Властивість auto_delete у моделі mail.template керує поведінкою автоматичного видалення записів електронної пошти, створених на основі шаблону.
+
+To set the auto_delete property to True for an email template, you can include it in the XML definition of the mail.template record:
+Щоб установити для властивості auto_delete значення True для шаблону листа, ви можете включити її у визначення XML запису mail.template:
+
+<record id="my_email_template" model="mail.template">
+ <field name="name">My Email Template</field>
+ <field name="model_id" ref="model_my_model"/>
+ <!-- Other fields of the email template -->
+ <field name="auto_delete" eval="True"/>
+</record>
+
+In the example above, the auto_delete property is set to True for the mail.template record with the ID my_email_template.
+This means that email records generated from this template will be automatically deleted after they have been sent.
+У наведеному вище прикладі для ресурсу auto_delete встановлено значення True для запису mail.template із my_email_template ідентифікатора.
+Це означає, що записи електронної пошти, створені за допомогою цього шаблону, будуть автоматично видалені після їх надсилання.
+
+for the same previous meaning you can using it in python file like :
+Для того ж попереднього значення ви можете використовувати його у файлі Python, наприклад:
+
+self.env['mail.template'].create({
+ 'name': 'Test template', # name hardcoded for test -> ім'я жорстко закодоване для тесту
+ 'partner_to': '${object.id}',
+ 'lang': '${object.lang}',
+ 'auto_delete': True,
+ 'model_id': self.ref('base.model_name'),
+ })
+
+in this example the record of email.template will be deleted after sending email .
+У цьому прикладі запис email.template буде видалено після надсилання електронної пошти .
+
+Please note that the auto_delete property affects the behavior of email records generated from the template, not the template itself.
+The template record will remain in the database even if the email records generated from it are deleted.
+Зверніть увагу, що властивість auto_delete впливає на поведінку записів електронної пошти, згенерованих із шаблону, а не на сам шаблон.
+Шаблонний запис залишиться в базі даних, навіть якщо записи електронної пошти, створені з нього, будуть видалені.
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
