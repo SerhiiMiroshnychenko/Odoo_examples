@@ -20,7 +20,7 @@ class Book(models.Model):
     author_ids = fields.Many2many("res.partner", string="Authors")
     description_language = fields.Many2one(
         "res.lang",
-        delegate=True,  # delegation inheritance
+        # delegate=True,  # delegation inheritance
         ondelete='restrict'
     )
     description = fields.Text()
