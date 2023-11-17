@@ -33,7 +33,6 @@ class Book(models.Model):
         # langs = self.env['res.lang'].search([])
         # for lang in langs:
         #     print(f'{lang = }')
-
         for book in self:
             if book.description and book.description_language:
                 try:
