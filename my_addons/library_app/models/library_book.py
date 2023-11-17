@@ -1,4 +1,5 @@
 from googletrans import Translator
+from deep_translator import GoogleTranslator
 
 from odoo import fields, models, api
 from odoo.exceptions import ValidationError
@@ -18,25 +19,31 @@ class Book(models.Model):
     image = fields.Binary("Cover")
     publisher_id = fields.Many2one("res.partner", string="Publisher")
     author_ids = fields.Many2many("res.partner", string="Authors")
-    english_description = fields.Text()
     description_language = fields.Char(default="en")
-    description = fields.Text(compute="_compute_description")
+    description = fields.Text()
 
-    @api.depends('english_description', 'description_language')
-    def _compute_description(self):
+    def translate_description(self):
         # context_lang = self._context.get("lang")
         # print(f'{context_lang = }')
         for book in self:
-            if book.english_description and book.description_language:
+            if book.description and book.description_language:
                 try:
-                    book.description = Translator().translate(
-                        book.english_description,
-                        src='en',
+                    translated = Translator().translate(
+                        book.description,
                         dest=book.description_language
                     ).text
+                    print(f'{translated = }')
+
+                    translated = GoogleTranslator(
+                        source='auto',
+                        target=book.description_language).translate(book.description)
+                    print(f'{translated = }')
+
+                    book.description = translated
+
                 except ValueError as e:
                     book.description = str(e).title()
-            elif book.english_description:
+            elif book.description:
                 book.description = 'No description language selected'
             elif book.description_language:
                 book.description = 'No description provided'
