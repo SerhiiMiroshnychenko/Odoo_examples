@@ -1,12 +1,25 @@
 <odoo noupdate="0">
-  <record model="res.partner" id="res_partner_huxley">
-    <field name="name">Aldous Huxley</field>
-  </record>
+    <record model="res.partner" id="res_partner_huxley">
+        <field name="name">Aldous Huxley</field>
+    </record>
+    <record model="res.partner" id="res_partner_alexandre">
+        <field name="name">Alexandre Fayolle</field>
+    </record>
+    <record model="res.partner" id="res_partner_holger">
+        <field name="name">Holger Brunn</field>
+    </record>
 
-  <record model="library.book" id="library_book_bnw">
-    <field name="name">Brave New World</field> 
-    <field name="author_ids"
-           eval="[(4, ref('res_partner_huxley'))]" />
-    <field name="date_published" eval="(datetime.now() + timedelta(-1))"/>
-  </record>
+    <record model="library.book" id="library_book_bnw">
+        <field name="name">Brave New World</field>
+        <field name="author_ids"
+               eval="[(4, ref('res_partner_huxley'))]"/>
+        <field name="date_published">1932-01-01</field>
+    </record>
+
+    <record model="library.book" id="library_book_odc11">
+        <field name="name">Odoo 11 Development Cookbook</field>
+        <field name="author_ids"
+               eval="[(6, 0,[ref('res_partner_alexandre'), ref('res_partner_holger')])]"/>
+        <field name="date_published" eval="(datetime.now() + timedelta(-1))"/>
+    </record>
 </odoo>
