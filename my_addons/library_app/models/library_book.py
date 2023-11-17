@@ -1,4 +1,3 @@
-from googletrans import Translator
 from deep_translator import GoogleTranslator
 
 from odoo import fields, models, api
@@ -19,25 +18,28 @@ class Book(models.Model):
     image = fields.Binary("Cover")
     publisher_id = fields.Many2one("res.partner", string="Publisher")
     author_ids = fields.Many2many("res.partner", string="Authors")
-    description_language = fields.Char(default="en")
+    description_language = fields.Many2one(
+        "res.lang",
+        delegate=True,  # delegation inheritance
+        ondelete='restrict'
+    )
     description = fields.Text()
 
     def translate_description(self):
         # context_lang = self._context.get("lang")
         # print(f'{context_lang = }')
+        # user_lang = self.env.user.lang
+        # print(f'{user_lang = }')
+        # langs = self.env['res.lang'].search([])
+        # for lang in langs:
+        #     print(f'{lang = }')
+
         for book in self:
             if book.description and book.description_language:
                 try:
-                    translated = Translator().translate(
-                        book.description,
-                        dest=book.description_language
-                    ).text
-                    print(f'{translated = }')
-
                     translated = GoogleTranslator(
                         source='auto',
-                        target=book.description_language).translate(book.description)
-                    print(f'{translated = }')
+                        target=book.description_language.iso_code).translate(book.description)
 
                     book.description = translated
 

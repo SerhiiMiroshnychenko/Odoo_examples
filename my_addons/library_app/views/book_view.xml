@@ -26,9 +26,9 @@
                             </group>
                         </group>
                         <group>
-                            <field name="english_description"/>
-                            <field name="description_language"/>
                             <field name="description"/>
+                            <field name="description_language"/>
+                            <button name="translate_description" type="object" string="Translate" class="oe_highlight"/>
                         </group>
                     </sheet>
                 </form>
