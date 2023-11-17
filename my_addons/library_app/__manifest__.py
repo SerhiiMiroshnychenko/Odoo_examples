@@ -30,6 +30,7 @@
     "demo": [
         "data/res.partner.csv",
         "data/library.book.csv",
+        "data/book_demo.xml",
     ],
 
     "application": True,
