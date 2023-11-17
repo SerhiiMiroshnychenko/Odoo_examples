@@ -25,12 +25,13 @@
         "views/book_view.xml",
         "views/library_menu.xml",
         "views/book_list_template.xml",
+        "data/book_demo.xml",
     ],
     # only loaded in demonstration mode
     "demo": [
         "data/res.partner.csv",
         "data/library.book.csv",
-        "data/book_demo.xml",
+
     ],
 
     "application": True,

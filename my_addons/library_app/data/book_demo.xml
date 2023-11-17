@@ -1,4 +1,4 @@
-<odoo noupdate="1">
+<odoo noupdate="0">
   <record model="res.partner" id="res_partner_huxley">
     <field name="name">Aldous Huxley</field>
   </record>
@@ -7,6 +7,6 @@
     <field name="name">Brave New World</field> 
     <field name="author_ids"
            eval="[(4, ref('res_partner_huxley'))]" />
-    <field name="date_published">1932-01-01</field>
+    <field name="date_published" eval="(datetime.now() + timedelta(-1))"/>
   </record>
 </odoo>
