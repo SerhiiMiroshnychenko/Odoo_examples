@@ -17,7 +17,15 @@
                                 <field name="name"/>
                                 <field name="author_ids" widget="many2many_tags"/>
                                 <field name="publisher_id"/>
+                                <field name="publisher_country_id"/>
                                 <field name="date_published"/>
+                                <field name="last_borrow_date"/>
+                                <field name="book_type"/>
+                                <field name="copies"/>
+                                <field name="avg_rating"/>
+                                <field name="price"/>
+                                <field name="currency_id"/>
+
                             </group>
                             <group name="group_right">
                                 <field name="isbn"/>
@@ -26,6 +34,8 @@
                             </group>
                         </group>
                         <group>
+                            <field name="notes"/>
+                            <field name="descr"/>
                             <field name="description"/>
                             <field name="description_language"/>
                             <button name="translate_description" type="object" string="Translate" class="oe_highlight"/>
