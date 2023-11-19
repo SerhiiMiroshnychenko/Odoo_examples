@@ -80,9 +80,14 @@ class Book(models.Model):
 
     # Date and time fields:
     date_published = fields.Date()
+
+    def _default_last_borrow_date(self):
+        return fields.Datetime.now()
+
     last_borrow_date = fields.Datetime(
         "Last Borrowed On",
-        default=lambda self: fields.Datetime.now(),
+        # default=lambda self: fields.Datetime.now(),
+        default=_default_last_borrow_date,
     )
 
     # Other fields:
