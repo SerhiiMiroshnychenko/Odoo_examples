@@ -41,6 +41,7 @@ Contents:
 37. 𝐞𝐱𝐩𝐫𝐞𝐬𝐬𝐢𝐨𝐧 𝐌𝐨𝐝𝐮𝐥𝐞
 38. 𝐎𝐑𝐌 𝐌𝐞𝐭𝐡𝐨𝐝𝐬 : search_read()
 39. auto_delete in odoo mail.template model
+40. raise_if_not_found
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 1. ORM Methods : 𝐜𝐡𝐞𝐜𝐤_𝐚𝐜𝐜𝐞𝐬𝐬_𝐫𝐢𝐠𝐡𝐭𝐬() Function
@@ -1661,4 +1662,42 @@ The template record will remain in the database even if the email records genera
 Шаблонний запис залишиться в базі даних, навіть якщо записи електронної пошти, створені з нього, будуть видалені.
 
 --------------------------------------------------------------------------------------------------------------------------------------------
+40. raise_if_not_found
 
+what is purpose of using raise_if_not_found=False in odoo ?
+яка мета використання raise_if_not_found=False в odoo?
+
+odoo allow you to call record or template stored in any file of your project by using self.env.ref('module_name.xml_id')
+but maybe you Mistakes in writing correct name of xml_id or it is deleted from code by other member from your team so
+if you using this id you will find error .
+Odoo дозволяє вам викликати запис або шаблон, що зберігається в будь-якому файлі вашого проекту, за допомогою
+self.env.ref('module_name.xml_id'), але, можливо, у вас помилки в написанні правильної назви xml_id або вона видалена
+з коду іншим членом вашої команди, тому, якщо ви використовуєте цей ідентифікатор, ви знайдете помилку .
+
+to avoid that you may using normal Solution by using try and except like :
+щоб уникнути цього, ви можете використовувати звичайне рішення, використовуючи try і за винятком таких випадків, як:
+
+def get_reference(self):
+ try:
+ reference = self.env.ref('module_name.xml_id')
+ except ValueError:
+ reference = False
+
+ return reference
+
+but there is Solution Simpler than previous Solution that passing variable call raise_if_not_found inside calling
+xml_id and give it False value now by using this property you can avoid and error if xml_id not found or you write
+it Mistake .
+але є рішення Простіше, ніж попереднє рішення, що передаючи виклик змінної raise_if_not_found всередині виклику xml_id
+і дайте йому значення False, тепер використовуючи цю властивість, ви можете уникнути і помилки, якщо xml_id не
+знайдено або ви напишете це Помилка .
+
+example :
+def get_reference(self):
+ reference = self.env.ref('module_name.xml_id',raise_if_not_found=False)
+ return reference
+
+By using raise_if_not_found=False, the code becomes simpler, more concise, and more robust, as it handles potential
+errors gracefully without raising exceptions .
+Використовуючи raise_if_not_found=False, код стає простішим, лаконічнішим і надійнішим,
+оскільки він витончено обробляє потенційні помилки, не викликаючи винятків.
