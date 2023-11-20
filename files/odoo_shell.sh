@@ -1,0 +1,1 @@
+odoo shell -c /home/smiroshnychenko/my_odoo/odoo_examples/odoo_ws.conf
