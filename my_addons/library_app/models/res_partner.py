@@ -9,3 +9,7 @@ class Partner(models.Model):
         "publisher_id",
         string="Published Books",
     )
+
+    book_ids = fields.Many2many(
+        "library.book",
+        string="Authored Books")
