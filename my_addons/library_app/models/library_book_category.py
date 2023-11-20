@@ -4,7 +4,7 @@ from odoo import api, fields, models
 class BookCategory(models.Model):
     _name = "library.book.category"
     _description = "Book Category"
-    _parent_store = True
+    _parent_store = True  # To enable a faster tree search
 
     name = fields.Char(translate=True, required=True)
     # Hierarchy fields
