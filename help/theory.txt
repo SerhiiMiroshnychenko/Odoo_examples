@@ -43,6 +43,7 @@ Contents:
 39. auto_delete in odoo mail.template model
 40. raise_if_not_found
 41. How to check if date inside date time field is today or not in search method in odoo ?
+42. 𝐚𝐜𝐭𝐢𝐯𝐞_𝐭𝐞𝐬𝐭 𝐤𝐞𝐲
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 1. ORM Methods : 𝐜𝐡𝐞𝐜𝐤_𝐚𝐜𝐜𝐞𝐬𝐬_𝐫𝐢𝐠𝐡𝐭𝐬() Function
@@ -1770,5 +1771,31 @@ Finally,show the error message if condition executed to prevent duplicate.
 So you can search for the DateTime field with the start and end boundaries of the current day by many ways
 and this one of them.
 Таким чином, ви можете шукати поле DateTime з межами початку і кінця поточного дня багатьма способами, і цей з них.
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+42. 𝐚𝐜𝐭𝐢𝐯𝐞_𝐭𝐞𝐬𝐭 𝐤𝐞𝐲 📙
+
+In Odoo, the 𝐚𝐜𝐭𝐢𝐯𝐞_𝐭𝐞𝐬𝐭 𝐜𝐨𝐧𝐭𝐞𝐱𝐭 𝐤𝐞𝐲 is used to control whether or not inactive records appear in search results. Odoo sets 𝐚𝐜𝐭𝐢𝐯𝐞_𝐭𝐞𝐬𝐭 𝐭𝐨 𝐓𝐫𝐮𝐞 𝐛𝐲 𝐝𝐞𝐟𝐚𝐮𝐥𝐭,
+which means that any search will exclude inactive records (records where the active field is set to False).
+В Odoo контекстний ключ active_test використовується для контролю того, чи з'являються неактивні записи в результатах пошуку. Odoo за замовчуванням встановлює active_test на True,
+це означає, що будь-який пошук виключатиме неактивні записи (записи, для яких для активного поля встановлено значення False).
+
+𝐄𝐱𝐚𝐦𝐩𝐥𝐞𝐬
+
+🐝 # Searching for all partners, 𝐢𝐧𝐜𝐥𝐮𝐝𝐢𝐧𝐠 𝐢𝐧𝐚𝐜𝐭𝐢𝐯𝐞 𝐨𝐧𝐞𝐬 -> Пошук всіх партнерів, включаючи неактивних
+all_partners = self.env['res.partner'].with_context(𝐚𝐜𝐭𝐢𝐯𝐞_𝐭𝐞𝐬𝐭=𝐅𝐚𝐥𝐬𝐞).search([])
+
+🐝 # Archive Partner -> Архівний партнер
+self.env['res.partner'].browse(9).write({'active': False})
+
+
+𝐖𝐡𝐲 𝐢𝐦𝐩𝐨𝐫𝐭𝐚𝐧𝐭? 📙
+
+This is useful when you want to keep records in the database but don't want them to appear in most searches.
+For example, you might have a product that you no longer need.
+but you want to keep the product record in the database
+Це корисно, якщо потрібно зберегти записи в базі даних, але вони не відображаються в більшості пошукових запитів.
+Наприклад, у вас може бути продукт, який вам більше не потрібен.
+але ви хочете зберегти запис про товар у базі даних
 
 --------------------------------------------------------------------------------------------------------------------------------------------
