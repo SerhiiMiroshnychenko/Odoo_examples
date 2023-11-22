@@ -57,6 +57,7 @@
                     <field name="isbn"/>
                     <field name="active"/>
                     <field name="image" widget="image"  options="{'size': (50, 50)}"/>
+                    <field name="price"/>
                 </tree>
             </field>
         </record>
