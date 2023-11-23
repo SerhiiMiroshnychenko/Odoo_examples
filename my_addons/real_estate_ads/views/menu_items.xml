@@ -2,7 +2,7 @@
 <odoo>
     <menuitem id="menu_property_ads_root"
               name="Property Ads"
-              sequence="1"
+              sequence="11"
               web_icon="real_estate_abs,static/description/icon.png">
         <menuitem id="menu_property_ads" name="Abs">
             <menuitem id="menu_property"
