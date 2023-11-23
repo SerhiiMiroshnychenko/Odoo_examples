@@ -4,7 +4,7 @@
     "website": "https://github.com/SerhiiMiroshnychenko/Odoo_examples/tree/main/my_addons/real_estate_ads",
     "author": "Serhii Miroshnychenko",
     "summary": "Real estate module to show available properties",
-    "sequence": -101,
+    "sequence": -99,
     "description": """
 Real estate module to show available properties
     """,
