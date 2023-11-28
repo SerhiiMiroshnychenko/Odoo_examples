@@ -45,6 +45,7 @@ Contents:
 41. How to check if date inside date time field is today or not in search method in odoo ?
 42. 𝐚𝐜𝐭𝐢𝐯𝐞_𝐭𝐞𝐬𝐭 𝐤𝐞𝐲
 43. Odoo view Inheritance primary mode
+44. how Change the Position of field in Xpath ?
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 1. ORM Methods : 𝐜𝐡𝐞𝐜𝐤_𝐚𝐜𝐜𝐞𝐬𝐬_𝐫𝐢𝐠𝐡𝐭𝐬() Function
@@ -1807,3 +1808,15 @@ Inheriting a view without overriding the original view
 you should make field mode:  primary
 
 --------------------------------------------------------------------------------------------------------------------------------------------
+44. how Change the Position of field in Xpath ?
+we can one more thing instead of "replace".
+Because in case of replace first we have to remove the field
+and then add it to new position which will take one more step extra.
+So better we can use position="move"
+
+<xpath expr="//field[@name='phone']" position="after">
+    <xpath expr="//field[@name='tag_ids']" position="move"/>
+</xpath>
+
+it will simply move the position of tag_ids field to after phone field.
+Which will save our extra line of code that we are writing in case of replace.
