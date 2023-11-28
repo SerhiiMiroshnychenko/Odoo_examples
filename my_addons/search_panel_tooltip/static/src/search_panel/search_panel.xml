@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+
+    <t
+       t-inherit="web.SearchPanel.FiltersGroup"
+       t-inherit-mode="extension"
+       owl="1">
+        <xpath expr="//label[@class='o_search_panel_label form-check-label d-flex align-items-center justify-content-between w-100 o_cursor_pointer']" position="attributes">
+            <attribute name="t-att-data-tooltip">getValueName(value)</attribute>
+            <attribute name="data-tooltip-delay">1000</attribute>
+        </xpath>
+    </t>
+
+</templates>
