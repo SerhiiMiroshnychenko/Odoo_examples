@@ -3,7 +3,7 @@
     'version': '16.0.1.0.0',
     'description': 'Search Panel Customization',
     'author': 'Serhii Miroshnychenko',
-    'website': 'https://github.com/SerhiiMiroshnychenko/Odoo_examples',
+    'website': 'https://github.com/SerhiiMiroshnychenko/Odoo_examples/tree/main/my_addons/search_panel_tooltip',
     'license': 'AGPL-3',
     'depends': ['web'],
     'assets': {
