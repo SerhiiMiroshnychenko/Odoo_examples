@@ -1799,3 +1799,10 @@ but you want to keep the product record in the database
 але ви хочете зберегти запис про товар у базі даних
 
 --------------------------------------------------------------------------------------------------------------------------------------------
+43. Odoo view Inheritance primary mode
+
+Odoo view Inheritance
+Inheriting a view without overriding the original view
+you should make field mode:  primary
+
+--------------------------------------------------------------------------------------------------------------------------------------------
