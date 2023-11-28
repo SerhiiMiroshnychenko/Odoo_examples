@@ -44,6 +44,7 @@ Contents:
 40. raise_if_not_found
 41. How to check if date inside date time field is today or not in search method in odoo ?
 42. 𝐚𝐜𝐭𝐢𝐯𝐞_𝐭𝐞𝐬𝐭 𝐤𝐞𝐲
+43. Odoo view Inheritance primary mode
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 1. ORM Methods : 𝐜𝐡𝐞𝐜𝐤_𝐚𝐜𝐜𝐞𝐬𝐬_𝐫𝐢𝐠𝐡𝐭𝐬() Function
