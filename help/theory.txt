@@ -46,6 +46,7 @@ Contents:
 42. 𝐚𝐜𝐭𝐢𝐯𝐞_𝐭𝐞𝐬𝐭 𝐤𝐞𝐲
 43. Odoo view Inheritance primary mode
 44. how Change the Position of field in Xpath ?
+45. Module Manifests in Odoo
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 1. ORM Methods : 𝐜𝐡𝐞𝐜𝐤_𝐚𝐜𝐜𝐞𝐬𝐬_𝐫𝐢𝐠𝐡𝐭𝐬() Function
@@ -1820,3 +1821,91 @@ So better we can use position="move"
 
 it will simply move the position of tag_ids field to after phone field.
 Which will save our extra line of code that we are writing in case of replace.
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+45. Module Manifests in Odoo
+
+The manifest file serves to declare a python package as an Odoo module and to specify module metadata.
+Файл маніфесту служить для оголошення пакета python як модуля Odoo та для визначення метаданих модуля.
+
+It is a file called __manifest__.py and contains a single Python dictionary, where each key specifies module metadatum.
+Це файл під назвою __manifest__.py і містить один словник Python, де кожен ключ визначає метадату модуля.
+
+Available manifest keys are:
+
+name (str, required): the human-readable name of the module.
+                      зрозуміле людині ім'я модуля.
+
+version (str): this module’s version.
+               версія цього модуля
+
+author (str): name of the module author.
+              ім'я автора модуля.
+
+website (str): website URL for the module author.
+               URL-адреса веб-сайту для автора модуля.
+
+license (str, defaults: LGPL-3): distribution license for the module.
+                                 ліцензія на розповсюдження модуля.
+
+category (str, default: Uncategorized): classification category within Odoo.
+                                        категорія класифікації в Odoo.
+
+depends (list(str)): Odoo modules which must be loaded before this one, either because this module uses features they
+                     create or because it alters resources they define.
+                     When a module is installed, all of its dependencies are installed before it. Likewise dependencies
+                     are loaded before a module is loaded.
+                     модулі Odoo, які повинні бути завантажені перед цим, або тому, що цей модуль використовує функції,
+                     які вони створюють, або тому, що він змінює ресурси, які вони визначають.
+                     Коли модуль встановлений, всі його залежності встановлюються перед ним.
+                     Так само завантажуються залежності перед завантаженням модуля.
+
+data (list(str)): List of data files which must always be installed or updated with the module.
+                  A list of paths from the module root directory.
+                  Список файлів даних, які завжди повинні бути встановлені або оновлені за допомогою модуля.
+                  Список шляхів з кореневого каталогу модуля.
+
+demo (list(str)): List of data files which are only installed or updated in demonstration mode.
+                  список файлів даних, які встановлюються або оновлюються лише у демонстраційному режимі.
+
+auto_install (bool or list(str), default: False): If True, this module will automatically be installed if all
+                                                  of its dependencies are installed.
+                                                  Якщо True, цей модуль буде автоматично встановлено,
+                                                  якщо встановлено всі його залежності.
+
+application (bool, default: False): Whether the module should be considered as a fully-fledged application (True)
+                                    or is just a technical module (False) that provides some extra functionality
+                                    to an existing application module.
+                                    Незалежно від того, чи слід розглядати модуль як повноцінний застосунок (True),
+                                    чи це просто технічний модуль (False), який надає деяку додаткову функціональність
+                                    існуючому модулю програми.
+
+assets (dict): A definition of how all static files are loaded in various assets bundles.
+               See the assets page for more details on how to describe bundles.
+               визначення того, як усі статичні файли завантажуються в різні пакети ресурсів.
+               Перегляньте сторінку об'єктів, щоб дізнатися більше про те, як описувати набори.
+
+installable (bool default: True): Whether a user should be able to install the module from the Web UI or not.
+                                  Чи повинен користувач мати можливість встановити модуль з веб-інтерфейсу чи ні.
+
+
+maintainer (str): Person or entity in charge of the maintenance of this module,
+                  by default it is assumed that the author is the maintainer.
+                  Фізична або юридична особа, відповідальна за підтримку цього модуля,
+                  за замовчуванням передбачається, що автор є супроводжувачем.
+
+{pre_init, post_init, uninstall}_hook (str): Hooks for module installation/uninstallation,
+                                             their value should be a string representing the name of a function
+                                             defined inside the module’s __init__.py.
+                                             Хуки для встановлення/видалення модуля, їх значенням має бути рядок,
+                                             що представляє ім'я функції, визначеної в __init__.py модуля.
+
+=====================================
+
+Odoo Exiting Categories :
+https://github.com/odoo/odoo/blob/16.0/odoo/addons/base/data/ir_module_category_data.xml
+
+How to use Hook in Odoo?
+https://www.cybrosys.com/blog/how-to-use-init-hooks-in-odoo-16-erp
+
+--------------------------------------------------------------------------------------------------------------------------------------------
