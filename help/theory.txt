@@ -47,6 +47,7 @@ Contents:
 43. Odoo view Inheritance primary mode
 44. how Change the Position of field in Xpath ?
 45. Module Manifests in Odoo
+46. Odoo view Inheritance
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 1. ORM Methods : 𝐜𝐡𝐞𝐜𝐤_𝐚𝐜𝐜𝐞𝐬𝐬_𝐫𝐢𝐠𝐡𝐭𝐬() Function
@@ -1907,5 +1908,12 @@ https://github.com/odoo/odoo/blob/16.0/odoo/addons/base/data/ir_module_category_
 
 How to use Hook in Odoo?
 https://www.cybrosys.com/blog/how-to-use-init-hooks-in-odoo-16-erp
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+46. Odoo view Inheritance
+
+Inheriting a view without overriding the original view
+Успадкування подання без заміни вихідного подання
+you should make field mode:  primary
 
 --------------------------------------------------------------------------------------------------------------------------------------------
