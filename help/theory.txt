@@ -48,6 +48,7 @@ Contents:
 44. how Change the Position of field in Xpath ?
 45. Module Manifests in Odoo
 46. Odoo view Inheritance
+47. how Change the Position of field in Xpath ?
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 1. ORM Methods : 𝐜𝐡𝐞𝐜𝐤_𝐚𝐜𝐜𝐞𝐬𝐬_𝐫𝐢𝐠𝐡𝐭𝐬() Function
@@ -1915,5 +1916,23 @@ https://www.cybrosys.com/blog/how-to-use-init-hooks-in-odoo-16-erp
 Inheriting a view without overriding the original view
 Успадкування подання без заміни вихідного подання
 you should make field mode:  primary
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+47. how Change the Position of field in Xpath ?
+
+we can one more thing instead of "replace".
+Because in case of replace first we have to remove the field and
+then add it to new position which will take one more step extra. So better we can use position="move"
+Замість «замінити» можна ще одне. Тому що в разі заміни спочатку нам доведеться прибрати поле,
+а потім додати його в нову позицію, що займе ще один додатковий крок. Тому краще використовувати
+
+<xpath expr="//field[@name='phone']" position="after">
+    <xpath expr="//field[@name='tag_ids']" position="move"/>
+</xpath>
+
+it will simply move the position of tag_ids field to after phone field.
+Which will save our extra line of code that we are writing in case of replace.
+Він просто перемістить позицію tag_ids поля в поле після телефону.
+Що збереже наш зайвий рядок коду, який ми пишемо на випадок заміни.
 
 --------------------------------------------------------------------------------------------------------------------------------------------
