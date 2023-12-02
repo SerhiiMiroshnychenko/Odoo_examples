@@ -49,6 +49,7 @@ Contents:
 45. Module Manifests in Odoo
 46. Odoo view Inheritance
 47. how Change the Position of field in Xpath ?
+48. Database Settings in Odoo Configuration file
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 1. ORM Methods : 𝐜𝐡𝐞𝐜𝐤_𝐚𝐜𝐜𝐞𝐬𝐬_𝐫𝐢𝐠𝐡𝐭𝐬() Function
@@ -1934,5 +1935,73 @@ it will simply move the position of tag_ids field to after phone field.
 Which will save our extra line of code that we are writing in case of replace.
 Він просто перемістить позицію tag_ids поля в поле після телефону.
 Що збереже наш зайвий рядок коду, який ми пишемо на випадок заміни.
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+48. Database Settings in Odoo Configuration file
+
+================================
+# Database Settings in Odoo Configuration file
+================================
+#-----------------------------------------------
+# Specify the database host (default localhost).
+  Вказати хост бази даних (за замовчуванням localhost).
+# db_host = localhost
+
+#-----------------------------------------------
+# Specify the database port (default None).
+  Вкажіть порт бази даних (за замовчуванням None).
+# db_port = 5432
+#-----------------------------------------------
+
+#-----------------------------------------------
+# Specify the database user name (default None).
+  Вкажіть ім'я користувача бази даних (за замовчуванням None).
+# db_user = odoo
+#-----------------------------------------------
+
+#-----------------------------------------------
+# Specify the database password for db_user (default None)
+  Вкажіть пароль бази даних для db_user (за замовчуванням None)
+# db_password = 00aa9df39b0c99ac3d1d8412d2917175
+#-----------------------------------------------
+
+#-----------------------------------------------
+# Specify the database name.
+  Вкажіть ім'я бази даних.
+# db_name = False
+#-----------------------------------------------
+
+#-----------------------------------------------
+# DataError: new encoding (UTF8) is incompatible with the encoding of the
+# template database (SQL_ASCII) HINT: Use the same encoding as in the template
+# database, or use template0 as template.
+# db_template = template0
+#-----------------------------------------------
+
+#-----------------------------------------------
+# Master Database password
+# This is set at first boot, and can be set from within Odoo
+  Це встановлюється при першому завантаженні, і може бути встановлено з Odoo
+# admin_passwd = 12357
+#-----------------------------------------------
+
+#-----------------------------------------------
+# specify the the maximum number of physical connections to posgresql
+  вказати максимальну кількість фізичних з'єднань з posgresql
+# db_maxconn = 64
+#-----------------------------------------------
+
+#-----------------------------------------------
+# Filter listed database
+  Фільтр бази даних
+# dbfilter = .*
+#-----------------------------------------------
+
+#-----------------------------------------------
+# SSL Between Odoo and PostgreSQL
+Since Odoo 11.0, you can enforce ssl connection between Odoo and PostgreSQL. in Odoo the db_sslmode control the ssl security of the connection with value chosen out of ‘disable’, ‘allow’, ‘prefer’, ‘require’, ‘verify-ca’ or ‘verify-full’
+Починаючи з Odoo 11.0, ви можете примусово встановити ssl-з'єднання між Odoo та PostgreSQL. в Odoo db_sslmode контролювати безпеку ssl з'єднання зі значенням, вибраним з 'disable', 'allow', 'prefer', 'require', 'verify-ca' або 'verify-full'
+# db_sslmode = prefer
+#-----------------------------------------------
 
 --------------------------------------------------------------------------------------------------------------------------------------------
