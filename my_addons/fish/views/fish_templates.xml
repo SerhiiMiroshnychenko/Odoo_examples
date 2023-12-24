@@ -45,7 +45,7 @@
                     <h3><t t-esc="fish.common_name"/></h3>
                 </div>
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-4">
                         <img t-if="fish.image" t-att-src="'data:image/png;base64,'+fish.image.decode('utf-8')"/>
                     </div>
                     <div class="col-6">
