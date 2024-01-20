@@ -20,20 +20,22 @@
                         <button name="add_seats" type="object" string="Add Seats" class="oe_highlight"/>
                         <button name="reserve_all" type="object" string="Reserve All" class="oe_highlight"/>
                         <button name="create_playbill" type="object" string="Create Playbill" class="oe_highlight"/>
-                        <button name="%(action_cinema_hall_wizard)d" type="action" string="Create new hall" class="oe_highlight"/>
+                        <button name="%(action_cinema_hall_wizard)d" type="action" string="Create new hall"
+                                class="oe_highlight"/>
                         <button name="create_vip_hall" type="object" string="Create vip hall" class="oe_highlight"/>
                         <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">
                             <button name="%(action_cinema_movies)d" type="action"
-                                        class="oe_stat_button" icon="fa-film">
-                                    <div class="o_field_widget o_stat_info">
-                                        <span class="o_stat_text">Today's</span>
-                                        <span class="o_stat_text">Premieres</span>
-                                    </div>
-                                </button>
-                            <button class="oe_stat_button" name="%(action_cinema_cinema_smart_movie)d" type="action" icon="fa-film">
+                                    class="oe_stat_button" icon="fa-film">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_text">Today's</span>
+                                    <span class="o_stat_text">Premieres</span>
+                                </div>
+                            </button>
+                            <button class="oe_stat_button" name="%(action_cinema_cinema_smart_movie)d" type="action"
+                                    icon="fa-film">
                                 <div class="o_field_widget o_stat_info">
                                     <span class="o_stat_value">
                                         <field name="movies_count"/>
@@ -43,7 +45,8 @@
                                     </span>
                                 </div>
                             </button>
-                            <button class="oe_stat_button" name="%(action_cinema_cinema_user_smart)d" type="action" icon="fa-address-card-o">
+                            <button class="oe_stat_button" name="%(action_cinema_cinema_user_smart)d" type="action"
+                                    icon="fa-address-card-o">
                                 <div class="o_field_widget o_stat_info">
                                     <span class="o_stat_value">
                                         <field name="user_id" nolabel="1" readonly="True"/>
@@ -53,7 +56,8 @@
                                     </span>
                                 </div>
                             </button>
-                            <button class="oe_stat_button" name="%(action_cinema_cinema_smart_hall)d" type="action" icon="fa-ticket">
+                            <button class="oe_stat_button" name="%(action_cinema_cinema_smart_hall)d" type="action"
+                                    icon="fa-ticket">
                                 <div class="o_field_widget o_stat_info">
                                     <span class="o_stat_value">
                                         <field name="halls_count"/>
@@ -64,7 +68,8 @@
                                 </div>
                             </button>
                         </div>
-                        <widget name="web_ribbon" title="No active halls" attrs="{'invisible': [('active_halls', '>', 0)]}"/>
+                        <widget name="web_ribbon" title="No active halls"
+                                attrs="{'invisible': [('active_halls', '>', 0)]}"/>
                         <widget name="web_ribbon" title="Closed" bg_color="bg-danger"
                                 attrs="{'invisible': [('state', '=', 'open')]}"/>
                         <div class="oe_title">
@@ -78,6 +83,7 @@
                         <group>
                             <group>
                                 <field name="user_id"/>
+                                <field name="group_fields_notebook" widget="boolean_toggle"/>
                                 <field name="vip_halls"/>
                                 <button name="action_show_vip_halls"
                                         type="object"
@@ -92,7 +98,7 @@
                                 <field name="restaurant"/>
                                 <field name="active_halls"/>
                             </group>
-                            <notebook>
+                            <notebook attrs="{'invisible': [('group_fields_notebook', '=', False)]}">
                                 <page string="Description">
                                     <group>
                                         <field name="description"/>
@@ -113,7 +119,8 @@
                                             <field name="name"/>
                                             <field name="seats"/>
                                             <field name="reserved"/>
-                                            <field name="movie_ids" domain="[('cinema_ids', 'in', parent.id)]" widget="many2many_tags"/>
+                                            <field name="movie_ids" domain="[('cinema_ids', 'in', parent.id)]"
+                                                   widget="many2many_tags"/>
                                         </tree>
                                     </field>
                                 </page>
@@ -129,6 +136,78 @@
                                 </page>
                             </notebook>
                         </group>
+                        <div style="display: flex; align-items: center;"
+                             attrs="{'invisible': [('group_fields_notebook', '=', True)]}">
+                            <div>
+                                <field name="description_visible" widget="boolean_toggle"/>
+                            </div>
+                            <div style="margin-left: 10px;">
+                                <h6>Description</h6>
+                            </div>
+                        </div>
+                        <div name="description"
+                             attrs="{'invisible': ['|', ('description_visible', '=', False), ('group_fields_notebook', '=', True)]}">
+                            <sheet>
+                                <group>
+                                    <field name="description"/>
+                                    <field name="note" readonly="1"/>
+                                    <button name="%(action_cinema_note_wizard)d" type="action"
+                                            string="Note upgrade" icon="fa-arrow-up"/>
+                                </group>
+                            </sheet>
+                        </div>
+                        <div style="display: flex; align-items: center;"
+                             attrs="{'invisible': [('group_fields_notebook', '=', True)]}">
+                            <div>
+                                <field name="halls_visible" widget="boolean_toggle"/>
+                            </div>
+                            <div style="margin-left: 10px;">
+                                <h6>Halls</h6>
+                            </div>
+                        </div>
+                        <div name="description"
+                             attrs="{'invisible': ['|', ('halls_visible', '=', False), ('group_fields_notebook', '=', True)]}">
+                            <sheet>
+                                <button name="add_3d_hall"
+                                        type="object"
+                                        string="Add 3D hall"
+                                        class="oe_highlight"
+                                />
+                                <separator string="Halls"/>
+                                <field name="hall_ids" nolabel="1">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="seats"/>
+                                        <field name="reserved"/>
+                                        <field name="movie_ids" domain="[('cinema_ids', 'in', parent.id)]"
+                                               widget="many2many_tags"/>
+                                    </tree>
+                                </field>
+                            </sheet>
+                        </div>
+
+                        <div style="display: flex; align-items: center;"
+                             attrs="{'invisible': [('group_fields_notebook', '=', True)]}">
+                            <div>
+                                <field name="movies_visible" widget="boolean_toggle"/>
+                            </div>
+                            <div style="margin-left: 10px;">
+                                <h6>Movies</h6>
+                            </div>
+                        </div>
+                        <div name="description"
+                             attrs="{'invisible': ['|', ('movies_visible', '=', False), ('group_fields_notebook', '=', True)]}">
+                            <sheet>
+                                <separator string="Movies"></separator>
+                                <field name="movie_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="premiere_date"/>
+                                        <field name="deadline_date"/>
+                                    </tree>
+                                </field>
+                            </sheet>
+                        </div>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" groups="base.group_user"/>

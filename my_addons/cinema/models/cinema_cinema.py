@@ -209,3 +209,11 @@ class CinemaCinema(models.Model):
         if total_time >= 20 or total_time <= 8:
             records = self.search([('state', '!=', 'close')])
             records.state = 'close'
+
+    group_fields_notebook = fields.Boolean(
+        string='Notebook',
+        default=True)
+
+    description_visible = fields.Boolean(default=True)
+    halls_visible = fields.Boolean(default=True)
+    movies_visible = fields.Boolean(default=True)
