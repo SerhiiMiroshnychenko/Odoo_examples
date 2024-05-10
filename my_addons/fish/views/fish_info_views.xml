@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_fish_info" model="ir.ui.view">
+        <field name="name">Fish Information</field>
+        <field name="model">fish.information</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="html_fish_info" widget="html"/>
+                <footer>
+                    <button string="Close" class="btn-default" special="cancel" data-hotkey="z"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_fish_info" model="ir.actions.act_window">
+        <field name="name">Fish Information</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">fish.information</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_fish_info"/>
+        <field name="context">{'default_fish_id': active_id}</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
