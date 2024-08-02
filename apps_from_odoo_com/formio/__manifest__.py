@@ -3,8 +3,8 @@
 
 {
     'name': 'Forms',
-    'summary': 'Form Builder for backend, portal and website forms - to collect any information you need for your business.',
-    'version': '16.0.10.10',
+    'summary': 'Form Builder for backend, portal, website and embedded forms, to collect any information you need for your business.',
+    'version': '16.0.15.0.1',
     'license': 'LGPL-3',
     'author': 'Nova Code',
     'website': 'https://www.novacode.nl',
@@ -30,6 +30,7 @@
         'data/formio_default_version_data.xml',
         'data/ir_config_param.xml',
         'data/ir_cron_data.xml',
+        'data/ir_server_action.xml',
         'data/mail_activity_data.xml',
         'data/mail_template_data.xml',
         # translations
@@ -42,6 +43,8 @@
         'security/formio_security.xml',
         'security/ir_model_access.xml',
         'security/ir_rule.xml',
+        # wizards (before views)
+        'wizard/formio_builder_js_options_merge.xml',
         # views
         'views/formio_builder_js_options_views.xml',
         'views/formio_builder_translation_views.xml',
@@ -65,17 +68,17 @@
         'views/formio_form_templates.xml',
         'views/formio_portal_templates.xml',
         'views/formio_public_templates.xml',
-        # wizards
+        # wizards (after views)
         'wizard/formio_version_github_checker_wizard.xml',
     ],
     'assets': {
         'web.assets_backend': [
             # builder
-            'formio/static/src/css/formio_builder.css',
+            'formio/static/src/scss/formio_builder.scss',
             'formio/static/src/js/views/formio_builder.xml',
             'formio/static/src/js/views/formio_builder.js',
             # form
-            'formio/static/src/css/formio_form.css',
+            'formio/static/src/scss/formio_form.scss',
             'formio/static/src/js/views/formio_form.xml',
             'formio/static/src/js/views/formio_form.js',
             # misc
