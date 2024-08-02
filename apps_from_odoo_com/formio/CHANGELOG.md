@@ -1,5 +1,133 @@
 # Changelog
 
+## 16.0.15.0.1
+
+Improve the reset of installed formio.js versions (download and reinstall of formio.js assets).\
+This doesn't delete the formio.version record anymore, but replaces the formio.js assets.\
+Also, the default CSS assets (e.g. bootstrap CSS) are no longer deleted, so manual addition/repair is no longer necessary.
+
+## 16.0.15.0.0
+
+Fix random and unexplainable "ReverseProxy read errors" on webservers other than Nginx (e.g. Caddy, Traefik).\
+This only required to change `/config` and `/submission` endpoints from HTTP POST to GET request methods.
+
+## 16.0.14.0.2
+
+Improve Form form-view layout. Move submission fields to the right (group).
+
+## 16.0.14.0.1
+
+In Form (model, views) add field Submission Commercial Entity related to the Submission Partner.
+
+## 16.0.14.0.0
+
+### Allow (support) versioning for publicly published forms (form builders)
+
+Add endpoint `/formio/public/form/new/current/<string:builder_public_current>` that allows to update the form builders (versioning) and keep them published when the state is "Current".\
+This required to add the `formio.builder` model field `current_uuid`, that is identical to all `formio.builder` records with the same name.
+
+(This is backported code from 17.0)
+
+## 16.0.13.0.2
+
+New feature to allow specific Form URL (query string) params from the form it's iframe src.\
+This is currently usable for the Scroll Into View feature.\
+We can provide the param `scroll_into_view_selector`, eg to scroll (up) in an embedded wizard form when navigating pages.
+
+Example:
+```
+<t t-call="formio.form_iframe">
+   <t t-set="formio_builder" t-value="formio_builder_object"/>
+   <t t-set="src" t-value="'/formio/portal/form/' + str(form.uuid)"/>
+   <t t-set="params" t-value="'scroll_into_view_selector=.progress-wizard'"/>
+</t>
+```
+
+## 16.0.13.0.1
+
+In the Form Builder form view, add (alert) info if the schema is empty.\
+The (alert) info text: Start building a form by clicking the button (fa-rocket) Form Builder
+
+## 16.0.13.0.0
+
+Technical/API change for the `formio.form` methods `_after_create` and `_after_write`:
+- Removed the `vals` argument because the respective caller methods `create` and `write` raised a Singleton Error upon `copy`.\
+  This also simplifies the `create` and `write` methods.
+- Call the `_process_api_components` method per record iteration.
+
+## 16.0.12.3.0
+
+Add descriptions with recommended modules in the `formio.builder.js.options` data.
+
+## 16.0.12.2.0
+
+Improve the Form Builder and Form button styling (colors).
+
+## 16.0.12.1.0
+
+Improvements for the `formio.builder.js.options`:
+- Add a wizard to merge other `formio.builder.js.options` record field `value`.
+- Add default and tracking for `formio.builder.js.options` field `value`.
+
+Add a utils function `json_loads()`:\
+Refactored the `try/except` with `json.loads()` and `ast.literal_eval()` calls, to use the utils `json_loads()` function.
+
+## 16.0.12.0.0
+
+Improvements and migration for the `formio.builder.js.options`:
+- Add `editForm` components and options in `formio_builder_js_options_default`.
+- Change `formio_builder_js_options_default` storage from Python Dict to JSON notation/syntax.
+- Migrate `formio.builder` records (field) `formio_js_options` to merge the updated `formio_builder_js_options_default`.
+- Migrate `formio.builder.js.options.default` records to merge the updated `formio_builder_js_options_default`.
+- Improve the "Form Builder formio.js Options" form view (`view_formio_builder_js_options_form`): Add `widget='ace'` (`mode: js`).
+
+## 16.0.11.0.0
+
+Form Builder view improvements:
+- Don't show Auto-save badge if state is CURRENT.
+- Switch Locked and Auto-save badge positions.
+- Unlocked badge as warning.
+
+## 16.0.10.18
+
+In the Form Builder, show a "Locked" badge in case it is locked.
+
+## 16.0.10.17
+
+- Fix crashing forms due to 16.0.11.16 (Scroll Into View).
+- Improvements for Scroll Into View feature.
+- Backwards compatibilty fix for (component) onChange event.
+
+## 16.0.10.16
+
+Add configurable automatic scrolling, especially useful in long-page wizard forms after switching previous/next page.\
+This scrolls an element (CSS selector) into the visible area of the browser window.\
+The element (CSS selector) can be set in the Form Builder for portal and public forms.
+
+## 16.0.10.15
+
+Fix form `formio.form` create, to set `public_share` by its `formio.builder``public` field.
+This is still done (but not harmful) by `_onchange_builder` which needs to be fixed or removed.
+
+## 16.0.10.14
+
+Fix `ir.actions.server` model `_constraint_unique_formio_ref` method:\
+`ValueError: Expected singleton: ir.actions.server`
+
+## 16.0.10.13
+
+Fix Form Builder with Autosave disabled to show the Save Form button when moving (ordering) components.
+
+## 16.0.10.12
+
+Improve the form (component) onChange API to apply Form options described in:\
+https://help.form.io/developers/form-development/form-renderer#form-renderer-options
+
+## 16.0.10.11
+
+Fix public `/formio/public/form/<form_uuid>/config` endpoint.\
+Pass the `formio.form` model object to methods `_etl_odoo_config()` and `_etl_odoo_data`.
+
 ## 16.0.10.10
 
 In Form Builder, when Autosave is disabled, highlight a colored border when a manual saving is required.
@@ -182,7 +310,7 @@ Put the form builder (loading) spinner in dedicated `<div/>` which hides when th
 ## 16.0.6.5
 
 Security fix / meaurement:\
-Deny update of `submission_data` (field) upon form update, if the form has state 'Completed' or 'Canceled'.
+Deny update of `submission_data` (field) upon form update, if the form has state 'Completed' or 'Cancelled'.
 
 ## 16.0.6.4
 
