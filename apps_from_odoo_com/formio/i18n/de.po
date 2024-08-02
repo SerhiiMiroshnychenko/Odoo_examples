@@ -586,7 +586,7 @@ msgstr ""
 
 #. module: formio
 #: model_terms:ir.ui.view,arch_db:formio.view_formio_version_github_tag_form
-msgid "Are you sure to reset, to download and install again?"
+msgid "Are you sure to reset, to download and reinstall?"
 msgstr "Möchten Sie zurücksetzen, herunterladen und erneut installieren?"
 
 #. module: formio
@@ -1897,7 +1897,7 @@ msgstr "Res Modell"
 
 #. module: formio
 #: model_terms:ir.ui.view,arch_db:formio.view_formio_version_github_tag_form
-msgid "Reset (to download and install again)"
+msgid "Reset (to download and reinstall)"
 msgstr "Zurücksetzen (zum erneuten Herunterladen und Installieren)"
 
 #. module: formio
