@@ -1,0 +1,271 @@
+.o_form_view .o_form_sheet#formio_builder_container {
+    max-width: none !important;
+    width: 95% !important;
+}
+
+.o-form-buttonbox .oe_stat_button.formio_builder .o_stat_info,
+.o-form-buttonbox .oe_stat_button.formio_builder .o_button_icon.fa-rocket {
+    color: $o-white;
+}
+
+#formio_builder_container .formio_builder_dock {
+    float: right;
+    margin-bottom: 1rem;
+}
+
+#formio_builder_container .formio_builder_dock * {
+    font-size: 14px;
+}
+
+#formio_builder_container .formio_builder_dock ul {
+    list-style: none;
+}
+
+#formio_builder_container .formio_builder_dock ul li {
+    float: left;
+    margin-left: 40px;
+}
+
+#formio_builder_container .formio_builder_dock span.formio_dock_label {
+    padding-right: 10px;
+    font-weight: 700;
+}
+
+#formio_builder_container .formio_builder_dock .badge span.formio_dock_label {
+    padding-left: 6px;
+    padding-right: 10px;
+}
+
+#formio_builder_container .formio_builder_dock .badge span.formio_dock_val {
+    padding-right: 6px;
+}
+
+#formio_builder_container .formio_actions {
+    clear: both;
+    padding-top: 10px;
+    margin-bottom: 20px;
+}
+
+.formio_builder_dock button {
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 0.2rem;
+    padding: 6px 10px 6px 10px;
+    margin-top: -6px;
+}
+
+.formio_builder_dock button:hover {
+    color: #000;
+    background-color: #d3d3d3;
+    border: 1px solid #c0c0c0;
+}
+
+#formio_builder_iframe_container .row {
+    margin: 0;
+}
+
+#formio_builder_iframe_container iframe{
+    width: 1px;
+    min-width: 100%;
+    border: 0;
+    height: 100%;
+}
+
+@media screen and (min-height: 768px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 480px;
+    }
+}
+
+@media screen and (min-height: 800px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 520px;
+    }
+}
+
+@media screen and (min-height: 830px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 550px;
+    }
+}
+
+@media screen and (min-height: 900px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 600px;
+    }
+}
+
+@media screen and (min-height: 1024px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 700px;
+    }
+}
+
+@media screen and (min-height: 1040px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 760px;
+    }
+}
+
+@media screen and (min-height: 1050px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 770px;
+    }
+}
+
+@media screen and (min-height: 1080px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 800px;
+    }
+}
+
+@media screen and (min-height: 1100px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 820px;
+    }
+}
+
+@media screen and (min-height: 1200px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 920px;
+    }
+}
+
+@media screen and (min-height: 1280px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 1000px;
+    }
+}
+
+@media screen and (min-height: 1300px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 1020px;
+    }
+}
+
+@media screen and (min-height: 1350px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 1060px;
+    }
+}
+
+@media screen and (min-height: 1440px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 1150px;
+    }
+}
+
+@media screen and (min-height: 1500px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 1210px;
+    }
+}
+
+@media screen and (min-height: 1600px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 1300px;
+    }
+}
+
+@media screen and (min-height: 1664px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 1370px;
+    }
+}
+
+@media screen and (min-height: 1700px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 1400px;
+    }
+}
+
+@media screen and (min-height: 1800px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 1500px;
+    }
+}
+
+@media screen and (min-height: 1900px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 1600px;
+    }
+}
+
+@media screen and (min-height: 1920px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 1620px;
+    }
+}
+
+@media screen and (min-height: 1964px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 1664px;
+    }
+}
+
+@media screen and (min-height: 2000px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 1700px;
+    }
+}
+
+@media screen and (min-height: 2048px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 1800px;
+    }
+}
+
+@media screen and (min-height: 2100px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 1880px;
+    }
+}
+
+@media screen and (min-height: 2200px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 1900px;
+    }
+}
+
+@media screen and (min-height: 2300px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 2000px;
+    }
+}
+
+@media screen and (min-height: 2400px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 2100px;
+    }
+}
+
+@media screen and (min-height: 2500px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 2200px;
+    }
+}
+
+@media screen and (min-height: 2560px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 2260px;
+    }
+}
+
+@media screen and (min-height: 2600px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 2300px;
+    }
+}
+
+@media screen and (min-height: 2700px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 2400px;
+    }
+}
+
+@media screen and (min-height: 2800px) {
+    #formio_builder_iframe_container iframe {
+        min-height: 2500px;
+    }
+}
