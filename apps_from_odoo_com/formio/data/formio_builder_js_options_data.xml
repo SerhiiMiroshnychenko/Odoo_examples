@@ -1,0 +1,1095 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="formio_builder_js_options_default" model="formio.builder.js.options">
+            <!-- More info about the `overrideEditForm` property:
+                 https://github.com/formio/formio.js/issues/2280
+
+                 However the `dataSrc` property currently (December
+                 2022) doesn't seem to work, also mentoined in:
+                 https://github.com/formio/formio.js/issues/2489
+            -->
+            <field name="name">Default</field>
+            <field name="value">{
+    "editForm": {
+        "textfield": [
+            {
+                "key": "data",
+                "components": [
+                    {
+                        "key": "persistent",
+                        "ignore": true
+                    },
+                    {
+                        "key": "protected",
+                        "ignore": true
+                    },
+                    {
+                        "key": "dbIndex",
+                        "ignore": true
+                    },
+                    {
+                        "key": "encrypted",
+                        "ignore": true
+                    },
+                    {
+                        "key": "calculateServer",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "validation",
+                "components": [
+                    {
+                        "key": "unique",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "textarea": [
+            {
+                "key": "data",
+                "components": [
+                    {
+                        "key": "persistent",
+                        "ignore": true
+                    },
+                    {
+                        "key": "protected",
+                        "ignore": true
+                    },
+                    {
+                        "key": "dbIndex",
+                        "ignore": true
+                    },
+                    {
+                        "key": "encrypted",
+                        "ignore": true
+                    },
+                    {
+                        "key": "calculateServer",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "validation",
+                "components": [
+                    {
+                        "key": "unique",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "number": [
+            {
+                "key": "data",
+                "components": [
+                    {
+                        "key": "persistent",
+                        "ignore": true
+                    },
+                    {
+                        "key": "protected",
+                        "ignore": true
+                    },
+                    {
+                        "key": "dbIndex",
+                        "ignore": true
+                    },
+                    {
+                        "key": "encrypted",
+                        "ignore": true
+                    },
+                    {
+                        "key": "calculateServer",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "checkbox": [
+            {
+                "key": "data",
+                "components": [
+                    {
+                        "key": "persistent",
+                        "ignore": true
+                    },
+                    {
+                        "key": "protected",
+                        "ignore": true
+                    },
+                    {
+                        "key": "dbIndex",
+                        "ignore": true
+                    },
+                    {
+                        "key": "encrypted",
+                        "ignore": true
+                    },
+                    {
+                        "key": "calculateServer",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "selectboxes": [
+            {
+                "key": "data",
+                "components": [
+                    {
+                        "key": "dataSrc",
+                        "description": "When the Data Source Type is URL, the &lt;a href='https://apps.odoo.com/apps/modules/16.0/formio_components_api/' target='_blank'&gt;formio_components_api&lt;/a&gt; module (getData and domain API) can fetch, filter and load data/records as Select Boxes values and labels, through a backend (Python) programming API available in the Form Builder."
+                    },
+                    {
+                        "key": "persistent",
+                        "ignore": true
+                    },
+                    {
+                        "key": "protected",
+                        "ignore": true
+                    },
+                    {
+                        "key": "dbIndex",
+                        "ignore": true
+                    },
+                    {
+                        "key": "encrypted",
+                        "ignore": true
+                    },
+                    {
+                        "key": "authenticate",
+                        "ignore": true
+                    },
+                    {
+                        "key": "calculateServer",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "select": [
+            {
+                "key": "data",
+                "components": [
+                    {
+                        "key": "dataSrc",
+                        "description": "When the Data Source Type is URL, the &lt;a href='https://apps.odoo.com/apps/modules/16.0/formio_components_api/' target='_blank'&gt;formio_components_api&lt;/a&gt; module (getData and domain API) can fetch, filter and load data/records as Select values and labels, through a backend (Python) programming API available in the Form Builder."
+                    },
+                    {
+                        "key": "persistent",
+                        "ignore": true
+                    },
+                    {
+                        "key": "protected",
+                        "ignore": true
+                    },
+                    {
+                        "key": "dbIndex",
+                        "ignore": true
+                    },
+                    {
+                        "key": "encrypted",
+                        "ignore": true
+                    },
+                    {
+                        "key": "authenticate",
+                        "ignore": true
+                    },
+                    {
+                        "key": "calculateServer",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "radio": [
+            {
+                "key": "data",
+                "components": [
+                    {
+                        "key": "dataSrc",
+                        "description": "When the Data Source Type is URL, the &lt;a href='https://apps.odoo.com/apps/modules/16.0/formio_components_api/' target='_blank'&gt;formio_components_api&lt;/a&gt; module (getData and domain API) can fetch, filter and load data/records as Radio values and labels, through a backend (Python) programming API available in the Form Builder."
+                    },
+                    {
+                        "key": "persistent",
+                        "ignore": true
+                    },
+                    {
+                        "key": "protected",
+                        "ignore": true
+                    },
+                    {
+                        "key": "dbIndex",
+                        "ignore": true
+                    },
+                    {
+                        "key": "encrypted",
+                        "ignore": true
+                    },
+                    {
+                        "key": "authenticate",
+                        "ignore": true
+                    },
+                    {
+                        "key": "calculateServer",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "email": [
+            {
+                "key": "data",
+                "components": [
+                    {
+                        "key": "persistent",
+                        "ignore": true
+                    },
+                    {
+                        "key": "protected",
+                        "ignore": true
+                    },
+                    {
+                        "key": "dbIndex",
+                        "ignore": true
+                    },
+                    {
+                        "key": "encrypted",
+                        "ignore": true
+                    },
+                    {
+                        "key": "calculateServer",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "validation",
+                "components": [
+                    {
+                        "key": "kickbox",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "url": [
+            {
+                "key": "data",
+                "components": [
+                    {
+                        "key": "persistent",
+                        "ignore": true
+                    },
+                    {
+                        "key": "protected",
+                        "ignore": true
+                    },
+                    {
+                        "key": "dbIndex",
+                        "ignore": true
+                    },
+                    {
+                        "key": "encrypted",
+                        "ignore": true
+                    },
+                    {
+                        "key": "calculateServer",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "validation",
+                "components": [
+                    {
+                        "key": "unique",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "phoneNumber": [
+            {
+                "key": "data",
+                "components": [
+                    {
+                        "key": "persistent",
+                        "ignore": true
+                    },
+                    {
+                        "key": "protected",
+                        "ignore": true
+                    },
+                    {
+                        "key": "dbIndex",
+                        "ignore": true
+                    },
+                    {
+                        "key": "encrypted",
+                        "ignore": true
+                    },
+                    {
+                        "key": "calculateServer",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "validation",
+                "components": [
+                    {
+                        "key": "unique",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "tags": [
+            {
+                "key": "data",
+                "components": [
+                    {
+                        "key": "persistent",
+                        "ignore": true
+                    },
+                    {
+                        "key": "protected",
+                        "ignore": true
+                    },
+                    {
+                        "key": "dbIndex",
+                        "ignore": true
+                    },
+                    {
+                        "key": "encrypted",
+                        "ignore": true
+                    },
+                    {
+                        "key": "calculateServer",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "validation",
+                "components": [
+                    {
+                        "key": "unique",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "address": [
+            {
+                "key": "data",
+                "components": [
+                    {
+                        "key": "persistent",
+                        "ignore": true
+                    },
+                    {
+                        "key": "protected",
+                        "ignore": true
+                    },
+                    {
+                        "key": "dbIndex",
+                        "ignore": true
+                    },
+                    {
+                        "key": "encrypted",
+                        "ignore": true
+                    },
+                    {
+                        "key": "calculateServer",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "validation",
+                "components": [
+                    {
+                        "key": "unique",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "datetime": [
+            {
+                "key": "data",
+                "components": [
+                    {
+                        "key": "persistent",
+                        "ignore": true
+                    },
+                    {
+                        "key": "protected",
+                        "ignore": true
+                    },
+                    {
+                        "key": "dbIndex",
+                        "ignore": true
+                    },
+                    {
+                        "key": "encrypted",
+                        "ignore": true
+                    },
+                    {
+                        "key": "calculateServer",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "validation",
+                "components": [
+                    {
+                        "key": "unique",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "day": [
+            {
+                "key": "data",
+                "components": [
+                    {
+                        "key": "persistent",
+                        "ignore": true
+                    },
+                    {
+                        "key": "protected",
+                        "ignore": true
+                    },
+                    {
+                        "key": "dbIndex",
+                        "ignore": true
+                    },
+                    {
+                        "key": "encrypted",
+                        "ignore": true
+                    },
+                    {
+                        "key": "calculateServer",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "validation",
+                "components": [
+                    {
+                        "key": "unique",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "time": [
+            {
+                "key": "data",
+                "components": [
+                    {
+                        "key": "persistent",
+                        "ignore": true
+                    },
+                    {
+                        "key": "protected",
+                        "ignore": true
+                    },
+                    {
+                        "key": "dbIndex",
+                        "ignore": true
+                    },
+                    {
+                        "key": "encrypted",
+                        "ignore": true
+                    },
+                    {
+                        "key": "calculateServer",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "validation",
+                "components": [
+                    {
+                        "key": "unique",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "currency": [
+            {
+                "key": "data",
+                "components": [
+                    {
+                        "key": "persistent",
+                        "ignore": true
+                    },
+                    {
+                        "key": "protected",
+                        "ignore": true
+                    },
+                    {
+                        "key": "dbIndex",
+                        "ignore": true
+                    },
+                    {
+                        "key": "encrypted",
+                        "ignore": true
+                    },
+                    {
+                        "key": "calculateServer",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "validation",
+                "components": [
+                    {
+                        "key": "unique",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "survey": [
+            {
+                "key": "data",
+                "components": [
+                    {
+                        "key": "persistent",
+                        "ignore": true
+                    },
+                    {
+                        "key": "protected",
+                        "ignore": true
+                    },
+                    {
+                        "key": "dbIndex",
+                        "ignore": true
+                    },
+                    {
+                        "key": "encrypted",
+                        "ignore": true
+                    },
+                    {
+                        "key": "calculateServer",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "validation",
+                "components": [
+                    {
+                        "key": "unique",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "signature": [
+            {
+                "key": "data",
+                "components": [
+                    {
+                        "key": "persistent",
+                        "ignore": true
+                    },
+                    {
+                        "key": "protected",
+                        "ignore": true
+                    },
+                    {
+                        "key": "dbIndex",
+                        "ignore": true
+                    },
+                    {
+                        "key": "encrypted",
+                        "ignore": true
+                    },
+                    {
+                        "key": "calculateServer",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "html": [
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "content": [
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "columns": [
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "fieldset": [
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "panel": [
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "tabel": [
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "tabs": [
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "well": [
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "hidden": [
+            {
+                "key": "data",
+                "components": [
+                    {
+                        "key": "persistent",
+                        "ignore": true
+                    },
+                    {
+                        "key": "protected",
+                        "ignore": true
+                    },
+                    {
+                        "key": "dbIndex",
+                        "ignore": true
+                    },
+                    {
+                        "key": "encrypted",
+                        "ignore": true
+                    },
+                    {
+                        "key": "calculateServer",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "container": [
+            {
+                "key": "data",
+                "components": [
+                    {
+                        "key": "persistent",
+                        "ignore": true
+                    },
+                    {
+                        "key": "protected",
+                        "ignore": true
+                    },
+                    {
+                        "key": "dbIndex",
+                        "ignore": true
+                    },
+                    {
+                        "key": "encrypted",
+                        "ignore": true
+                    },
+                    {
+                        "key": "calculateServer",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "datamap": [
+            {
+                "key": "data",
+                "components": [
+                    {
+                        "key": "persistent",
+                        "ignore": true
+                    },
+                    {
+                        "key": "protected",
+                        "ignore": true
+                    },
+                    {
+                        "key": "dbIndex",
+                        "ignore": true
+                    },
+                    {
+                        "key": "encrypted",
+                        "ignore": true
+                    },
+                    {
+                        "key": "calculateServer",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "datagrid": [
+            {
+                "key": "data",
+                "components": [
+                    {
+                        "key": "persistent",
+                        "ignore": true
+                    },
+                    {
+                        "key": "protected",
+                        "ignore": true
+                    },
+                    {
+                        "key": "dbIndex",
+                        "ignore": true
+                    },
+                    {
+                        "key": "encrypted",
+                        "ignore": true
+                    },
+                    {
+                        "key": "calculateServer",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "editgrid": [
+            {
+                "key": "data",
+                "components": [
+                    {
+                        "key": "persistent",
+                        "ignore": true
+                    },
+                    {
+                        "key": "protected",
+                        "ignore": true
+                    },
+                    {
+                        "key": "dbIndex",
+                        "ignore": true
+                    },
+                    {
+                        "key": "encrypted",
+                        "ignore": true
+                    },
+                    {
+                        "key": "calculateServer",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ],
+        "file": [
+            {
+                "key": "file",
+                "components": [
+                    {
+                        "key": "storage",
+                        "defaultValue": "url",
+                        "description": "It is highly recommended to use the &lt;a href='https://apps.odoo.com/apps/modules/16.0/formio_storage_filestore/' target='_blank'&gt;formio_storage_filestore&lt;/a&gt; module. The module can save uploaded files as form attachments (in the filestore) instead of base64 in the form submission record. This applies when the Storage is URL."
+                    }
+                ]
+            },
+            {
+                "key": "data",
+                "components": [
+                    {
+                        "key": "persistent",
+                        "ignore": true
+                    },
+                    {
+                        "key": "protected",
+                        "ignore": true
+                    },
+                    {
+                        "key": "dbIndex",
+                        "ignore": true
+                    },
+                    {
+                        "key": "encrypted",
+                        "ignore": true
+                    },
+                    {
+                        "key": "calculateServer",
+                        "ignore": true
+                    }
+                ]
+            },
+            {
+                "key": "layout",
+                "components": [
+                    {
+                        "key": "overlay",
+                        "ignore": true
+                    }
+                ]
+            }
+        ]
+    }
+}</field>
+        </record>
+    </data>
+</odoo>
