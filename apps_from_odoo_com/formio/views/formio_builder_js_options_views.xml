@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright Nova Code (http://www.novacode.nl)
+See LICENSE file for full licensing details. -->
+
+<odoo>
+    <record id="view_formio_builder_js_options_tree" model="ir.ui.view">
+        <field name="name">formio.builder.js.options.tree</field>
+        <field name="model">formio.builder.js.options</field>
+        <field name="arch" type="xml">
+            <tree string="Form Builder formio.js Options">
+                <field name="name"/>
+                <field name="value" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_formio_builder_js_options_form" model="ir.ui.view">
+        <field name="name">formio.builder.js.options.form</field>
+        <field name="model">formio.builder.js.options</field>
+        <field name="arch" type="xml">
+	    <form string="Form Builder formio.js Options">
+                <header>
+                    <button
+                        name="%(action_open_merge_wizard)d" type="action" string="Merge formio.js Options"
+                        context="{'default_formio_js_options_current_id': id}"/>
+                </header>
+                <sheet>
+                    <div class="oe_title mb24">
+                        <h1>
+                            <field name="name"
+                                   class="text-break"
+                                   placeholder="Insert a meaningful name here"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="value" widget="ace"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter" groups="formio.group_formio_admin">
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_formio_builder_js_options" model="ir.actions.act_window">
+        <field name="name">Form Builder formio.js Options</field>
+        <field name="res_model">formio.builder.js.options</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_formio_builder_js_options_tree"/>
+    </record>
+</odoo>
