@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright Nova Code (http://www.novacode.nl)
+See LICENSE file for full licensing details. -->
+
+<odoo>
+    <record id="view_formio_builder_tree" model="ir.ui.view">
+        <field name="name">formio.builder.tree</field>
+        <field name="model">formio.builder</field>
+        <field name="arch" type="xml">
+            <tree string="Form Builders" default_order="id desc"
+                  decoration-success="state in ('CURRENT')"
+                  decoration-muted="state in ('OBSOLETE')">
+                <field name="id" optional="hide"/>
+                <field name="uuid" optional="hide"/>
+                <field name="current_uuid" optional="hide"/>
+                <field name="title"/>
+                <field name="name"/>
+                <field name="version"/>
+                <field name="state"/>
+                <field name="is_locked" optional="show"/>
+                <field name="auto_save" optional="show"/>
+                <field name="formio_res_model_id" optional="show"/>
+                <field name="portal" optional="show"/>
+                <field name="portal_url" optional="hide"/>
+                <field name="public" optional="show"/>
+                <field name="public_access_rule_type" optional="hide"/>
+                <field name="public_url" optional="hide"/>
+                <field name="formio_version_id"/>
+                <field name="parent_id" optional="hide"/>
+                <field name="write_date" optional="hide"/>
+                <field name="create_date" optional="hide"/>
+                <field name="forms" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_formio_builder_formio" model="ir.ui.view">
+        <field name="name">formio.builder.formio</field>
+        <field name="model">formio.builder</field>
+        <field name="arch" type="xml">
+            <formio_builder string="formio Builder">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="title"/>
+                <field name="version"/>
+                <field name="parent_version"/>
+                <field name="formio_version_name"/>
+                <field name="auto_save"/>
+                <field name="is_locked"/>
+                <field name="state"/>
+                <field name="display_state"/>
+            </formio_builder>
+        </field>
+    </record>
+
+    <record id="view_formio_builder_form" model="ir.ui.view">
+        <field name="name">formio.builder.form</field>
+        <field name="model">formio.builder</field>
+        <field name="arch" type="xml">
+	    <form string="Form Builders">
+                <header>
+                    <button
+                        name="action_current" type="object" string="Current"
+                        attrs="{'invisible': [('state', 'in', ['CURRENT', 'OBSOLETE'])]}"
+                        confirm="Are you sure? This makes it possible to create and use these forms."
+                        class="btn-primary"/>
+                    <button
+                        name="action_draft" type="object" string="Draft"
+                        attrs="{'invisible': [('state', 'in', ['DRAFT'])]}"
+                        confirm="Are you sure? Modifying the Form Builder could cause existing forms to be invalid."/>
+                    <button
+                        name="action_obsolete" type="object" string="Obsolete"
+                        attrs="{'invisible': [('state', '=', 'OBSOLETE')]}"
+                        confirm="Are you sure? The Form shall be unpublished."/>
+                    <button
+                        name="action_new_builder_version" type="object" string="Create New Version"
+                        attrs="{'invisible':[('id','=',False)]}"
+                        confirm="Are you sure? This creates a new (draft) version."/>
+                    <button
+                        name="action_lock" type="object" string="Lock"
+                        attrs="{'invisible':['|', ('is_locked','=',True), '|', ('id','=',False), ('state','!=','CURRENT')]}"
+                        confirm="Are you sure? No further modifications are possible in the Form Builder and configuration."
+                        class="btn-primary"/>
+                    <button
+                        name="action_unlock" type="object" string="Unlock"
+                        attrs="{'invisible':['|', ('is_locked','=',False), '|', ('id','=',False), ('state','!=','CURRENT')]}"
+                        confirm="Are you sure? Modifying the Form Builder could cause existing forms to be invalid."
+                        class="btn-primary"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_formio"
+                                type="object"
+                                groups="formio.group_formio_admin"
+                                class="oe_stat_button bg-primary formio_builder"
+                                icon="fa-rocket"
+                                aria-label="Form Builder">
+                            <div class="o_stat_info o_field_widget">
+                                <span>Form Builder</span>
+                            </div>
+                        </button>
+                        <button name="%(action_formio_builder_translation)d" type="action" string="Translations"
+                                context="{'default_builder_id': id, 'search_default_builder_id': id}"
+                                groups="formio.group_formio_admin" icon="fa-language"/>
+                        <button name="action_view_forms" type="object" class="oe_stat_button"
+                                context="{'default_builder_id': id}"
+                                groups="formio.group_formio_admin" icon="fa-file-text">
+                            <field string="Forms" name="forms_count" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <div class="oe_title mb24">
+                        <h1>
+                            <field name="title" class="text-break" placeholder="Insert a meaningful title here"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <div colspan="2" class="alert alert-info pt-3 pb-3" role="alert" attrs="{'invisible': ['|', ('id', '=', False), ('is_schema_empty', '=', False)]}">
+                            <i class="fa fa-info-circle" title="info"/> Start building a form by clicking the button <i class="fa fa-rocket"/> Form Builder
+                        </div>
+                        <group>
+                            <field name="name" placeholder="Use ASCII letters, digits (0-9), - or _" attrs="{'readonly': [('is_locked', '=', True)]}"/>
+                            <field name="version"/>
+                            <field name="version_comment" attrs="{'required': [('version', '>', 1)]}"/>
+                            <field name="parent_id" string="Parent Version"/>
+                            <field name="is_schema_empty" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="uuid" attrs="{'invisible': [('id', '=', False)]}"/>
+                            <field name="current_uuid" attrs="{'invisible': [('id', '=', False)]}"/>
+                            <field name="is_locked" attrs="{'invisible': [('state', '!=', 'CURRENT')]}" widget="boolean_toggle"/>
+                            <field name="auto_save" widget="boolean_toggle"/>
+                            <field name="backend_use_draft" attrs="{'invisible': [('state', '!=', 'DRAFT')]}" widget="boolean_toggle"/>
+                            <field name="backend_use_obsolete" attrs="{'invisible': [('state', '!=', 'OBSOLETE')]}" widget="boolean_toggle"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="General" name="settings">
+                            <group name="settings">
+                                <group name="formiojs_settings" string="formio.js">
+                                    <field name="formio_version_id"
+                                           attrs="{'readonly': [('is_locked', '=', True)]}"
+                                           options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                                    <div colspan="2" attrs="{'invisible': [('formio_version_is_dummy', '=', True)]}">
+                                        <i class="fa fa-info-circle" title="info"/> Download and install formio.js versions (menu: Configuration / formio.js versions)
+                                    </div>
+                                    <field name="formio_version_is_dummy" invisible="1"/>
+                                    <div colspan="2" attrs="{'invisible': [('formio_version_is_dummy', '=', False)]}">
+                                        <strong class="text-danger">
+                                            <i class="fa fa-info-circle" title="info"/> Replace this "Dummy" version, which doesn't work<br/>
+                                            <i class="fa fa-info-circle" title="info"/> Dummy version is only here to bootstrap (default) demo data<br/>
+                                            <i class="fa fa-info-circle" title="info"/> Download and install a formio.js version (menu: Configuration / formio.js versions)
+                                        </strong>
+                                    </div>
+                                </group>
+                                <group name="publish_settings" string="Publish">
+                                    <field name="portal" string="Publish on Portal"/>
+                                    <field name="public" string="Publish to Public"/>
+                                    <div class="text-muted" colspan="2">
+                                        <i class="fa fa-info-circle" title="info"/> Configure in related tabs (Portal, Public / Website)
+                                    </div>
+                                </group>
+                                <group name="wizard_settings" string="Wizard">
+                                    <field name="wizard" string="Wizard" groups="formio.group_formio_admin"
+                                           attrs="{'readonly': [('is_locked', '=', True)]}"/>
+                                    <field name="wizard_on_change_page_save_draft" string="Save Draft on Change Page" groups="formio.group_formio_admin"
+                                           attrs="{'readonly': [('is_locked', '=', True)]}"/>
+                                    <div class="text-muted" colspan="2">
+                                        <i class="fa fa-info-circle" title="info"/> Multi-page form, with previous/next page buttons
+                                    </div>
+                                </group>
+                                <group name="integration_settings" string="Integration">
+                                    <field name="formio_res_model_id"
+                                           attrs="{'readonly': [('is_locked', '=', True)]}"
+                                           edit="false" create="false" quick_create="false"
+                                           options="{'no_create': True, 'no_create_edit':True, 'no_open': True}"/>
+                                    <field name="res_model" attrs="{'invisible': [('formio_res_model_id', '=', False)]}"/>
+                                    <div class="text-muted" colspan="2">
+                                        <i class="fa fa-info-circle" title="info"/> Configure in Resource tab (if settings are available)
+                                    </div>
+                                    <div class="text-muted" colspan="2">
+                                        <i class="fa fa-info-circle" title="info"/> Not applicable with public/website Forms and custom implementations (depends).
+                                    </div>
+                                </group>
+                                <group name="debug_mode" string="Debug Mode">
+                                    <field name="debug" widget="boolean_toggle"/>
+                                </group>
+                                <group name="other_settings" string="Other">
+                                    <field name="submission_url_add_query_params_from"/>
+                                    <div class="text-muted" colspan="2">
+                                        <i class="fa fa-info-circle" title="info"/> Enables adding the URL query params from the window's iframe (src) or window.parent to the form's submission (load) URL endpoint.
+                                    </div>
+                                </group>
+                                <separator/>
+                                <field name="description" placeholder="Description..." groups="formio.group_formio_admin"/>
+                            </group>
+                        </page>
+                        <page string="Resource" name="res_model_settings" attrs="{'invisible': [('formio_res_model_id', '=', False)]}"/>
+                        <page string="Portal" name="portal_settings">
+                            <group>
+                                <group name="portal_urls" colspan="2" attrs="{'invisible': [('portal_url', '=', False)]}">
+                                    <field name="portal_url" widget="CopyClipboardChar" style="font-size: 1.0em;"/>
+                                </group>
+                                <group name="portal_redirect_after_save_draft" string="Redirect After Save Draft">
+                                    <field name="portal_save_draft_done_url" groups="formio.group_formio_admin" string="Redirect URL" readonly="0"/>
+                                </group>
+                                <group name="portal_redirect_after_submit" string="Redirect After Submit">
+                                    <field name="portal_submit_done_url" groups="formio.group_formio_admin" string="Redirect URL" readonly="0"/>
+                                </group>
+                                <group string="Miscellaneous">
+                                    <field name="portal_scroll_into_view_selector"
+                                           string="Scroll Into View Selector"
+                                           groups="formio.group_formio_admin"
+                                           attrs="{'readonly': [('is_locked', '=', True)]}"/>
+                                </group>
+
+                            </group>
+                        </page>
+                        <page string="Public / Website" name="public_settings">
+                            <div class="text-muted mb-4" colspan="2">
+                                <i class="fa fa-info-circle" title="info"/> Configuration of Website features shall also be done here
+                            </div>
+                            <group>
+                                <group name="public_current_url" colspan="2" attrs="{'invisible': [('public_current_url', '=', False)]}">
+                                    <field name="public_current_url" widget="CopyClipboardChar" style="font-size: 1.0em;"/>
+                                    <div class="text-muted mb-4" colspan="2">
+                                        <i class="fa fa-info-circle" title="info"/> <strong>Public Current URL:</strong> Public Form with versioning (same Name) in state Current
+                                    </div>
+                                </group>
+                                <group name="public_url" colspan="2" attrs="{'invisible': [('public_url', '=', False)]}">
+                                    <field name="public_url" widget="CopyClipboardChar" style="font-size: 1.0em;"/>
+                                    <div class="text-muted mb-4" colspan="2">
+                                        <i class="fa fa-info-circle" title="info"/> <strong>Public URL:</strong> Public Form for this form builder version
+                                    </div>
+                                </group>
+                                <group name="general" string="General">
+                                    <field name="public_access_rule_type" attrs="{'required': [('public', '=', True)]}"/>
+                                    <div class="text-muted" colspan="2">
+                                        <i class="fa fa-info-circle" title="info"/> Other <em>Public Access Rule Type(s)</em> can be implemented by other modules.
+                                    </div>
+                                    <label for="public_access_interval_number" string="Expire After" attrs="{'invisible': [('public_access_rule_type', '!=', 'time_interval')]}"/>
+                                    <div attrs="{'invisible': [('public_access_rule_type', '!=', 'time_interval')]}">
+                                        <field name="public_access_interval_number" class="oe_inline" groups="formio.group_formio_admin" attrs="{'required': [('public', '=', True)]}"/>
+                                        <field name="public_access_interval_type" class="oe_inline ml-2" groups="formio.group_formio_admin" attrs="{'required': [('public', '=', True)]}"/>
+                                    </div>
+                                    <div class="text-muted" colspan="2" attrs="{'invisible': [('public_access_rule_type', '!=', 'time_interval')]}">
+                                        <i class="fa fa-info-circle" title="info"/><strong> Expire After:</strong> Applicable on the Form it's (datetime field) <strong>Public Access From</strong>.
+                                    </div>
+                                </group>
+                                <group name="public_redirect_after_save_draft" string="Redirect After Save Draft">
+                                    <field name="public_save_draft_done_url" groups="formio.group_formio_admin" string="Redirect URL" readonly="0"/>
+                                </group>
+                                <group name="public_redirect_after_submit" string="Redirect After Submit">
+                                    <field name="public_submit_done_url" groups="formio.group_formio_admin" string="Redirect URL" readonly="0"/>
+                                </group>
+                                <group string="Miscellaneous">
+                                    <field name="public_scroll_into_view_selector"
+                                           string="Scroll Into View Selector"
+                                           groups="formio.group_formio_admin"
+                                           attrs="{'readonly': [('is_locked', '=', True)]}"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Translations" name="translations" groups="formio.group_formio_admin">
+                            <group>
+                                <field name="language_en_enable"/>
+                            </group>
+                            <field name="translations" context="{'default_builder_id': id}">
+                                <tree editable="bottom">
+                                    <field name="builder_id" invisible="1"/>
+                                    <field name="lang_id"/>
+                                    <field name="source_property" placeholder="A formio.js library translation property ..."/>
+                                    <field name="source"/>
+                                    <field name="value"/>
+                                </tree>
+                            </field>
+                            <group string="Languages &amp; Locales" name="languages_locales">
+                                <field name="languages" nolabel="1" colspan="2">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="code" optional="show"/>
+                                        <field name="formio_ietf_code" optional="hide"/>
+                                        <field name="formio_short_code" optional="show"/>
+                                        <field name="active"/>
+                                    </tree>
+                                </field>
+                            </group>
+                            <div class="text-muted">
+                                <i class="fa fa-info-circle" title="info"/> Translations of the <strong>formio.js version</strong> can be done via the General tab (click field: formio.js version)<br/>
+                                <i class="fa fa-info-circle" title="info"/> The button "Translations" has the same as in this list.
+                            </div>
+                        </page>
+                        <page string="Form Display" name="form_display_settings">
+                            <group>
+                                <group string="iFrame Embedding" name="iframe_embed">
+                                    <field name="iframe_resizer_body_margin" groups="formio.group_formio_admin"/>
+                                </group>
+                                <group string="Submission" name="submission">
+                                    <field name="view_as_html" groups="formio.group_formio_admin"/>
+                                </group>
+                                <group string="Info" name="info">
+                                    <field name="show_form_title" string="Show Title" groups="formio.group_formio_admin" attrs="{'readonly': [('is_locked', '=', True)]}"/>
+                                    <field name="show_form_state" string="Show State" groups="formio.group_formio_admin" attrs="{'readonly': [('is_locked', '=', True)]}"/>
+                                    <field name="show_form_user_metadata" groups="formio.group_formio_admin" attrs="{'readonly': [('is_locked', '=', True)]}"/>
+                                    <field name="show_form_id" string="Show ID" groups="formio.group_formio_admin" attrs="{'readonly': [('is_locked', '=', True)]}"/>
+                                    <field name="show_form_uuid" string="Show UUID" groups="formio.group_formio_admin" attrs="{'readonly': [('is_locked', '=', True)]}"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Form Permissions" name="form_permissions" groups="formio.group_formio_admin">
+                            <div class="mb-3 text-muted">
+                                <i class="fa fa-info-circle" title="info"/> Specific permissions on Forms
+                            </div>
+                            <group>
+                                <field name="allow_force_update_state_group_ids" />
+                            </group>
+                            <group name="actions_settings" string="Actions">
+                                <field name="form_allow_copy" groups="formio.group_formio_admin" />
+                                <field name="form_copy_to_current" groups="formio.group_formio_admin" attrs="{'invisible': [('form_allow_copy', '=', False)]}" />
+                            </group>
+                        </page>
+                        <page string="Components API" name="formio_components_api">
+                            <group name="main"/>
+                            <group string="Partner" name="partner" colspan="2">
+                                <div class="text-muted mb-2" colspan="2">
+                                    <i class="fa fa-info-circle" title="info"/> To create or link (existing) Partner with a Form submission, specify the fields (Email, Name) from the Components API / Property Names.<br/>
+                                    Partner determination/match shall be done by Email. This API is especially useful for public Forms.
+                                </div>
+                                <group>
+                                    <field name="component_partner_email" string="Email" attrs="{'readonly': [('is_locked', '=', True)]}"/>
+                                    <field name="component_partner_name" string="Name" attrs="{'readonly': [('is_locked', '=', True)]}"/>
+                                </group>
+                                <group>
+                                    <field name="component_partner_add_follower" string="Add to Followers" attrs="{'readonly': [('is_locked', '=', True)]}"/>
+                                    <field name="component_partner_activity_user_id" string="Activity User" attrs="{'readonly': [('is_locked', '=', True)]}"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Actions API" name="actions_api" groups="formio.group_formio_admin">
+                            <group>
+                                <group string="Server Actions" name="server_actions" colspan="2">
+                                    <div class="mb-2 text-muted" colspan="2">
+                                        <i class="fa fa-info-circle" title="info"/> Server actions which process the form data / submission<br/>
+                                        <i class="fa fa-info-circle" title="info"/> This is used by the <a href="https://apps.odoo.com/apps/modules/16.0/formio_deploy/" target="_blank"><i class="fa fa-link"/> Deploy Tool (formio_deploy) module</a><br/>
+                                    </div>
+                                    <field name="server_action_ids"
+                                           nolabel="1"
+                                           colspan="2"
+                                           attrs="{'readonly': [('is_locked', '=', True)]}">
+                                        <tree>
+                                            <field name="name"/>
+                                            <field name="model_id"/>
+                                            <field name="formio_ref"/>
+                                            <field name="state"/>
+                                            <field name="sequence" optional="hide"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Extra Assets" name="extra_assets" groups="formio.group_formio_admin">
+                            <field name="extra_asset_ids">
+                                <tree>
+                                    <field name="type" readonly="1"/>
+                                    <field name="target" readonly="1" optional="hide"/>
+                                    <field name="attachment_id" readonly="1"/>
+                                    <field name="attachment_type" string="Attachment Type" optional="show"/>
+                                    <field name="url" string="URL" optional="show"/>
+                                    <field name="attachment_public" string="Public" optional="show"/>
+                                    <field name="attachment_formio_ref" optional="show"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="JS Options" name="javascript_options" groups="formio.group_formio_admin">
+                            <div class="text-muted mt-4">
+                                <i class="fa fa-info-circle" title="info"/><strong> Documentation</strong><br/>
+                                For example, Options could contain the Form Builder editForm with some File component settings:<br/>
+                                <a href="https://github.com/formio/formio.js/blob/master/src/components/file/editForm/File.edit.file.js" target="_blank">
+                                    https://github.com/formio/formio.js/blob/master/src/components/file/editForm/File.edit.file.js
+                                </a>
+                            </div>
+                            <div>
+                                <pre style="background-color: #e9ecef;">{
+  'editForm': {
+    'file': [
+      {
+        'key': 'file',
+        'components': [
+          {'key': 'webcam', 'defaultValue': True},
+          {'key': 'storage', 'defaultValue': 'base64'}
+        ]
+      }
+    ]
+  }
+}</pre>
+                            </div>
+                            <div style="background-color: #e9ecef; padding: 0 10px;">
+                                <group>
+                                    <field
+                                        name="formio_js_options_id"
+                                        string="Select formio.js Options"
+                                        attrs="{'readonly': [('is_locked', '=', True)]}"
+                                        style="height: 100%"/>
+                                </group>
+                            </div>
+
+                            <field name="formio_js_options"
+                                   placeholder="{ ... }"
+                                   attrs="{'readonly': [('is_locked', '=', True)]}"
+                                   widget="ace"/>
+                        </page>
+                        <page string="JSON Schema" name="schema" groups="formio.group_formio_admin">
+                            <field name="schema" attrs="{'readonly': [('is_locked', '=', True)]}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter" groups="formio.group_formio_admin">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_formio_builder_search" model="ir.ui.view">
+        <field name="name">formio.builder.search</field>
+        <field name="model">formio.builder</field>
+        <field name="arch" type="xml">
+            <search string="Form Builders">
+                <field name="title"/>
+                <field name="name"/>
+                <field name="uuid"/>
+                <field name="current_uuid"/>
+                <field name="formio_version_id"/>
+                <separator/>
+                <filter string="Draft" name="state_draft"
+                        domain="[('state', '=', 'DRAFT')]"/>
+                <filter string="Current" name="state_current"
+                        domain="[('state', '=', 'CURRENT')]"/>
+                <filter string="Obsolete" name="state_obsolete"
+                        domain="[('state', '=', 'OBSOLETE')]"/>
+                <separator/>
+                <filter string="Portal" name="portal"
+                        domain="[('portal', '=', True)]"/>
+                <filter string="Not Portal" name="not_portal"
+                        domain="[('portal', '=', False)]"/>
+                <separator/>
+                <filter string="Wizard" name="wizard"
+                        domain="[('wizard', '=', True)]"/>
+                <filter string="Not Wizard" name="not_portal"
+                        domain="[('wizard', '=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Name" name="name" domain="[]" context="{'group_by':'name'}"/>
+                    <filter string="State" name="state" domain="[]" context="{'group_by':'state'}"/>
+                    <filter string="Current UUID" name="current_uuid" domain="[]" context="{'group_by':'current_uuid'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- actions -->
+    <record id="action_formio_builder" model="ir.actions.act_window">
+        <field name="name">Form Builders</field>
+        <field name="res_model">formio.builder</field>
+        <!-- TODO when Odoo (v.16) has fixed the Action Service
+             implementation!
+             Currently it doesn't allow to hide search and obtain breadcrumbs.
+             Path: odoo/addons/web/static/src/webclient/actions/action_service.js
+        -->
+        <field name="view_mode">tree,form,formio_builder</field>
+        <!-- <field name="view_mode">tree,form</field> -->
+    </record>
+
+    <record id="action_formio_builder_view_tree" model="ir.actions.act_window.view">
+        <field name="sequence" eval="0"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="formio.view_formio_builder_tree"/>
+        <field name="act_window_id" ref="action_formio_builder"/>
+    </record>
+    <record id="action_formio_builder_view_form" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="formio.view_formio_builder_form"/>
+        <field name="act_window_id" ref="action_formio_builder"/>
+    </record>
+    <record id="action_formio_builder_view_formio" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">formio_builder</field>
+        <field name="view_id" ref="formio.view_formio_builder_formio"/>
+        <field name="act_window_id" ref="action_formio_builder"/>
+    </record>
+</odoo>
