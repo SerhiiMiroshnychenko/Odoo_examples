@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="formio_builder_js_options_merge_form" model="ir.ui.view">
+        <field name="name">formio.builder.js.options.merge.form</field>
+        <field name="model">formio.builder.js.options.merge</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="formio_js_options_merge_id"/>
+                    </group>
+                    <notebook>
+                        <page string="Merge" name="merge">
+                            <field name="formio_js_options_merge" widget="ace"/>
+                        </page>
+                        <page string="Current" name="current">
+                            <field name="formio_js_options_current_id"/>
+                            <field name="formio_js_options_current" widget="ace"/>
+                        </page>
+                        <page string="Merge Preview"
+                              name="preview"
+                              attrs="{'invisible': [('formio_js_options_merge_preview', '=', False)]}">
+                            <field name="formio_js_options_merge_preview" widget="ace"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button name="action_merge"
+                            type="object"
+                            string="Merge"
+                            close="1"
+                            class="btn-primary"/>
+                    <button string="Close" name="close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_formio_builder_js_options_merge" model="ir.actions.act_window">
+        <field name="name">Forms Builder JS Options Merge</field>
+        <field name="res_model">formio.builder.js.options.merge</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="action_open_merge_wizard" model="ir.actions.act_window">
+        <field name="name">Merge</field>
+        <field name="res_model">formio.builder.js.options.merge</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
