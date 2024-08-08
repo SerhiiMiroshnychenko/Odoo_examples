@@ -1,0 +1,34 @@
+/* .o_form_sheet_bg > .formio_form_container.o_form_sheet { */
+/*     /* TODO setting in builder or ir.config_param ? */
+/*     max-width: none !important; */
+/*     width: 80% !important; */
+/* } */
+
+.o-form-buttonbox .oe_stat_button.formio_form .o_stat_info,
+.o-form-buttonbox .oe_stat_button.formio_form .o_button_icon.fa-rocket {
+    color: $o-white;
+}
+
+.formio_form_iframe_container iframe{
+    width: 1px;
+    min-width: 100%;
+    border: 0;
+}
+
+.formio_form_container .formio_header {
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.formio_form_container .formio_header .formio_form_dock * {
+    font-size: 14px;
+}
+
+.formio_form_container .formio_header .formio_form_dock ul {
+    list-style: none;
+}
+
+.formio_form_container .formio_header .formio_form_dock ul li {
+    float: left;
+    margin-left: 20px;
+}
