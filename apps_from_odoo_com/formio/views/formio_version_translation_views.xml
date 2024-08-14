@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright Nova Code (http://www.novacode.nl)
+See LICENSE file for full licensing details. -->
+
+<odoo>
+    <record id="view_formio_version_translation_tree" model="ir.ui.view">
+        <field name="name">formio.version.translation.tree</field>
+        <field name="model">formio.version.translation</field>
+        <field name="arch" type="xml">
+            <tree string="Translations" editable="top">
+                <field name="sequence" widget="handle"/>
+                <field name="formio_version_id" optional="show"/>
+                <field name="lang_id"/>
+                <field name="source_property"/>
+                <field name="source_text"/>
+                <field name="value"/>
+                <field name="base_translation_origin" optional="show"/>
+                <field name="base_translation_updated" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_formio_version_translation_form" model="ir.ui.view">
+        <field name="name">formio.version.translation.form</field>
+        <field name="model">formio.version.translation</field>
+        <field name="arch" type="xml">
+	    <form string="Translation">
+                <sheet>
+                    <group>
+                        <field name="formio_version_id"/>
+                        <field name="lang_id"/>
+                        <field name="source_property" placeholder="A formio.js library translation property ..."/>
+                        <field name="source_text"/>
+                        <field name="value"/>
+                        <field name="base_translation_origin"/>
+                        <field name="base_translation_updated"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_formio_version_translation_search" model="ir.ui.view">
+        <field name="name">formio.version.translation.search</field>
+        <field name="model">formio.version.translation</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="formio_version_id"/>
+                <field name="lang_id"/>
+                <field name="source_property"/>
+                <field name="source_text"/>
+                <field name="value"/>
+                <filter string="Origin Base Translations"
+                        name="origin_base"
+                        domain="[('base_translation_origin', '=', True)]"/>
+                <filter string="Origin User Added Translations"
+                        name="origin_user"
+                        domain="[('base_translation_origin', '=', False)]"/>
+                <separator/>
+                <filter string="Updated Base Translations"
+                        name="updated_base"
+                        domain="[('base_translation_updated', '=', True)]"/>
+                <filter string="Not Updated Base Translations"
+                        name="not_updated_base"
+                        domain="[('base_translation_updated', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_formio_version_translation" model="ir.actions.act_window">
+        <field name="name">Translations</field>
+        <field name="res_model">formio.version.translation</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_formio_version_translation_tree"/>
+        <field name="search_view_id" ref="view_formio_version_translation_search"/>
+    </record>
+</odoo>
