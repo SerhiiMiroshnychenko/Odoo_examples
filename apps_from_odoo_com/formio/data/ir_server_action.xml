@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_server_formio_version_reset_download_install" model="ir.actions.server">
+        <field name="name">Reset (download and reinstall)</field>
+        <field name="model_id" ref="formio.model_formio_version"/>
+        <field name="binding_model_id" ref="formio.model_formio_version"/>
+        <field name="state">code</field>
+        <field name="code">
+            records.action_reset_download_install()
+        </field>
+    </record>
+
+</odoo>
