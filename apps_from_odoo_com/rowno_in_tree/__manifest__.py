@@ -15,7 +15,7 @@
             "rowno_in_tree/static/src/xml/list_render.xml",
         ],
     },
-    "images": ["static/description/rowno_tree-banner.png"],
+    "images": ["static/description/blue_banner.png"],
     "license": "LGPL-3",
     # Author
     "author": "Synodica Solutions Pvt. Ltd.",
