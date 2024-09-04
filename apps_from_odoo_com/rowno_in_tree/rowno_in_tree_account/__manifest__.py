@@ -11,7 +11,7 @@
             "rowno_in_tree_account/static/src/xml/list_render.xml",
         ],
     },
-    "images": ["static/description/rowno_tree-banner.png"],
+    "images": ["static/description/blue_banner.png"],
     "auto_install": True,
     "license": "LGPL-3",
     # Author
