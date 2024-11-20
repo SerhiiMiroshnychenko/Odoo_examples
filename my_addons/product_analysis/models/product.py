@@ -1,11 +1,9 @@
-import plotly
-from odoo import models, fields, api
-from datetime import datetime, timedelta
-import logging
-import base64
-import io
 import json
-from datetime import datetime
+import plotly
+import logging
+from datetime import datetime, timedelta
+
+from odoo import models, fields, api
 
 _logger = logging.getLogger(__name__)
 
@@ -55,11 +53,13 @@ class ProductProduct(models.Model):
                 _logger.error(f"Error generating new plot: {str(e)}")
                 product.plotly_chart = False
 
-    def _serialize_datetime(self, dt):
+    @staticmethod
+    def _serialize_datetime(dt):
         """Convert datetime to string for JSON serialization"""
         return dt.isoformat() if dt else None
 
-    def _deserialize_datetime(self, dt_str):
+    @staticmethod
+    def _deserialize_datetime(dt_str):
         """Convert string to datetime from JSON deserialization"""
         return datetime.fromisoformat(dt_str) if dt_str else None
 
