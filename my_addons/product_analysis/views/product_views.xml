@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_normal_form_view_inherit" model="ir.ui.view">
+        <field name="name">product.product.form.inherit.stock.history</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Stock Analysis" name="stock_analysis">
+                    <group>
+                        <group>
+                            <field name="last_stock_update" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Stock Level History">
+                        <div>
+                            <field name="plotly_chart" widget="plotly_chart" nolabel="1"/>
+                        </div>
+                    </group>
+                    <button name="update_plotly_plot" type="object" string="Update Plot"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
